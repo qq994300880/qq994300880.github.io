@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（基础）/">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-自定义Banner/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -286,7 +286,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/19/使用Hexo-Github搭建自己的博客（基础）/" itemprop="url">使用Hexo+Github搭建自己的博客（基础）</a></h1>
+                <a class="post-title-link" href="/2019/03/20/使用SpringBoot-自定义Banner/" itemprop="url">使用SpringBoot-自定义Banner</a></h1>
         
 
         <div class="post-meta">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T14:36:55+08:00">
-                2019-03-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T19:18:57+08:00">
+                2019-03-20
               </time>
             
 
@@ -308,6 +308,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -338,63 +360,208 @@
       
         
           
-            <h1 id="使用Hexo-Github搭建自己的博客（基础）"><a href="#使用Hexo-Github搭建自己的博客（基础）" class="headerlink" title="使用Hexo+Github搭建自己的博客（基础）"></a>使用Hexo+Github搭建自己的博客（基础）</h1><p>前言：电脑系统为window 7，64位</p>
-<h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2><h3 id="安装Node-js和配置好Node-js环境，打开cmd命令行，成功界面如下"><a href="#安装Node-js和配置好Node-js环境，打开cmd命令行，成功界面如下" class="headerlink" title="安装Node.js和配置好Node.js环境，打开cmd命令行，成功界面如下"></a>安装Node.js和配置好Node.js环境，打开cmd命令行，成功界面如下</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\系统名&gt;node -v</span><br><span class="line">v10.11.4</span><br><span class="line"></span><br><span class="line">C:\Users\系统名&gt;npm -v</span><br><span class="line">6.4.2</span><br></pre></td></tr></table></figure>
-<h3 id="安装Git和配置好Git环境，安装成功的象征就是在电脑上任何位置鼠标右键能够出现两个选择"><a href="#安装Git和配置好Git环境，安装成功的象征就是在电脑上任何位置鼠标右键能够出现两个选择" class="headerlink" title="安装Git和配置好Git环境，安装成功的象征就是在电脑上任何位置鼠标右键能够出现两个选择"></a>安装Git和配置好Git环境，安装成功的象征就是在电脑上任何位置鼠标右键能够出现两个选择</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git GUI Here</span><br><span class="line">Git Bash Here</span><br></pre></td></tr></table></figure>
-<p>注意：一般出于安全考虑，只有在Git Bash Here中才能进行Git的相关操作。如果需要在cmd命令行里调用Git，那么就要配置电脑的环境变量Path，或者在安装的时候选择use Git from the Windows Command Prompt。</p>
-<h3 id="Github账户注册和新建项目，项目必须要遵守格式：账户名-github-io，不然接下来会有很多麻烦。并且需要勾选Initialize-this-repository-with-a-README"><a href="#Github账户注册和新建项目，项目必须要遵守格式：账户名-github-io，不然接下来会有很多麻烦。并且需要勾选Initialize-this-repository-with-a-README" class="headerlink" title="Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，不然接下来会有很多麻烦。并且需要勾选Initialize this repository with a README"></a>Github账户注册和新建项目，项目必须要遵守格式：账户名.github.io，不然接下来会有很多麻烦。并且需要勾选Initialize this repository with a README</h3><p>在建好的项目右侧有个settings按钮，点击它，向下拉到GitHub Pages，你会看到那边有个网址，访问它，你将会惊奇的发现该项目已经被部署到网络上，能够通过外网来访问它。</p>
-<h3 id="安装Hexo，在自己认为合适的地方创个文件夹，我是在D盘建了一个blog文件夹。然后通过命令行进入到该文件夹里面"><a href="#安装Hexo，在自己认为合适的地方创个文件夹，我是在D盘建了一个blog文件夹。然后通过命令行进入到该文件夹里面" class="headerlink" title="安装Hexo，在自己认为合适的地方创个文件夹，我是在D盘建了一个blog文件夹。然后通过命令行进入到该文件夹里面"></a>安装Hexo，在自己认为合适的地方创个文件夹，我是在D盘建了一个blog文件夹。然后通过命令行进入到该文件夹里面</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\系统名&gt;D:</span><br><span class="line"></span><br><span class="line">D:\&gt;cd Github</span><br><span class="line"></span><br><span class="line">D:\Github&gt;cd hexo</span><br><span class="line"></span><br><span class="line">D:\Github\hexo&gt;</span><br></pre></td></tr></table></figure>
+            <h2 id="自定义横幅"><a href="#自定义横幅" class="headerlink" title="自定义横幅"></a>自定义横幅</h2><p>可以通过向<code>banner.txt</code>类路径添加文件或将<code>spring.banner.location</code>属性设置为此类文件的位置来更改启动时打印的横幅。如果文件的编码不是UTF-8，则可以进行设置<code>spring.banner.charset</code>。除了一个文本文件，你还可以添加一个<code>banner.gif</code>，<code>banner.jpg</code>或<code>banner.png</code> 图像文件到类路径或设置<code>spring.banner.image.location</code>属性。图像将转换为ASCII艺术表示，并打印在任何文本横幅上方。</p>
+<p>在<code>banner.txt</code>文件中，您可以使用以下任何占位符：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">量</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>${application.version}</code></td>
+<td style="text-align:center">应用程序的版本号，如声明中所声明的<code>MANIFEST.MF</code>。例如，<code>Implementation-Version: 1.0</code>打印为<code>1.0</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>${application.formatted-version}</code></td>
+<td style="text-align:center">应用程序的版本号，在<code>MANIFEST.MF</code>显示中声明并格式化（用括号括起来并以前缀为例<code>v</code>）。例如<code>(v1.0)</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>${spring-boot.version}</code></td>
+<td style="text-align:center">您正在使用的Spring Boot版本。例如<code>2.1.3.RELEASE</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>${spring-boot.formatted-version}</code></td>
+<td style="text-align:center">您正在使用的Spring Boot版本，格式化显示（用括号括起来并带有前缀<code>v</code>）。例如<code>(v2.1.3.RELEASE)</code>。</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>${Ansi.NAME}</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>${AnsiColor.NAME}</code><br><code>${AnsiBackground.NAME}</code><br><code>${AnsiStyle.NAME}</code> | <code>NAME</code>ANSI转义码的名称在哪里。详情<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/ansi/AnsiPropertySource.java"><code>AnsiPropertySource</code></a>。 |<br>|                    <code>${application.title}</code>                    | 申请的标题，如声明中所述<code>MANIFEST.MF</code>。例如<code>Implementation-Title: MyApp</code>打印为<code>MyApp</code>。 |</p>
+<blockquote>
+<p><code>SpringApplication.setBanner(…)</code>如果要以编程方式生成横幅，则可以使用该方法。使用<code>org.springframework.boot.Banner</code>界面并实现自己的<code>printBanner()</code>方法。</p>
+</blockquote>
+<p>您还可以使用该<code>spring.main.banner-mode</code>属性来确定是否必须在<code>System.out</code>（<code>console</code>）上打印横幅，发送到配置的记录器（<code>log</code>），或者根本不生成横幅（<code>off</code>）。</p>
+<p>打印的横幅在以下名称下注册为单例bean : <code>springBootBanner</code>.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">spring：</span></span><br><span class="line">	<span class="string">main：</span></span><br><span class="line">		<span class="string">banner-mode：“off”</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-SpringBootApplication/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/使用SpringBoot-SpringBootApplication/" itemprop="url">使用SpringBoot-@SpringBootApplication</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T02:05:20+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="使用-SpringBootApplication-Annotation"><a href="#使用-SpringBootApplication-Annotation" class="headerlink" title="使用@SpringBootApplication Annotation"></a>使用@SpringBootApplication Annotation</h2><p>许多Spring Boot开发人员喜欢他们的应用程序使用自动配置，组件扫描，并能够在他们的“应用程序类”上定义额外的配置。<code>@SpringBootApplication</code>可以使用单个 注释来启用这三个功能，即：</p>
 <ul>
-<li><p>输入npm install hexo -g，开始安装Hexo</p>
-</li>
-<li><p>输入hexo -v，检查hexo是否安装成功</p>
-</li>
-<li><p>输入hexo init，初始化该文件夹（有点漫长的等待。。。）</p>
-<p>看到后面的“Start blogging with Hexo！”，激动有木有！！！！！</p>
-</li>
-<li><p>输入npm install，安装所需要的组件</p>
-</li>
-<li><p>输入hexo g，首次体验Hexo</p>
-</li>
-<li><p>输入hexo s，开启服务器，访问该网址，正式体验Hexo</p>
-<p>问题：假如页面一直无法跳转，那么可能端口被占用了。此时我们ctrl+c停止服务器，接着输入“hexo server -p 端口号”来改变端口号</p>
-</li>
-<li><p>成功访问首页</p>
-</li>
+<li><code>@EnableAutoConfiguration</code>：启用<a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#using-boot-auto-configuration" target="_blank" rel="noopener">Spring Boot的自动配置机制</a></li>
+<li><code>@ComponentScan</code>：<code>@Component</code>在应用程序所在的包上启用扫描（请参阅<a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#using-boot-structuring-your-code" target="_blank" rel="noopener">最佳实践</a>）</li>
+<li><code>@Configuration</code>：允许在上下文中注册额外的bean或导入其他配置类</li>
 </ul>
-<h3 id="将Hexo与Github-page联系起来，设置Git的user-name和email（如果是第一次的话）"><a href="#将Hexo与Github-page联系起来，设置Git的user-name和email（如果是第一次的话）" class="headerlink" title="将Hexo与Github page联系起来，设置Git的user name和email（如果是第一次的话）"></a>将Hexo与Github page联系起来，设置Git的user name和email（如果是第一次的话）</h3><p>在hexo文件夹里面鼠标右键，点击Git Base Here</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Administrator@yd MINGW64 /d/GitHub/hexo</span><br><span class="line"><span class="meta">$</span> git config --global user.name "用户名"</span><br><span class="line"></span><br><span class="line">Administrator@yd MINGW64 /d/GitHub/hexo</span><br><span class="line"><span class="meta">$</span> git config --global user.email "邮箱"</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>输入cd ~/.ssh，检查是否由.ssh的文件夹</p>
-</li>
-<li><p>输入ls，列出该文件下的内容。下图说明存在</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Administrator@yd MINGW64 ~/.ssh</span><br><span class="line"><span class="meta">$</span> ls</span><br><span class="line">id_rsa  id_rsa.pub  known_hosts</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>输入ssh-keygen -t rsa -C “邮箱”，连续三个回车，生成密钥，最后得到了两个文件：id_rsa和id_rsa.pub（默认存储路径是：C:\Users\Administrator.ssh）</p>
-</li>
-<li><p>输入eval “$(ssh-agent -s)”，添加密钥到ssh-agent</p>
-</li>
-<li><p>再输入ssh-add ~/.ssh/id_rsa，添加生成的SSH key到ssh-agent</p>
-</li>
-<li><p>登录Github，点击头像下的settings，添加ssh</p>
-</li>
-<li><p>新建一个new ssh key，将id_rsa.pub文件里的内容复制上去</p>
-</li>
-<li><p>输入ssh -T <a href="mailto:git@github.com">git@github.com</a>，测试添加ssh是否成功。如果看到Hi后面是你的用户名，就说明成功了</p>
-<p><strong>问题</strong>：假如ssh-key配置失败，那么只要以下步骤就能完全解决</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">首先，清除所有的key-pair</span><br><span class="line">ssh-add -D</span><br><span class="line">rm -r ~/.ssh</span><br><span class="line">删除你在github中的public-key</span><br><span class="line"></span><br><span class="line">重新生成ssh密钥对</span><br><span class="line">ssh-keygen -t rsa -C "xxx@xxx.com"</span><br><span class="line"></span><br><span class="line">接下来正常操作</span><br><span class="line">在github上添加公钥public-key:</span><br><span class="line">1、首先在你的终端运行 xclip -sel c ~/.ssh/id_rsa.pub将公钥内容复制到剪切板</span><br><span class="line">2、在github上添加公钥时，直接复制即可</span><br><span class="line">3、保存</span><br><span class="line"></span><br><span class="line">测试：</span><br><span class="line">在终端 ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="配置Deployment，在其文件夹中，找到-config-yml文件，修改repo值（在末尾）"><a href="#配置Deployment，在其文件夹中，找到-config-yml文件，修改repo值（在末尾）" class="headerlink" title="配置Deployment，在其文件夹中，找到_config.yml文件，修改repo值（在末尾）"></a>配置Deployment，在其文件夹中，找到_config.yml文件，修改repo值（在末尾）</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">git@github.com:用户名/用户名.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-<p><code>repository</code>的值为github项目里的ssh（右下角）</p>
-<h3 id="新建一篇博客，在cmd执行命令：hexo-new-post-“博客名”"><a href="#新建一篇博客，在cmd执行命令：hexo-new-post-“博客名”" class="headerlink" title="新建一篇博客，在cmd执行命令：hexo new post “博客名”"></a>新建一篇博客，在cmd执行命令：hexo new post “博客名”</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\Github\hexo&gt;hexo new post "hello,Hexo"</span><br><span class="line">INFO Created: D:\Github\hexo\source\_posts\hello-Hexo.md</span><br></pre></td></tr></table></figure>
-<p>这时候在文件夹_posts目录下将会看到已经创建的文件</p>
-<ul>
-<li>在生成以及部署文章之前，需要安装一个扩展：npm install hexo-deployer-git –save</li>
-<li>使用编辑器编好文章，那么就可以使用命令：hexo d -g，生成以及部署了</li>
-<li>部署成功后访问你的地址：http://用户名.github.io。那么将看到生成的文章</li>
-</ul>
-<p>好了，到此为止，最基本的也是最全面的hexo+github搭建博客完结。接下来是进阶的操作</p>
+<p>的<code>@SpringBootApplication</code>注释是相当于使用<code>@Configuration</code>， <code>@EnableAutoConfiguration</code>以及<code>@ComponentScan</code>与他们的默认属性，如显示在下面的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.myapplication;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span>  <span class="comment">//与@Configuration相同@EnableAutoConfiguration @ComponentScan </span></span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span> main（String [] args）&#123;</span><br><span class="line">		SpringApplication.run（Application .class，args）;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>@SpringBootApplication</code>还提供了别名定制的属性 <code>@EnableAutoConfiguration</code>和<code>@ComponentScan</code>。</p>
+</blockquote>
+<blockquote>
+<p>这些功能都不是必需的，您可以选择通过它启用的任何功能替换此单个注释。例如，您可能不希望在应用程序中使用组件扫描：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">package</span> com.example.myapplication;</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line">&gt; <span class="keyword">import</span> org.springframework.context.annotation.ComponentScan</span><br><span class="line">&gt; <span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line">&gt; <span class="keyword">import</span> org.springframework.context.annotation.Import;</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="meta">@Configuration</span></span><br><span class="line">&gt; <span class="meta">@EnableAutoConfiguration</span></span><br><span class="line">&gt; <span class="meta">@Import</span>(&#123;MyConfig.class，MyAnotherConfig.class&#125;)</span><br><span class="line">&gt; <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">&gt;     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main（String[] args）&#123;</span><br><span class="line">&gt;     	SpringApplication.run（Application .class，args）;</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>在此示例中，<code>Application</code>与任何其他Spring Boot应用程序一样，除了 <code>@Component</code>未自动检测到注释类并且显式导入用户定义的bean（请参阅参考资料<code>@Import</code>）。</p>
+</blockquote>
 
           
         
@@ -449,7 +616,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/19/开头篇/">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-依赖注入/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -468,7 +635,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/19/开头篇/" itemprop="url">开头篇</a></h1>
+                <a class="post-title-link" href="/2019/03/20/使用SpringBoot-依赖注入/" itemprop="url">使用SpringBoot-依赖注入</a></h1>
         
 
         <div class="post-meta">
@@ -480,7 +647,1036 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T14:20:59+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T01:58:26+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Spring-Beans和依赖注入"><a href="#Spring-Beans和依赖注入" class="headerlink" title="Spring Beans和依赖注入"></a>Spring Beans和依赖注入</h2><p>您可以自由地使用任何标准的Spring Framework技术来定义bean及其注入的依赖项。为简单起见，我们经常发现使用 <code>@ComponentScan</code>（找到你的bean）和使用<code>@Autowired</code>（做构造函数注入）效果很好。</p>
+<p>如果按照上面的建议构建代码（在根包中定位应用程序类），则可以添加<code>@ComponentScan</code>不带任何参数的代码。您的所有应用程序组件（的<code>@Component</code>，<code>@Service</code>，<code>@Repository</code>，<code>@Controller</code>等）自动注册为春豆。</p>
+<p>以下示例显示了一个<code>@Service</code>使用构造函数注入来获取所需<code>RiskAssessor</code>bean的Bean：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DatabaseAccountService</span> <span class="keyword">implements</span> <span class="title">AccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> RiskAssessor riskAssessor;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DatabaseAccountService</span><span class="params">(RiskAssessor riskAssessor)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.riskAssessor = riskAssessor;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果bean有一个构造函数，则可以省略<code>@Autowired</code>，如下例所示：(长知识了)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DatabaseAccountService</span> <span class="keyword">implements</span> <span class="title">AccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> RiskAssessor riskAssessor;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DatabaseAccountService</span><span class="params">(RiskAssessor riskAssessor)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.riskAssessor = riskAssessor;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：使用构造函数注入如何将<code>riskAssessor</code>字段标记为 <code>final</code>，表示无法随后更改。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-AutoConfiguration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/使用SpringBoot-AutoConfiguration/" itemprop="url">使用SpringBoot-AutoConfiguration</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T01:48:34+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="自动配置"><a href="#自动配置" class="headerlink" title="自动配置"></a>自动配置</h2><p>​    Spring Boot自动配置尝试根据您添加的jar依赖项自动配置Spring应用程序。例如，如果<code>HSQLDB</code> 在您的类路径上，并且您尚未手动配置任何数据库连接bean，则Spring Boot会自动配置内存数据库。</p>
+<p>​    您需要通过向其中一个类添加<code>@EnableAutoConfiguration</code>或 <code>@SpringBootApplication</code>注释来选择自动配置<code>@Configuration</code>。</p>
+<blockquote>
+<p>您应该只添加一个<code>@SpringBootApplication</code>或<code>@EnableAutoConfiguration</code> 注释。我们通常建议您仅将一个或另一个添加到主 <code>@Configuration</code>类。</p>
+</blockquote>
+<h2 id="更换自动配置"><a href="#更换自动配置" class="headerlink" title="更换自动配置"></a>更换自动配置</h2><p>​    自动配置是非侵入性的。在任何时候，您都可以开始定义自己的配置以替换自动配置的特定部分。例如，如果添加自己的<code>DataSource</code>bean，则默认的嵌入式数据库支持会退回。</p>
+<p>​    如果您需要了解当前正在应用的自动配置以及原因，请使用<code>--debug</code>交换机启动应用程序。这样做可以为选择的核心记录器启用调试日志，并将条件报告记录到控制台。</p>
+<h2 id="禁用特定的自动配置类"><a href="#禁用特定的自动配置类" class="headerlink" title="禁用特定的自动配置类"></a>禁用特定的自动配置类</h2><p>​    如果发现正在应用您不需要的特定自动配置类，则可以使用<code>@EnableAutoConfiguration</code>的<code>exclude</code>属性禁用它们，如以下示例所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure。*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.jdbc。*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation。*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span> </span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span>（exclude = &#123;DataSourceAutoConfiguration.class&#125;）</span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">MyConfiguration</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果类不在类路径上，则可以使用<code>excludeName</code>注释的属性并指定完全限定名称。最后，您还可以使用该<code>spring.autoconfigure.exclude</code>属性控制要排除的自动配置类列表 。</p>
+<blockquote>
+<p>可以在注释级别和使用属性定义排除项。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-Configuration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/使用SpringBoot-Configuration/" itemprop="url">使用SpringBoot-Configuration</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T01:40:47+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h2><p>​    Spring Boot支持基于Java的配置。尽管可以使用 <code>SpringApplicationXML</code>源，但我们通常建议您的主要源是单个<code>@Configuration</code>类。通常，定义<code>main</code>方法的类是主要的候选者<code>@Configuration</code>。</p>
+<blockquote>
+<p>许多Spring配置示例已在Internet上发布，使用XML配置。如果可能，请始终尝试使用等效的基于Java的配置。搜索<code>Enable*</code>注释可能是一个很好的起点。</p>
+</blockquote>
+<h2 id="导入其他配置类"><a href="#导入其他配置类" class="headerlink" title="导入其他配置类"></a>导入其他配置类</h2><p>​    你不需要把所有的<code>@Configuration</code>都放在一个类里。<code>@Import</code>注释可以用于导入额外的配置类。或者，您可以使用 <code>@ComponentScan</code>自动获取所有Spring组件，包括 <code>@Configuration</code>类。</p>
+<h2 id="导入XML配置文件"><a href="#导入XML配置文件" class="headerlink" title="导入XML配置文件"></a>导入XML配置文件</h2><p>​    如果您必须使用基于XML的配置，我们建议您仍然从一个<code>@Configuration</code>类开始。然后，您可以使用<code>@ImportResource</code>注释来加载XML配置文件</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-Starters/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/使用SpringBoot-Starters/" itemprop="url">使用SpringBoot-Starters</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T01:08:40+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Starters简介"><a href="#Starters简介" class="headerlink" title="Starters简介"></a>Starters简介</h2><p>​    启动器是一组方便的依赖关系描述符，您可以在应用程序中包含这些描述符。您可以获得所需的所有Spring和相关技术的一站式服务，而无需查看示例代码和复制粘贴依赖描述符的负载。例如，如果要开始使用Spring和JPA进行数据库访问，请<code>spring-boot-starter-data-jpa</code>在项目中包含依赖项。</p>
+<p>启动器包含许多依赖项，这些依赖项是使项目快速启动和运行所需的依赖项，以及一组受支持的托管传递依赖项。</p>
+<blockquote>
+<p>什么是名字</p>
+<p>所有官方首发都遵循类似的命名模式; <code>spring-boot-starter-*</code>，这里<code>*</code>是特定类型的应用程序。此命名结构旨在帮助您找到启动器。许多IDE中的Maven集成允许您按名称搜索依赖项。例如，安装了适当的Eclipse或STS插件后，您可以<code>ctrl-space</code>在POM编辑器中输入“spring-boot-starter”以获取完整列表。</p>
+<p>第三方启动者不应该开头为spring-boot，因为它是为官方Spring Boot工件保留的。相反，第三方启动器通常以项目名称开头。例如，<code>thirdpartyproject</code>通常会命名一个名为的第三方启动项目 <code>thirdpartyproject-spring-boot-starter</code>。</p>
+</blockquote>
+<p>以下应用程序启动程序由Spring Boot在<code>org.springframework.boot</code>组下提供 ：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">spring-boot-starter</td>
+<td style="text-align:center">核心启动器，包括自动配置支持，日志记录和YAML</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-activemq</td>
+<td style="text-align:center">Apache ActiveMQ进行JMS消息传递</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-amqp</td>
+<td style="text-align:center">Spring AMQP和Rabbit MQ</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-aop</td>
+<td style="text-align:center">Spring AOP和AspectJ进行面向方面编程</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-artemis</td>
+<td style="text-align:center">Apache Artemis进行JMS消息传递</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-batch</td>
+<td style="text-align:center">Spring Batch</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-cache</td>
+<td style="text-align:center">Spring Framework的缓存支持</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-cloud-connectors</td>
+<td style="text-align:center">Spring Cloud Connectors的启动器，简化了Cloud Foundry和Heroku等云平台中的服务连接</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-cassandra</td>
+<td style="text-align:center">Cassandra分布式数据库和Spring Data Cassandra</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-cassandra-reactive</td>
+<td style="text-align:center">Cassandra分布式数据库和Spring Data Cassandra Reactive</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-couchbase</td>
+<td style="text-align:center">Couchbase面向文档的数据库和Spring Data Couchbase</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-couchbase-reactive</td>
+<td style="text-align:center">Couchbase面向文档的数据库和Spring Data Couchbase Reactive</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-elasticsearch</td>
+<td style="text-align:center">Elasticsearch搜索和分析引擎以及Spring Data Elasticsearch</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-jdbc</td>
+<td style="text-align:center">Spring Data JDBC</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-jpa</td>
+<td style="text-align:center">将Spring Data JPA与Hibernate一起使用</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-ldap</td>
+<td style="text-align:center">Spring Data LDAP</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-mongodb</td>
+<td style="text-align:center">MongoDB面向文档的数据库和Spring Data MongoDB</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-mongodb-reactive</td>
+<td style="text-align:center">MongoDB面向文档的数据库和Spring Data MongoDB Reactive</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-neo4j</td>
+<td style="text-align:center">Neo4j图形数据库和Spring Data Neo4j</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-redis</td>
+<td style="text-align:center">在Spring Data Redis和Lettuce客户端上使用Redis键值数据存储</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-redis-reactive</td>
+<td style="text-align:center">带有Spring Data Redis被动的Redis键值数据存储和Lettuce客户端</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-rest</td>
+<td style="text-align:center">Spring Data REST通过REST公开Spring Data存储库</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-data-solr</td>
+<td style="text-align:center">在Spring Data Solr中使用Apache Solr搜索平台</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-freemarker</td>
+<td style="text-align:center">FreeMarker视图构建MVC Web应用程序</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-groovy-templates</td>
+<td style="text-align:center">Groovy模板视图构建MVC Web应用程序</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-hateoas</td>
+<td style="text-align:center">Spring MVC和Spring HATEOAS构建基于超媒体的RESTful Web应用程序</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-integration</td>
+<td style="text-align:center">Spring Integration</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-jdbc</td>
+<td style="text-align:center">将JDBC与HikariCP连接池一起使用</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-jersey</td>
+<td style="text-align:center">JAX-RS和Jersey构建RESTful Web应用程序，替代spring-boot-starter-web</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-jooq</td>
+<td style="text-align:center">jOOQ访问SQL数据库的启动器。替代spring-boot-starter-data-jpa或spring-boot-starter-jdbc</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-json</td>
+<td style="text-align:center">阅读和写作json</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-jta-atomikos</td>
+<td style="text-align:center">Atomikos进行JTA交易</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-jta-bitronix</td>
+<td style="text-align:center">Bitronix进行JTA事务</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-mail</td>
+<td style="text-align:center">Java Mail和Spring Framework的电子邮件发送支持</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-mustache</td>
+<td style="text-align:center">Mustache视图构建Web应用程序</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-oauth2-client</td>
+<td style="text-align:center">Spring Security的OAuth2 / OpenID Connect客户端功能</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-oauth2-resource-server</td>
+<td style="text-align:center">Spring Security的OAuth2资源服务器功能</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-quartz</td>
+<td style="text-align:center">Quartz调度程序</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-security</td>
+<td style="text-align:center">Spring Security</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-test</td>
+<td style="text-align:center">JUnit，Hamcrest和Mockito等库来测试Spring Boot应用程序</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-thymeleaf</td>
+<td style="text-align:center">Thymeleaf视图构建MVC Web应用程序</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-validation</td>
+<td style="text-align:center">Java Bean Validation和Hibernate Validator</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-web</td>
+<td style="text-align:center">Spring MVC构建Web（包括RESTful）应用程序的启动器。使用Tomcat作为默认嵌入式容器</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-web-services</td>
+<td style="text-align:center">Spring Web Services</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-webflux</td>
+<td style="text-align:center">Spring Framework的Reactive Web支持构建WebFlux应用程序</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-websocket</td>
+<td style="text-align:center">Spring Framework的WebSocket支持构建WebSocket应用程序</td>
+</tr>
+</tbody>
+</table>
+<p>生产模块功能：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">spring-boot-starter-actuator</td>
+<td style="text-align:center">Spring Boot的Actuator的启动器，它提供生产就绪功能，帮助您监控和管理您的应用程序</td>
+</tr>
+</tbody>
+</table>
+<p>最后，如果要排除或交换特定的技术方面，Spring Boot还包括以下启动器：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">spring-boot-starter-jetty</td>
+<td style="text-align:center">Jetty作为嵌入式servlet容器，替代spring-boot-starter-tomcat</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-log4j2</td>
+<td style="text-align:center">Log4j2进行日志记录。替代spring-boot-starter-logging</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-logging</td>
+<td style="text-align:center">Logback进行日志记录。默认日志启动器</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-reactor-netty</td>
+<td style="text-align:center">Reactor Netty作为嵌入式响应式HTTP服务器</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-tomcat</td>
+<td style="text-align:center">Tomcat作为嵌入式servlet容器。使用的默认servlet容器启动器spring-boot-starter-web</td>
+</tr>
+<tr>
+<td style="text-align:center">spring-boot-starter-undertow</td>
+<td style="text-align:center">Undertow作为嵌入式servlet容器。替代spring-boot-starter-tomcat</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-Maven/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/20/使用SpringBoot-Maven/" itemprop="url">使用SpringBoot-Maven</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T00:47:23+08:00">
+                2019-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    本次学习的SpringBoot版本为2.1.3.RELEASE，同时文档内容有点多，只会拿出个人认为要学习的部分来学习</p>
+<h2 id="直接继承Starter-Parent"><a href="#直接继承Starter-Parent" class="headerlink" title="直接继承Starter Parent"></a>直接继承Starter Parent</h2><p>在<code>pom.xml</code>文件中添加以下代码:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Inherit defaults from Spring Boot --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.3.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>您要在此依赖项上指定Spring Boot版本号。如果导入其他启动器，则可以省略版本号。</p>
+</blockquote>
+<p>我们还可以通过<code>properties</code>来更好的管理版本信息</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring-boot.version</span>&gt;</span>2.1.3.RELEASE<span class="tag">&lt;/<span class="name">spring-boot.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后在指定版本号处指定引入的设置的属性值</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-boot.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="在父pom中引用"><a href="#在父pom中引用" class="headerlink" title="在父pom中引用"></a>在父pom中引用</h2><p>不是每个人都喜欢从<code>spring-boot-starter-parent</code>POM 继承。您可能拥有自己需要使用的公司标准父级，或者您可能更愿意明确声明所有Maven配置。</p>
+<p>如果您不想使用<code>spring-boot-starter-parent</code>，您仍然可以通过使用<code>scope=import</code>依赖项来保持依赖项管理（但不是插件管理）的好处 ，如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- Import dependency management from Spring Boot --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.3.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如上所述，前面的示例设置不允许您使用属性覆盖单个依赖项。要获得相同的结果，您需要在输入之前在<code>dependencyManagement</code>项目中添加一个 条目。例如，要升级到另一个Spring Data版本系列，您可以将以下元素添加到<code>pom.xml</code>：<code>spring-boot-dependencies</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- Override Spring Data release train provided by Spring Boot --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-releasetrain<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>Fowler-SR2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.3.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/19/需要进行一下系统的学习了/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/需要进行一下系统的学习了/" itemprop="url">需要进行一下系统的学习了</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T23:00:16+08:00">
                 2019-03-19
               </time>
             
@@ -542,7 +1738,414 @@
       
         
           
-            <p>​    今天学习使用Hexo+Github搭建个人博客，这个框架大部分都是依赖Yaml配置文件进行功能的配置，确实很方便，简单的进行了一下定制化，目前可以开始使用了，可能有些功能无法使用或舒适性不强，待后续学习改进…</p>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    虽说目前大部分的技术都已经入门了，但是没有系统化的学习流程，导致脑中的知识点特别零散，需要好好的进行一次系统化的学习。这段时间找不到工作，想过公考(大四的时候考过一次，失败)，但不感兴趣，还是得遵从自己的内心。不想生活失去乐趣，不想成为行尸走肉般的廉价劳动力，不想受制于人，等等，，，</p>
+<p>​    本次系统化的学习预计时间为1个月，主要是针对SpringBoot和SpringCloud的学习，根据官方参考文档来学习，理论加上实操。多余的就不说了，加油吧…</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/19/Typora的简单使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/Typora的简单使用/" itemprop="url">Typora的简单使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T15:11:34+08:00">
+                2019-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Typora/" itemprop="url" rel="index">
+                    <span itemprop="name">Typora</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Typora的简单使用"><a href="#Typora的简单使用" class="headerlink" title="Typora的简单使用"></a>Typora的简单使用</h1><h2 id="Typora的优点"><a href="#Typora的优点" class="headerlink" title="Typora的优点"></a>Typora的优点</h2><ul>
+<li>简洁美观</li>
+<li>实时预览</li>
+<li>扩展语法</li>
+<li>跨平台</li>
+<li><strong>免费</strong></li>
+</ul>
+<h2 id="主要功能介绍"><a href="#主要功能介绍" class="headerlink" title="主要功能介绍"></a>主要功能介绍</h2><p>###对文字的特殊标注</p>
+<h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><p>快捷键<code>ctrl</code>+<code>1</code>到<code>6</code></p>
+<p><code># //这是一级标题</code></p>
+<p><code>## //这是二级标题</code></p>
+<p><code>... //一共6级</code></p>
+<h4 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h4><p>快捷键 <code>ctrl</code>+<code>u</code>实现文字带下划线</p>
+<p>效果：<u>下划线</u></p>
+<p>源代码：<code>&lt;u&gt;下划线&lt;/u&gt;</code></p>
+<h4 id="加粗"><a href="#加粗" class="headerlink" title="加粗"></a>加粗</h4><p>在需要加粗的文字前后加上两个<code>*</code>，快捷键<code>ctrl</code>+<code>b</code></p>
+<p>效果：<strong>加粗</strong></p>
+<p>源代码：<code>**加粗**</code></p>
+<h4 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h4><p>在需要斜体的文字前后加上一个<code>*</code>，快捷键<code>ctrl</code>+<code>i</code></p>
+<p>效果：<em>斜体</em></p>
+<p>源代码：<code>*斜体*</code></p>
+<h4 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h4><p>快捷键<code>alt</code>+<code>shift</code>+<code>5</code>文字前后加上两个英文输入法的~</p>
+<p>效果：<del>删除线</del></p>
+<p>源代码：<code>~~删除线~~</code></p>
+<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><p>快捷键<code>ctrl</code>+<code>shift</code>+<code>q</code></p>
+<blockquote>
+<p>这段话引用自…</p>
+</blockquote>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="quote">&gt; 这段话引用自...</span></span><br></pre></td></tr></table></figure>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><p>输入任意开始数字+<code>.</code>+<code>空格</code>始有序列表</p>
+<p>例如：<code>2</code>+<code>.</code> +<code>空格</code></p>
+<ol start="2">
+<li>列表项1</li>
+<li>列表项2</li>
+<li>列表项3</li>
+</ol>
+<h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><p>输入<code>+</code>或<code>-</code>或<code>*</code>加上<code>空格</code></p>
+<p>例如：<code>+</code>+<code>空格</code></p>
+<ul>
+<li>列表项1</li>
+<li>列表项2 </li>
+<li>列表项3</li>
+</ul>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>快捷键<code>ctrl</code>+<code>t</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">序号</th>
+<th style="text-align:right">姓名</th>
+<th style="text-align:center">学号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:right">张三</td>
+<td style="text-align:center">10001</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:right">李四</td>
+<td style="text-align:center">10002</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| 序号 | 姓名 | 学号  |</span><br><span class="line">| :--- | ---: | :---: |</span><br><span class="line">| 1    | 张三 | 10001 |</span><br><span class="line">| 2    | 李四 | 10002 |</span><br></pre></td></tr></table></figure>
+<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>三个或三个以上的<code>-</code>或<code>*</code></p>
+<hr>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p>快捷键<code>ctrl</code>+<code>shift</code>+<code>i</code></p>
+<p><img src="D:\迅雷下载\user.jpg" alt="头像"></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">头像</span>](<span class="link">D:\迅雷下载\user.jpg</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h4><p>快捷键<code>ctrl</code>+<code>k</code></p>
+<p><a href="https://www.hao123.com" target="_blank" rel="noopener">hao123</a></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">hao123</span>](<span class="link">https://www.hao123.com</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h4><p>快捷键<code>ctrl</code>+<code>shift</code>+<code>m</code><br>$$<br>数学公式<br>$$</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">数学公式</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>行内代码：快捷键<code>ctrl</code>+<code>shift</code>+<code>或者直接`</code></p>
+<p><code>这是行内代码</code></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">`这是行内代码`</span></span><br></pre></td></tr></table></figure>
+<p>代码块：快捷键<code>ctrl</code>+<code>shift</code>+<code>k</code>或者三个<code>~</code>+<code>回车</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是一个Java代码块</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">​~~~java</span><br><span class="line">这是一个Java代码块</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="section">#### 5.5生成目录</span></span><br><span class="line"></span><br><span class="line">[TOC]</span><br><span class="line"></span><br><span class="line"><span class="code">`[toc]`</span>+<span class="code">`回车`</span></span><br><span class="line"></span><br><span class="line"><span class="section">## 三、输出文件格式多样化</span></span><br><span class="line"></span><br><span class="line">详情请参考菜单栏中<span class="code">`文件`</span>下的<span class="code">`导出`</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（小技巧）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/使用Hexo-Github搭建自己的博客（小技巧）/" itemprop="url">使用Hexo+Github搭建自己的博客（小技巧）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T14:40:30+08:00">
+                2019-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用Hexo-Github搭建自己的博客（小技巧）"><a href="#使用Hexo-Github搭建自己的博客（小技巧）" class="headerlink" title="使用Hexo+Github搭建自己的博客（小技巧）"></a>使用Hexo+Github搭建自己的博客（小技巧）</h1><h2 id="动态背景"><a href="#动态背景" class="headerlink" title="动态背景"></a>动态背景</h2><p>目前NexT主题最新的是V6.0版本，这个版本中可以有4种动态背景：</p>
+<ul>
+<li>Canvas-nest</li>
+<li>three_waves</li>
+<li>canvas_lines</li>
+<li>canvas_sphere</li>
+</ul>
+<p>设置方法也很简单，直接设置里需要的动态背景为<code>true</code>。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Canvas-nest</span></span><br><span class="line"><span class="attr">canvas_nest:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># three_waves</span></span><br><span class="line"><span class="attr">three_waves:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># canvas_lines</span></span><br><span class="line"><span class="attr">canvas_lines:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># canvas_sphere</span></span><br><span class="line"><span class="attr">canvas_sphere:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="文章底部带-号的标签"><a href="#文章底部带-号的标签" class="headerlink" title="文章底部带#号的标签"></a>文章底部带#号的标签</h2><p>去掉文章后面的标签前面的#号。</p>
+<p>修改模板<code>/themes/next/layout/_macro/post.swig</code>，搜索 <code>rel=&quot;tag&quot;&gt;#</code>，将<code>#</code>换成<code>&lt;i class=&quot;fa fa-tag&quot;&gt;&lt;/i&gt;</code></p>
+<h2 id="在每篇文章末尾统一添加“本文结束”标记"><a href="#在每篇文章末尾统一添加“本文结束”标记" class="headerlink" title="在每篇文章末尾统一添加“本文结束”标记"></a>在每篇文章末尾统一添加“本文结束”标记</h2><p>在路径 <code>\themes\next\layout\_macro</code> 中新建 <code>passage-end-tag.swig</code> 文件,并添加以下内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% if not is_index %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"text-align:center;color: #ccc;font-size:14px;"</span>&gt;</span></span><br><span class="line">        -------------本文结束</span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-paw"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        感谢您的阅读-------------</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>接着打开<code>\themes\next\layout\_macro\post.swig</code>文件，在<code>post-body</code> 之后， 添加以下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% if not is_index %&#125;</span><br><span class="line">&#123;% include 'passage-end-tag.swig' %&#125;</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后打开主题配置文件<code>_config.yml</code>,在末尾添加：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文章末尾添加“本文结束”标记</span></span><br><span class="line"><span class="attr">passage_end_tag:</span></span><br><span class="line"><span class="attr">enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>完成以上设置之后，在每篇文章之后都会添加如上效果图的样子。</p>
+<h2 id="侧边栏社交小图标设置"><a href="#侧边栏社交小图标设置" class="headerlink" title="侧边栏社交小图标设置"></a>侧边栏社交小图标设置</h2><p>打开主题配置文件<code>_config.yml</code>，搜索<code>social:</code>, ||之后是在图标库中对应的图标。注意空格就行。</p>
+<p>图标库链接：<a href="http://fontawesome.io/icons/" target="_blank" rel="noopener">http://fontawesome.io/icons/</a></p>
+<h2 id="主页文章加阴影"><a href="#主页文章加阴影" class="headerlink" title="主页文章加阴影"></a>主页文章加阴影</h2><p>打开<code>\themes\next\source\css\_custom\custom.styl</code>,向里面加入：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 主页文章添加阴影效果</span><br><span class="line"><span class="selector-class">.post</span> &#123;</span><br><span class="line"><span class="attribute">margin-top</span>: <span class="number">60px</span>;</span><br><span class="line"><span class="attribute">margin-bottom</span>: <span class="number">60px</span>;</span><br><span class="line"><span class="attribute">padding</span>: <span class="number">25px</span>;</span><br><span class="line"><span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="built_in">rgba</span>(202, 203, 203, .5);</span><br><span class="line"><span class="attribute">-moz-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="built_in">rgba</span>(202, 203, 204, .5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="添加热度"><a href="#添加热度" class="headerlink" title="添加热度"></a>添加热度</h2><p>next主题集成<code>leanCloud</code>，打开<code>/themes/next/layout/_macro/post.swig</code></p>
+<p>在<code>&lt;span class=&quot;leancloud-visitors-count&quot;&gt;&lt;/span&gt;</code>下添加一句：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>℃<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后打开，<code>/themes/next/languages/zh-Hans.yml</code></p>
+<p>将<code>visitors: 阅读次数</code>改为<code>visitors: 热度</code></p>
+<h2 id="设置网站图标"><a href="#设置网站图标" class="headerlink" title="设置网站图标"></a>设置网站图标</h2><p>默认的网站图标是一个N，当然是需要制定一个图了，在网上找到图后，将其放在<code>/themes/next/source/images</code>里面，然后在主题配置文件中修改下图所示图片位置</p>
+<p>还有一些就不详细说了，另外注意下好多的东西已经过时了。比如next主题已经换了域了。很多教程还停留在3.0时代，但是现在next的版本是V6.0，截止我这篇教程发布的时期。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章就只是简单的介绍了下NexT主题，关于这个主题呢，要达到个性化定制的话，还是需要再花点功夫的。还有就是这个hexo s预览效果确实不好，修改了网站内容之后，需要重新hexo clean再hexo s才能看到效果，有同样问题的兄dei就不需要担心自己的修改是错的。</p>
 
           
         
@@ -588,7 +2191,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -636,7 +2239,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -647,7 +2250,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -658,7 +2261,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/user.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-user.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-user.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="configuration,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="创建自己的自动配置如果您在开发共享库的公司工作，或者您在开源或商业库中工作，则可能需要开发自己的自动配置。自动配置类可以捆绑在外部jar中，仍然可以通过Spring Boot获取。 自动配置可以与“启动器”相关联，该“启动器”提供自动配置代码以及您将使用它的典型库。我们首先介绍了构建自己的自动配置需要了解的内容，然后我们将继续介绍创建自定义启动器所需的 典型步骤。  可以使用演示项目来展示如何逐步">
+<meta name="keywords" content="configuration">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用SpringBoot-创建自己的自动配置">
+<meta property="og:url" content="http://qq994300880.github.io/2019/03/21/使用SpringBoot-创建自己的自动配置/index.html">
+<meta property="og:site_name" content="YD Blog">
+<meta property="og:description" content="创建自己的自动配置如果您在开发共享库的公司工作，或者您在开源或商业库中工作，则可能需要开发自己的自动配置。自动配置类可以捆绑在外部jar中，仍然可以通过Spring Boot获取。 自动配置可以与“启动器”相关联，该“启动器”提供自动配置代码以及您将使用它的典型库。我们首先介绍了构建自己的自动配置需要了解的内容，然后我们将继续介绍创建自定义启动器所需的 典型步骤。  可以使用演示项目来展示如何逐步">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-21T08:09:31.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用SpringBoot-创建自己的自动配置">
+<meta name="twitter:description" content="创建自己的自动配置如果您在开发共享库的公司工作，或者您在开源或商业库中工作，则可能需要开发自己的自动配置。自动配置类可以捆绑在外部jar中，仍然可以通过Spring Boot获取。 自动配置可以与“启动器”相关联，该“启动器”提供自动配置代码以及您将使用它的典型库。我们首先介绍了构建自己的自动配置需要了解的内容，然后我们将继续介绍创建自定义启动器所需的 典型步骤。  可以使用演示项目来展示如何逐步">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-创建自己的自动配置/">
+
+
+
+
+
+  <title>使用SpringBoot-创建自己的自动配置 | YD Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+		<!-- Fork me on GitHub -->
+		<a href="https://github.com/qq994300880"><img width="120" height="120" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" style="margin-right:12.2%"></a>
+		<!-- 结束 -->
+	</div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YD Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">搬砖工</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-创建自己的自动配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用SpringBoot-创建自己的自动配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T15:49:33+08:00">
+                2019-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="创建自己的自动配置"><a href="#创建自己的自动配置" class="headerlink" title="创建自己的自动配置"></a>创建自己的自动配置</h1><p>如果您在开发共享库的公司工作，或者您在开源或商业库中工作，则可能需要开发自己的自动配置。自动配置类可以捆绑在外部jar中，仍然可以通过Spring Boot获取。</p>
+<p>自动配置可以与“启动器”相关联，该“启动器”提供自动配置代码以及您将使用它的典型库。我们首先介绍了构建自己的自动配置需要了解的内容，然后我们将继续介绍<a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#boot-features-custom-starter" target="_blank" rel="noopener">创建自定义启动器所需</a>的 <a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#boot-features-custom-starter" target="_blank" rel="noopener">典型步骤</a>。</p>
+<blockquote>
+<p>可以使用<a href="https://github.com/snicoll-demos/spring-boot-master-auto-configuration" target="_blank" rel="noopener">演示项目</a>来展示如何逐步创建启动器。</p>
+</blockquote>
+<h2 id="了解自动配置的Bean"><a href="#了解自动配置的Bean" class="headerlink" title="了解自动配置的Bean"></a>了解自动配置的Bean</h2><p>在引擎盖下，自动配置使用标准<code>@Configuration</code>类实现。其他<code>@Conditional</code>注释用于约束何时应用自动配置。通常，自动配置类使用<code>@ConditionalOnClass</code>和 <code>@ConditionalOnMissingBean</code>注释。这可确保仅在找到相关类时以及未声明自己的类时才应用自动配置 <code>@Configuration</code>。</p>
+<p>您可以浏览源代码<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure" target="_blank" rel="noopener"><code>spring-boot-autoconfigure</code></a> 以查看<code>@Configuration</code>Spring提供的类（请参阅 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/resources/META-INF/spring.factories" target="_blank" rel="noopener"><code>META-INF/spring.factories</code></a> 文件）。</p>
+<h2 id="找到自动配置候选者"><a href="#找到自动配置候选者" class="headerlink" title="找到自动配置候选者"></a>找到自动配置候选者</h2><p>Spring Boot会检查<code>META-INF/spring.factories</code>已发布jar中是否存在文件。该文件应列出<code>EnableAutoConfiguration</code>密钥下的配置类 ，如以下示例所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration=\</span><br><span class="line">com.mycorp.libx.autoconfigure.LibXAutoConfiguration,\</span><br><span class="line">com.mycorp.libx.autoconfigure.LibXWebAutoConfiguration</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>自动配置，必须加载这种方式<em>只</em>。确保它们在特定的包空间中定义，并且它们永远不是组件扫描的目标。此外，自动配置类不应启用组件扫描以查找其他组件。应该使用特定的<code>@ Import</code>s代替。</p>
+</blockquote>
+<p>如果需要按特定顺序应用配置，则可以使用 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureAfter.java" target="_blank" rel="noopener"><code>@AutoConfigureAfter</code></a>或 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureBefore.java" target="_blank" rel="noopener"><code>@AutoConfigureBefore</code></a>注释。例如，如果您提供特定于Web的配置，则可能需要在之后应用您的类 <code>WebMvcAutoConfiguration</code>。</p>
+<p>如果您想订购某些不应该彼此直接了解的自动配置，您也可以使用<code>@AutoConfigureOrder</code>。该注释与常规注释具有相同的语义，<code>@Order</code>但为自动配置类提供了专用顺序。</p>
+<h2 id="条件注释"><a href="#条件注释" class="headerlink" title="条件注释"></a>条件注释</h2><p>您几乎总是希望<code>@Conditional</code>在自动配置类中包含一个或多个注释。该<code>@ConditionalOnMissingBean</code>注释是用来让开发者重写自动配置，如果他们不满意自己的缺省值一个常见的例子。</p>
+<p>Spring Boot包含许多<code>@Conditional</code>注释，您可以通过注释<code>@Configuration</code>类或单个<code>@Bean</code>方法在自己的代码中重用这些注释。这些注释包括：</p>
+<ul>
+<li>Class条件</li>
+<li>Bean条件</li>
+<li>Property条件</li>
+<li>Resource条件</li>
+<li>Web Application条件</li>
+<li>spEL表达式条件</li>
+</ul>
+<h3 id="Class-Conditions"><a href="#Class-Conditions" class="headerlink" title="Class Conditions"></a>Class Conditions</h3><p><code>@ConditionalOnClass</code>和<code>@ConditionalOnMissingClass</code>注解让 <code>@Configuration</code>类基于特定类的存在或不存在被包括在内。由于使用<a href="http://asm.ow2.org/" target="_blank" rel="noopener">ASM</a>解析注释元数据这一事实，您可以使用该<code>value</code>属性来引用真实类，即使该类实际上可能不会出现在正在运行的应用程序类路径中。<code>name</code> 如果您希望使用<code>String</code>值指定类名，也可以使用该属性。</p>
+<p>此机制不适用于<code>@Bean</code>通常返回类型是条件的目标的方法：在方法的条件适用之前，JVM将加载类和可能处理的方法引用，如果类不是当下。</p>
+<p>要处理此方案，<code>@Configuration</code>可以使用单独的类来隔离条件，如以下示例所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="comment">//一些条件</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAutoConfiguration</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//自动配置的bean</span></span><br><span class="line"></span><br><span class="line">	<span class="meta">@Configuration</span></span><br><span class="line">	<span class="meta">@ConditionalOnClass</span>(EmbeddedAcmeService.class)</span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">EmbeddedConfiguration</span> </span>&#123;</span><br><span class="line">		<span class="meta">@Bean</span></span><br><span class="line">		<span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> EmbeddedAcmeService <span class="title">embeddedAcmeService</span><span class="params">()</span> </span>&#123; ... &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果您使用<code>@ConditionalOnClass</code>或<code>@ConditionalOnMissingClass</code>作为元注释的一部分来组成您自己的组合注释，则必须使用<code>name</code>在这种情况下引用该类而不处理。</p>
+</blockquote>
+<h3 id="Bean-Conditions"><a href="#Bean-Conditions" class="headerlink" title="Bean Conditions"></a>Bean Conditions</h3><p><code>@ConditionalOnBean</code>和<code>@ConditionalOnMissingBean</code>注解让豆基于特定豆的存在或不存在被包括在内。您可以使用该<code>value</code> 属性按类型<code>name</code>指定bean 或按名称指定bean。该<code>search</code> 属性允许您限制<code>ApplicationContext</code>搜索Bean时应考虑的层次结构。</p>
+<p>放置在<code>@Bean</code>方法上时，目标类型默认为方法的返回类型，如以下示例所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAutoConfiguration</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> MyService <span class="title">myService</span><span class="params">()</span> </span>&#123; ... &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在前面的示例中，<code>myService</code>如果没有<code>MyService</code>包含类型的bean，则将创建bean <code>ApplicationContext</code>。</p>
+<blockquote>
+<p>您需要非常小心添加bean定义的顺序，因为这些条件是根据到目前为止已处理的内容进行评估的。出于这个原因，我们建议仅对自动配置类使用<code>@ConditionalOnBean</code>和<code>@ConditionalOnMissingBean</code>注释（因为在添加任何用户定义的bean定义之后，这些类保证加载）。</p>
+</blockquote>
+<blockquote>
+<p><code>@ConditionalOnBean</code>并且<code>@ConditionalOnMissingBean</code>不会阻止<code>@Configuration</code> 创建类。在类级别使用这些条件和<code>@Bean</code>使用注释标记每个包含的方法之间的唯一区别是，<code>@Configuration</code>如果条件不匹配，前者会阻止将类注册为bean。</p>
+</blockquote>
+<h3 id="Property-Conditions"><a href="#Property-Conditions" class="headerlink" title="Property Conditions"></a>Property Conditions</h3><p>该<code>@ConditionalOnProperty</code>注解让配置基于Spring的环境属性被包括在内。使用<code>prefix</code>和<code>name</code>属性指定应检查的属性。默认情况下，<code>false</code>匹配存在且不相等的任何属性。您还可以使用<code>havingValue</code>和 <code>matchIfMissing</code>属性创建更高级的检查。</p>
+<h3 id="Resource-Conditions"><a href="#Resource-Conditions" class="headerlink" title="Resource Conditions"></a>Resource Conditions</h3><p>该<code>@ConditionalOnResource</code>注解让配置被包括仅当特定资源是否存在。可以使用常用的Spring约定来指定资源，如以下示例所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file:/home/user/test.dat</span><br></pre></td></tr></table></figure>
+<h3 id="Web-Application-Conditions"><a href="#Web-Application-Conditions" class="headerlink" title="Web Application Conditions"></a>Web Application Conditions</h3><p>在<code>@ConditionalOnWebApplication</code>和<code>@ConditionalOnNotWebApplication</code>注释，让配置取决于应用程序是否是一个“Web应用程序”被包括在内。Web应用程序是使用Spring <code>WebApplicationContext</code>，定义<code>session</code>范围或具有的任何应用程序<code>StandardServletEnvironment</code>。</p>
+<h3 id="spEL-Conditions"><a href="#spEL-Conditions" class="headerlink" title="spEL Conditions"></a>spEL Conditions</h3><p>该<code>@ConditionalOnExpression</code>注解让配置基于一个的结果被包括<a href="https://docs.spring.io/spring/docs/5.1.5.RELEASE/spring-framework-reference/core.html#expressions" target="_blank" rel="noopener">使用SpEL表达</a>。</p>
+<h2 id="测试自动配置"><a href="#测试自动配置" class="headerlink" title="测试自动配置"></a>测试自动配置</h2><p>自动配置可能受许多因素的影响：用户配置（<code>@Bean</code> 定义和<code>Environment</code>自定义），条件评估（存在特定库）等。具体而言，每个测试都应创建一个定义良好的<code>ApplicationContext</code>代表，以表示这些自定义的组合。 <code>ApplicationContextRunner</code>提供了实现这一目标的好方法。</p>
+<p><code>ApplicationContextRunner</code>通常被定义为测试类的一个字段来收集基本的通用配置。以下示例确保 <code>UserServiceAutoConfiguration</code>始终调用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> ApplicationContextRunner contextRunner = <span class="keyword">new</span> ApplicationContextRunner()</span><br><span class="line">		.withConfiguration(AutoConfigurations.of(UserServiceAutoConfiguration.class));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果必须定义多个自动配置，则无需按照与运行应用程序时完全相同的顺序调用它们的声明。</p>
+</blockquote>
+<p>每个测试都可以使用运行器来表示特定的用例。例如，下面的示例调用用户配置（<code>UserConfiguration</code>）并检查自动配置是否正确退回。调用<code>run</code>提供了可以使用的回调上下文<code>Assert4J</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">defaultServiceBacksOff</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.contextRunner.withUserConfiguration(UserConfiguration.class)</span><br><span class="line">			.run((context) -&gt; &#123;</span><br><span class="line">				assertThat(context).hasSingleBean(UserService.class);</span><br><span class="line">				assertThat(context.getBean(UserService.class)).isSameAs(</span><br><span class="line">						context.getBean(UserConfiguration.class).myUserService());</span><br><span class="line">			&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">UserConfiguration</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> UserService <span class="title">myUserService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> UserService(<span class="string">"mine"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以轻松自定义<code>Environment</code>，如下例所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">serviceNameCanBeConfigured</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.contextRunner.withPropertyValues(<span class="string">"user.name=test123"</span>).run((context) -&gt; &#123;</span><br><span class="line">		assertThat(context).hasSingleBean(UserService.class);</span><br><span class="line">		assertThat(context.getBean(UserService.class).getName()).isEqualTo(<span class="string">"test123"</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Runner也可以用来显示<code>ConditionEvaluationReport</code>。报告可以打印<code>INFO</code>或<code>DEBUG</code>级别打印。以下示例显示如何使用<code>ConditionEvaluationReportLoggingListener</code> 在自动配置测试中打印报表。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> autoConfigTest &#123;</span><br><span class="line">	ConditionEvaluationReportLoggingListener initializer = </span><br><span class="line">        <span class="keyword">new</span> ConditionEvaluationReportLoggingListener(LogLevel.INFO);</span><br><span class="line">	ApplicationContextRunner contextRunner = <span class="keyword">new</span> ApplicationContextRunner()</span><br><span class="line">			.withInitializer(initializer).run((context) -&gt; &#123;</span><br><span class="line">					<span class="comment">// Do something...</span></span><br><span class="line">			&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模拟Web上下文"><a href="#模拟Web上下文" class="headerlink" title="模拟Web上下文"></a>模拟Web上下文</h3><p>如果您需要测试仅在Servlet或Reactive Web应用程序上下文中运行的自动配置，请分别使用<code>WebApplicationContextRunner</code>或<code>ReactiveWebApplicationContextRunner</code>。</p>
+<h3 id="覆盖Classpath"><a href="#覆盖Classpath" class="headerlink" title="覆盖Classpath"></a>覆盖Classpath</h3><p>还可以测试在运行时不存在特定类和/或包时发生的情况。Spring Boot附带一个<code>FilteredClassLoader</code>可以由跑步者轻松使用的。在以下示例中，我们声明如果<code>UserService</code>不存在，则会正确禁用自动配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">serviceIsIgnoredIfLibraryIsNotPresent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.contextRunner.withClassLoader(<span class="keyword">new</span> FilteredClassLoader(UserService.class))</span><br><span class="line">			.run((context) -&gt; assertThat(context).doesNotHaveBean(<span class="string">"userService"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="创建自己的启动器"><a href="#创建自己的启动器" class="headerlink" title="创建自己的启动器"></a>创建自己的启动器</h2><p>的完整Spring Boot启动程序可能包含以下组件：</p>
+<ul>
+<li><code>autoconfigure</code>包含自动配置代码的模块。</li>
+<li>该<code>starter</code>模块提供对<code>autoconfigure</code>模块以及库的依赖关系以及通常有用的任何其他依赖关系。简而言之，添加启动器应该提供开始使用该库所需的一切。</li>
+</ul>
+<blockquote>
+<p>如果您不需要将这两个问题分开，则可以将自动配置代码和依赖关系管理组合在一个模块中。</p>
+</blockquote>
+<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><p>您应该确保为您的启动器提供适当的命名空间。<code>spring-boot</code>即使您使用其他Maven，也不要使用它来启动模块名称<code>groupId</code>。我们可能会为您将来自动配置的内容提供官方支持。</p>
+<p>根据经验，您应该在启动器后命名组合模块。例如，假设您正在为“acme”创建启动器，并且您将自动配置模块<code>acme-spring-boot-autoconfigure</code>和启动器命名为<code>acme-spring-boot-starter</code>。如果您只有一个组合两者的模块，请将其命名<code>acme-spring-boot-starter</code>。</p>
+<p>此外，如果您的启动器提供配置密钥，请为它们使用唯一的命名空间。特别是，不包括你在春天开机使用的命名空间键（如 <code>server</code>，<code>management</code>，<code>spring</code>，等）。如果您使用相同的命名空间，我们将来可能会以破坏您的模块的方式修改这些命名空间。</p>
+<p>确保 <a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#configuration-metadata-annotation-processor" target="_blank" rel="noopener">触发元数据生成，</a>以便为您的密钥提供IDE帮助。您可能希望查看生成的元数据（<code>META-INF/spring-configuration-metadata.json</code>）以确保正确记录您的密钥。</p>
+<h3 id="autoconfigure模块"><a href="#autoconfigure模块" class="headerlink" title="autoconfigure模块"></a>autoconfigure模块</h3><p>该<code>autoconfigure</code>模块包含开始使用库所需的所有内容。它还可以包含配置键定义（例如 <code>@ConfigurationProperties</code>）和任何可用于进一步自定义组件初始化方式的回调接口。</p>
+<blockquote>
+<p>您应该将库的依赖项标记为可选，以便您可以<code>autoconfigure</code>更轻松地将模块包含在项目中。如果以这种方式执行，则不提供库，默认情况下，Spring Boot会退出。</p>
+</blockquote>
+<p>Spring Boot使用注释处理器来收集元数据文件（<code>META-INF/spring-autoconfigure-metadata.properties</code>）中自动配置的条件。如果该文件存在，则用于热切过滤不匹配的自动配置，这将缩短启动时间。建议在包含自动配置的模块中添加以下依赖项：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-autoconfigure-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>对于Gradle 4.5及更早版本，应在<code>compileOnly</code> 配置中声明依赖项，如以下示例所示：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">	compileOnly <span class="string">"org.springframework.boot:spring-boot-autoconfigure-processor"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用Gradle 4.6及更高版本时，应在<code>annotationProcessor</code> 配置中声明依赖项，如以下示例所示：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">	annotationProcessor <span class="string">"org.springframework.boot:spring-boot-autoconfigure-processor"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="启动器模块"><a href="#启动器模块" class="headerlink" title="启动器模块"></a>启动器模块</h3><p>启动器是一个空罐子。它的唯一目的是提供必要的依赖项来使用库。您可以将其视为对入门所需内容的一种看法。</p>
+<p>不要对添加启动器的项目做出假设。如果您自动配置的库通常需要其他启动器，请同时提及它们。如果可选依赖项的数量很高，则提供一组适当的<em>默认</em>依赖项可能很难，因为您应该避免包含对典型库的使用不必要的依赖项。换句话说，您不应该包含可选的依赖项。</p>
+<blockquote>
+<p>无论哪种方式，您的启动器必须<code>spring-boot-starter</code>直接或间接引用核心Spring Boot启动器（）（如果您的启动器依赖于另一个启动器，则无需添加它）。如果只使用自定义启动器创建项目，则Spring Boot的核心功能将通过核心启动器的存在来实现。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	<div>
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        -------------本文结束
+        <i class="fa fa-power-off"></i>
+        感谢您的阅读-------------
+    </div>
+
+</div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    YoungDream
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-创建自己的自动配置/" title="使用SpringBoot-创建自己的自动配置">http://qq994300880.github.io/2019/03/21/使用SpringBoot-创建自己的自动配置/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/configuration/" rel="tag"><i class="fa fa-tag"></i> configuration</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/21/使用SpringBoot-WebService/" rel="next" title="使用SpringBoot-WebService">
+                <i class="fa fa-chevron-left"></i> 使用SpringBoot-WebService
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/user.jpg" alt="YoungDream">
+            
+              <p class="site-author-name" itemprop="name">YoungDream</p>
+              <p class="site-description motion-element" itemprop="description">正忙着优秀~~~</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/qq994300880" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=994300880&site=qq&menu=yes" target="_blank" title="QQ">
+                      
+                        <i class="fa fa-fw fa-qq"></i>QQ</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建自己的自动配置"><span class="nav-number">1.</span> <span class="nav-text">创建自己的自动配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#了解自动配置的Bean"><span class="nav-number">1.1.</span> <span class="nav-text">了解自动配置的Bean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#找到自动配置候选者"><span class="nav-number">1.2.</span> <span class="nav-text">找到自动配置候选者</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件注释"><span class="nav-number">1.3.</span> <span class="nav-text">条件注释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-Conditions"><span class="nav-number">1.3.1.</span> <span class="nav-text">Class Conditions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-Conditions"><span class="nav-number">1.3.2.</span> <span class="nav-text">Bean Conditions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Property-Conditions"><span class="nav-number">1.3.3.</span> <span class="nav-text">Property Conditions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resource-Conditions"><span class="nav-number">1.3.4.</span> <span class="nav-text">Resource Conditions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-Application-Conditions"><span class="nav-number">1.3.5.</span> <span class="nav-text">Web Application Conditions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spEL-Conditions"><span class="nav-number">1.3.6.</span> <span class="nav-text">spEL Conditions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试自动配置"><span class="nav-number">1.4.</span> <span class="nav-text">测试自动配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟Web上下文"><span class="nav-number">1.4.1.</span> <span class="nav-text">模拟Web上下文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#覆盖Classpath"><span class="nav-number">1.4.2.</span> <span class="nav-text">覆盖Classpath</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建自己的启动器"><span class="nav-number">1.5.</span> <span class="nav-text">创建自己的启动器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名"><span class="nav-number">1.5.1.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autoconfigure模块"><span class="nav-number">1.5.2.</span> <span class="nav-text">autoconfigure模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动器模块"><span class="nav-number">1.5.3.</span> <span class="nav-text">启动器模块</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <!-- 统计JS -->
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 结束 -->
+
+<!-- 合适的位置添加显示统计 -->
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<!-- 统计结束 -->
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YoungDream</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "default";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "default";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

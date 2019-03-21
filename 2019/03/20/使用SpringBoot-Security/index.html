@@ -83,7 +83,7 @@
 <meta name="keywords" content="security">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用SpringBoot-Security">
-<meta property="og:url" content="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-Security/index.html">
+<meta property="og:url" content="http://qq994300880.github.io/2019/03/20/使用SpringBoot-Security/index.html">
 <meta property="og:site_name" content="YD Blog">
 <meta property="og:description" content="Security(安全)如果Spring Security位于类路径上，则默认情况下Web应用程序是安全的。Spring Boot依赖于Spring Security的内容协商策略来确定是否使用httpBasic或formLogin。要向Web应用程序添加方法级安全性，您还可以@EnableGlobalMethodSecurity使用所需的设置进行添加。其他信息可以在 Spring Securit">
 <meta property="og:locale" content="zh-Hans">
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-Security/">
+  <link rel="canonical" href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-Security/">
 
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-Security/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-Security/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -371,7 +371,7 @@
 </ul>
 <p>你可以<code>AuthenticationEventPublisher</code>通过为它添加一个bean 来提供不同的东西。</p>
 <h3 id="MVC安全性"><a href="#MVC安全性" class="headerlink" title="MVC安全性"></a>MVC安全性</h3><p>默认安全配置在<code>SecurityAutoConfiguration</code>和中 实现<code>UserDetailsServiceAutoConfiguration</code>。<code>SecurityAutoConfiguration</code>导入<code>SpringBootWebSecurityConfiguration</code>Web安全性并 <code>UserDetailsServiceAutoConfiguration</code>配置身份验证，这也与非Web应用程序相关。要完全关闭默认Web应用程序安全配置，您可以添加类型的bean <code>WebSecurityConfigurerAdapter</code>（这样做不会禁用<code>UserDetailsService</code>配置或Actuator的安全性）。</p>
-<p>为了还关闭<code>UserDetailsService</code>的配置，您可以添加类型的豆 <code>UserDetailsService</code>，<code>AuthenticationProvider</code>或<code>AuthenticationManager</code>。<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/">Spring Boot示例中</a>有几个安全的应用程序可以帮助您开始使用常见的用例。</p>
+<p>为了还关闭<code>UserDetailsService</code>的配置，您可以添加类型的豆 <code>UserDetailsService</code>，<code>AuthenticationProvider</code>或<code>AuthenticationManager</code>。<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/" target="_blank" rel="noopener">Spring Boot示例中</a>有几个安全的应用程序可以帮助您开始使用常见的用例。</p>
 <p>可以通过添加自定义来覆盖访问规则<code>WebSecurityConfigurerAdapter</code>。Spring Boot提供了便捷方法，可用于覆盖执行器端点和静态资源的访问规则。<code>EndpointRequest</code>可用于创建<code>RequestMatcher</code> 基于<code>management.endpoints.web.base-path</code>属性的。 <code>PathRequest</code>可用于<code>RequestMatcher</code>在常用位置创建资源。</p>
 <h3 id="WebFlux安全性"><a href="#WebFlux安全性" class="headerlink" title="WebFlux安全性"></a>WebFlux安全性</h3><p>与Spring MVC应用程序类似，您可以通过添加<code>spring-boot-starter-security</code>依赖项来保护WebFlux应用程序。默认安全配置在<code>ReactiveSecurityAutoConfiguration</code>和中 实现<code>UserDetailsServiceAutoConfiguration</code>。<code>ReactiveSecurityAutoConfiguration</code>导入<code>WebFluxSecurityConfiguration</code>Web安全性并<code>UserDetailsServiceAutoConfiguration</code> 配置身份验证，这也与非Web应用程序相关。要完全关闭默认Web应用程序安全配置，您可以添加类型的bean <code>WebFilterChainProxy</code>（这样做不会禁用<code>UserDetailsService</code>配置或Actuator的安全性）。</p>
 <p>要关闭<code>UserDetailsService</code>配置，可以添加类型为<code>ReactiveUserDetailsService</code>或的bean <code>ReactiveAuthenticationManager</code>。</p>
@@ -444,7 +444,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-Security/" title="使用SpringBoot-Security">http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-Security/</a>
+    <a href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-Security/" title="使用SpringBoot-Security">http://qq994300880.github.io/2019/03/20/使用SpringBoot-Security/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>

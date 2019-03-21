@@ -83,7 +83,7 @@
 <meta name="keywords" content="Java,Spring,SpringBoot,SpringCloud">
 <meta property="og:type" content="website">
 <meta property="og:title" content="YD Blog">
-<meta property="og:url" content="http://github.com/qq994300880.github.io/index.html">
+<meta property="og:url" content="http://qq994300880.github.io/index.html">
 <meta property="og:site_name" content="YD Blog">
 <meta property="og:description" content="正忙着优秀~~~">
 <meta property="og:locale" content="zh-Hans">
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://github.com/qq994300880.github.io/">
+  <link rel="canonical" href="http://qq994300880.github.io/">
 
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-Mail/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-Mail/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -364,7 +364,7 @@
 <blockquote>
 <p>有关如何使用<code>JavaMailSender</code>的详细说明，请参阅<a href="https://docs.spring.io/spring/docs/5.1.5.RELEASE/spring-framework-reference/integration.html#mail" target="_blank" rel="noopener">参考文档</a>。</p>
 </blockquote>
-<p>如果<code>spring.mail.host</code>和相关库（由定义的 <code>spring-boot-starter-mail</code>）可用，<code>JavaMailSender</code>则创建默认值（如果不存在）。可以通过<code>spring.mail</code>命名空间中的配置项进一步自定义发送方 。有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/mail/MailProperties.java"><code>MailProperties</code></a>详细信息，请参阅</p>
+<p>如果<code>spring.mail.host</code>和相关库（由定义的 <code>spring-boot-starter-mail</code>）可用，<code>JavaMailSender</code>则创建默认值（如果不存在）。可以通过<code>spring.mail</code>命名空间中的配置项进一步自定义发送方 。有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/mail/MailProperties.java" target="_blank" rel="noopener"><code>MailProperties</code></a>详细信息，请参阅</p>
 <p>特别是，某些默认超时值是无限的，您可能希望更改它以避免线程被无响应的邮件服务器阻塞，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.mail.properties.mail.smtp.connectiontimeout=5000</span><br><span class="line">spring.mail.properties.mail.smtp.timeout=3000</span><br><span class="line">spring.mail.properties.mail.smtp.writetimeout=5000</span><br></pre></td></tr></table></figure>
 <p>也可以<code>JavaMailSender</code>使用<code>Session</code>JNDI中的现有配置：</p>
@@ -424,7 +424,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-Validation/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-Validation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -574,7 +574,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-WebClient/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-WebClient/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -734,7 +734,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-RestTemplate/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-RestTemplate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -893,7 +893,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -999,7 +999,7 @@
 <p>如果您更愿意使用本机池，则可以通过向相应位置添加依赖关系 <code>org.messaginghub:pooled-jms</code>并进行相应配置来实现<code>JmsPoolConnectionFactory</code>，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.activemq.pool.enabled=true</span><br><span class="line">spring.activemq.pool.max-connections=50</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/activemq/ActiveMQProperties.java"><code>ActiveMQProperties</code></a> 更多支持的选项，请参阅 。您还可以注册任意数量的bean，以实现<code>ActiveMQConnectionFactoryCustomizer</code>更高级的自定义。</p>
+<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/activemq/ActiveMQProperties.java" target="_blank" rel="noopener"><code>ActiveMQProperties</code></a> 更多支持的选项，请参阅 。您还可以注册任意数量的bean，以实现<code>ActiveMQConnectionFactoryCustomizer</code>更高级的自定义。</p>
 </blockquote>
 <p>默认情况下，ActiveMQ会创建一个目标（如果它尚不存在），以便根据提供的名称解析目标。</p>
 <h3 id="Artemis-Support"><a href="#Artemis-Support" class="headerlink" title="Artemis Support"></a>Artemis Support</h3><p>Spring Boot可以<code>ConnectionFactory</code>在检测到<a href="http://activemq.apache.org/artemis/" target="_blank" rel="noopener">Artemis</a>在类路径上可用时 自动配置。如果代理存在，则会自动启动并配置嵌入式代理（除非已明确设置mode属性）。支持的模式是<code>embedded</code>（明确表示需要嵌入式代理，如果代理在类路径上不可用则发生错误）和<code>native</code>（使用<code>netty</code> 传输协议连接到代理）。配置后者后，Spring Boot会<code>ConnectionFactory</code>使用默认设置配置 连接到本地计算机上运行的代理的连接。</p>
@@ -1013,7 +1013,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.jms.cache.session-cache-size=5</span><br></pre></td></tr></table></figure>
 <p>如果您更愿意使用本机池，则可以通过向相应位置添加依赖关系 <code>org.messaginghub:pooled-jms</code>并进行相应配置来实现<code>JmsPoolConnectionFactory</code>，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.artemis.pool.enabled=true</span><br><span class="line">spring.artemis.pool.max-connections=50</span><br></pre></td></tr></table></figure>
-<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/artemis/ArtemisProperties.java"><code>ArtemisProperties</code></a> 更多支持选项，请参阅</p>
+<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/artemis/ArtemisProperties.java" target="_blank" rel="noopener"><code>ArtemisProperties</code></a> 更多支持选项，请参阅</p>
 <p>不涉及JNDI查找，并使用<code>name</code>Artemis配置中的属性或通过配置提供的名称来解析目标名称。</p>
 <h3 id="使用JNDI-ConnectionFactory"><a href="#使用JNDI-ConnectionFactory" class="headerlink" title="使用JNDI ConnectionFactory"></a>使用JNDI ConnectionFactory</h3><p>如果您在应用程序服务器中运行应用程序，Spring Boot会尝试<code>ConnectionFactory</code>使用JNDI 查找JMS 。默认情况下，将检查<code>java:/JmsXA</code>和<code>java:/XAConnectionFactory</code>位置。<code>spring.jms.jndi-name</code> 如果需要指定备用位置，可以使用该属性，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.jms.jndi-name=java:/MyConnectionFactory</span><br></pre></td></tr></table></figure>
@@ -1038,7 +1038,7 @@
 <h3 id="RabbitMQ支持"><a href="#RabbitMQ支持" class="headerlink" title="RabbitMQ支持"></a>RabbitMQ支持</h3><p><a href="https://www.rabbitmq.com/" target="_blank" rel="noopener">RabbitMQ</a>是一个基于AMQP协议的轻量级，可靠，可扩展且可移植的消息代理。Spring用于<code>RabbitMQ</code>通过AMQP协议进行通信。</p>
 <p>RabbitMQ配置由外部配置属性控制 <code>spring.rabbitmq.*</code>。例如，您可以在以下部分声明以下部分 <code>application.properties</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring.rabbitmq.host=localhost</span><br><span class="line">spring.rabbitmq.port=5672</span><br><span class="line">spring.rabbitmq.username=admin</span><br><span class="line">spring.rabbitmq.password=secret</span><br></pre></td></tr></table></figure>
-<p>如果<code>ConnectionNameStrategy</code>上下文中存在bean，则它将自动用于命名由自动配置创建的连接<code>ConnectionFactory</code>。有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/amqp/RabbitProperties.java"><code>RabbitProperties</code></a>更多支持的选项，请参阅 。</p>
+<p>如果<code>ConnectionNameStrategy</code>上下文中存在bean，则它将自动用于命名由自动配置创建的连接<code>ConnectionFactory</code>。有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/amqp/RabbitProperties.java" target="_blank" rel="noopener"><code>RabbitProperties</code></a>更多支持的选项，请参阅 。</p>
 <blockquote>
 <p>有关详细信息<a href="https://spring.io/blog/2010/06/14/understanding-amqp-the-protocol-used-by-rabbitmq/" target="_blank" rel="noopener">，</a>请参阅 <a href="https://spring.io/blog/2010/06/14/understanding-amqp-the-protocol-used-by-rabbitmq/" target="_blank" rel="noopener">了解RabbitQQ使用的协议AMQP</a>。</p>
 </blockquote>
@@ -1076,7 +1076,7 @@
 <blockquote>
 <p>要在启动时创建主题，请添加类型的bean <code>NewTopic</code>。如果主题已存在，则忽略该bean。</p>
 </blockquote>
-<p>有关更多支持选项，请参阅<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/kafka/KafkaProperties.java"><code>KafkaProperties</code></a> </p>
+<p>有关更多支持选项，请参阅<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/kafka/KafkaProperties.java" target="_blank" rel="noopener"><code>KafkaProperties</code></a> </p>
 <h3 id="发送消息-2"><a href="#发送消息-2" class="headerlink" title="发送消息"></a>发送消息</h3><p>Spring <code>KafkaTemplate</code>是自动配置的，您可以直接在自己的bean中自动装配它，如下例所示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> KafkaTemplate kafkaTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyBean</span><span class="params">(KafkaTemplate kafkaTemplate)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.kafkaTemplate = kafkaTemplate;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -1162,7 +1162,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-cache/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-cache/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -1318,7 +1318,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cache.infinispan.config=infinispan.xml</span><br></pre></td></tr></table></figure>
 <p>可以通过设置<code>spring.cache.cache-names</code>属性在启动时创建缓存。如果定义了自定义<code>ConfigurationBuilder</code>bean，则它用于自定义缓存。</p>
 <blockquote>
-<p>Infinispan在Spring Boot中的支持仅限于嵌入式模式，非常基础。如果你想要更多选项，你应该使用官方的Infinispan Spring Boot启动器。有关更多详细信息，请参阅 <a href="https://github.com/infinispan/infinispan-spring-boot">Infinispan的文档</a>。</p>
+<p>Infinispan在Spring Boot中的支持仅限于嵌入式模式，非常基础。如果你想要更多选项，你应该使用官方的Infinispan Spring Boot启动器。有关更多详细信息，请参阅 <a href="https://github.com/infinispan/infinispan-spring-boot" target="_blank" rel="noopener">Infinispan的文档</a>。</p>
 </blockquote>
 <h3 id="Couchbase"><a href="#Couchbase" class="headerlink" title="Couchbase"></a>Couchbase</h3><p>如果<a href="https://www.couchbase.com/" target="_blank" rel="noopener">Couchbase</a> Java客户端和<code>couchbase-spring-cache</code> 实现可用且<a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#boot-features-couchbase" target="_blank" rel="noopener">配置</a>了Couchbase ， <code>CouchbaseCacheManager</code>则会自动配置a。也可以通过设置<code>spring.cache.cache-names</code>属性在启动时创建其他缓存。这些缓存在<code>Bucket</code>自动配置的情况下运行。您可以<em>还</em>创建另一个附加缓存中<code>Bucket</code>，通过使用定制。假设在“main” 和one（）缓存上需要两个缓存（<code>cache1</code>和 <code>cache2</code>），<code>Bucket</code>并且<code>cache3</code>“另一个”上的自定义时间为2秒<code>Bucket</code>。您可以通过配置创建前两个缓存，如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cache.cache-names=cache1,cache2</span><br></pre></td></tr></table></figure>
@@ -1333,7 +1333,7 @@
 <blockquote>
 <p>您可以通过添加<code>RedisCacheConfiguration</code> <code>@Bean</code>自己的配置来完全控制配置。如果您正在寻找自定义序列化策略，这可能很有用。</p>
 </blockquote>
-<h3 id="Caffeine"><a href="#Caffeine" class="headerlink" title="Caffeine"></a>Caffeine</h3><p><a href="https://github.com/ben-manes/caffeine">Caffeine</a>是Java 8重写的Guava缓存，取代了对Guava的支持。如果存在Caffeine，则自动配置一个 <code>CaffeineCacheManager</code>（由<code>spring-boot-starter-cache</code>启动器提供）。可以通过设置<code>spring.cache.cache-names</code>属性在启动时创建缓存，并且可以通过以下之一（按指示的顺序）自定义缓存：</p>
+<h3 id="Caffeine"><a href="#Caffeine" class="headerlink" title="Caffeine"></a>Caffeine</h3><p><a href="https://github.com/ben-manes/caffeine" target="_blank" rel="noopener">Caffeine</a>是Java 8重写的Guava缓存，取代了对Guava的支持。如果存在Caffeine，则自动配置一个 <code>CaffeineCacheManager</code>（由<code>spring-boot-starter-cache</code>启动器提供）。可以通过设置<code>spring.cache.cache-names</code>属性在启动时创建缓存，并且可以通过以下之一（按指示的顺序）自定义缓存：</p>
 <ol>
 <li>由…定义的缓存规范 <code>spring.cache.caffeine.spec</code></li>
 <li><code>com.github.benmanes.caffeine.cache.CaffeineSpec</code>定义了一个bean</li>
@@ -1400,7 +1400,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-NoSQL数据库/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-NoSQL数据库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -1493,9 +1493,9 @@
       
         
           
-            <h1 id="NoSQL-Technologies"><a href="#NoSQL-Technologies" class="headerlink" title="NoSQL Technologies"></a>NoSQL Technologies</h1><p>Spring Data提供了其他项目，可帮助您访问各种NoSQL技术，包括： <a href="https://projects.spring.io/spring-data-mongodb/" target="_blank" rel="noopener">MongoDB</a>， <a href="https://projects.spring.io/spring-data-neo4j/" target="_blank" rel="noopener">Neo4J</a>， <a href="https://github.com/spring-projects/spring-data-elasticsearch/">Elasticsearch</a>， <a href="https://projects.spring.io/spring-data-solr/" target="_blank" rel="noopener">Solr</a>， <a href="https://projects.spring.io/spring-data-redis/" target="_blank" rel="noopener">Redis</a>， <a href="https://projects.spring.io/spring-data-gemfire/" target="_blank" rel="noopener">Gemfire</a>， <a href="https://projects.spring.io/spring-data-cassandra/" target="_blank" rel="noopener">Cassandra</a>， <a href="https://projects.spring.io/spring-data-couchbase/" target="_blank" rel="noopener">Couchbase</a>和<a href="https://projects.spring.io/spring-data-ldap/" target="_blank" rel="noopener">LDAP</a>。Spring Boot为Redis，MongoDB，Neo4j，Elasticsearch，Solr Cassandra，Couchbase和LDAP提供自动配置。您可以使用其他项目，但必须自己配置它们。请参阅<a href="https://projects.spring.io/spring-data" target="_blank" rel="noopener">projects.spring.io/spring-data</a>上的相应参考文档 。</p>
-<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p><a href="http://redis.io/" target="_blank" rel="noopener">Redis</a>是一个缓存，消息代理和功能丰富的键值存储。Spring Boot为<a href="https://github.com/lettuce-io/lettuce-core/">Lettuce</a>和 <a href="https://github.com/xetorthio/jedis/">Jedis</a>客户端库提供了基本的自动配置， 并为<a href="https://github.com/spring-projects/spring-data-redis">Spring Data Redis</a>提供了它们之外的抽象。</p>
-<p>有一个<code>spring-boot-starter-data-redis</code>“Starter”用于以方便的方式收集依赖项。默认情况下，它使用 <a href="https://github.com/lettuce-io/lettuce-core/">Lettuce</a>。该启动器处理传统和反应应用程序。</p>
+            <h1 id="NoSQL-Technologies"><a href="#NoSQL-Technologies" class="headerlink" title="NoSQL Technologies"></a>NoSQL Technologies</h1><p>Spring Data提供了其他项目，可帮助您访问各种NoSQL技术，包括： <a href="https://projects.spring.io/spring-data-mongodb/" target="_blank" rel="noopener">MongoDB</a>， <a href="https://projects.spring.io/spring-data-neo4j/" target="_blank" rel="noopener">Neo4J</a>， <a href="https://github.com/spring-projects/spring-data-elasticsearch/" target="_blank" rel="noopener">Elasticsearch</a>， <a href="https://projects.spring.io/spring-data-solr/" target="_blank" rel="noopener">Solr</a>， <a href="https://projects.spring.io/spring-data-redis/" target="_blank" rel="noopener">Redis</a>， <a href="https://projects.spring.io/spring-data-gemfire/" target="_blank" rel="noopener">Gemfire</a>， <a href="https://projects.spring.io/spring-data-cassandra/" target="_blank" rel="noopener">Cassandra</a>， <a href="https://projects.spring.io/spring-data-couchbase/" target="_blank" rel="noopener">Couchbase</a>和<a href="https://projects.spring.io/spring-data-ldap/" target="_blank" rel="noopener">LDAP</a>。Spring Boot为Redis，MongoDB，Neo4j，Elasticsearch，Solr Cassandra，Couchbase和LDAP提供自动配置。您可以使用其他项目，但必须自己配置它们。请参阅<a href="https://projects.spring.io/spring-data" target="_blank" rel="noopener">projects.spring.io/spring-data</a>上的相应参考文档 。</p>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p><a href="http://redis.io/" target="_blank" rel="noopener">Redis</a>是一个缓存，消息代理和功能丰富的键值存储。Spring Boot为<a href="https://github.com/lettuce-io/lettuce-core/" target="_blank" rel="noopener">Lettuce</a>和 <a href="https://github.com/xetorthio/jedis/" target="_blank" rel="noopener">Jedis</a>客户端库提供了基本的自动配置， 并为<a href="https://github.com/spring-projects/spring-data-redis" target="_blank" rel="noopener">Spring Data Redis</a>提供了它们之外的抽象。</p>
+<p>有一个<code>spring-boot-starter-data-redis</code>“Starter”用于以方便的方式收集依赖项。默认情况下，它使用 <a href="https://github.com/lettuce-io/lettuce-core/" target="_blank" rel="noopener">Lettuce</a>。该启动器处理传统和反应应用程序。</p>
 <blockquote>
 <p>我们还提供一个<code>spring-boot-starter-data-redis-reactive</code>启动器，以便与其他具有反应支持的商店保持一致。</p>
 </blockquote>
@@ -1537,7 +1537,7 @@
 <blockquote>
 <p>有关Spring Data MongoDB的完整详细信息，包括其丰富的对象映射技术，请参阅其<a href="https://projects.spring.io/spring-data-mongodb/" target="_blank" rel="noopener">参考文档</a>。</p>
 </blockquote>
-<h3 id="嵌入式Mongo"><a href="#嵌入式Mongo" class="headerlink" title="嵌入式Mongo"></a>嵌入式Mongo</h3><p>Spring Boot为<a href="https://github.com/flapdoodle-oss/de.flapdoodle.embed.mongo">Embedded Mongo</a>提供自动配置 。要在Spring Boot应用程序中使用它，请添加依赖项 <code>de.flapdoodle.embed:de.flapdoodle.embed.mongo</code>。</p>
+<h3 id="嵌入式Mongo"><a href="#嵌入式Mongo" class="headerlink" title="嵌入式Mongo"></a>嵌入式Mongo</h3><p>Spring Boot为<a href="https://github.com/flapdoodle-oss/de.flapdoodle.embed.mongo" target="_blank" rel="noopener">Embedded Mongo</a>提供自动配置 。要在Spring Boot应用程序中使用它，请添加依赖项 <code>de.flapdoodle.embed:de.flapdoodle.embed.mongo</code>。</p>
 <p>可以通过设置<code>spring.data.mongodb.port</code> 属性来配置Mongo侦听的端口。要使用随机分配的空闲端口，请使用值0. <code>MongoClient</code> 创建者<code>MongoAutoConfiguration</code>自动配置为使用随机分配的端口。</p>
 <blockquote>
 <p>如果未配置自定义端口，则默认情况下，嵌入式支持使用随机端口（而不是27017）。</p>
@@ -1568,8 +1568,8 @@
 <blockquote>
 <p>有关Spring Data Neo4j的完整详细信息，包括其对象映射技术，请参阅<a href="https://projects.spring.io/spring-data-neo4j/" target="_blank" rel="noopener">参考文档</a>。</p>
 </blockquote>
-<h2 id="Gemfire"><a href="#Gemfire" class="headerlink" title="Gemfire"></a>Gemfire</h2><p><a href="https://github.com/spring-projects/spring-data-gemfire">Spring Data Gemfire</a>为访问<a href="https://pivotal.io/big-data/pivotal-gemfire#details" target="_blank" rel="noopener">Pivotal Gemfire</a>数据管理平台提供了方便的Spring友好工具 。有一个<code>spring-boot-starter-data-gemfire</code>启动器用于以方便的方式收集依赖项。目前没有对Gemfire的自动配置支持，但您可以使用单个注释<a href="https://github.com/spring-projects/spring-data-gemfire/blob/master/src/main/java/org/springframework/data/gemfire/repository/config/EnableGemfireRepositories.java"><code>@EnableGemfireRepositories</code></a>启用Spring Data Repositories <a href="https://github.com/spring-projects/spring-data-gemfire/blob/master/src/main/java/org/springframework/data/gemfire/repository/config/EnableGemfireRepositories.java">:</a> .</p>
-<h2 id="Solr"><a href="#Solr" class="headerlink" title="Solr"></a>Solr</h2><p><a href="https://lucene.apache.org/solr/" target="_blank" rel="noopener">Apache Solr</a>是一个搜索引擎。Spring Boot为Solr 5客户端库提供了基本的自动配置，并为<a href="https://github.com/spring-projects/spring-data-solr">Spring Data Solr</a>提供了它的抽象。有一个<code>spring-boot-starter-data-solr</code>启动器用于以方便的方式收集依赖项。</p>
+<h2 id="Gemfire"><a href="#Gemfire" class="headerlink" title="Gemfire"></a>Gemfire</h2><p><a href="https://github.com/spring-projects/spring-data-gemfire" target="_blank" rel="noopener">Spring Data Gemfire</a>为访问<a href="https://pivotal.io/big-data/pivotal-gemfire#details" target="_blank" rel="noopener">Pivotal Gemfire</a>数据管理平台提供了方便的Spring友好工具 。有一个<code>spring-boot-starter-data-gemfire</code>启动器用于以方便的方式收集依赖项。目前没有对Gemfire的自动配置支持，但您可以使用单个注释<a href="https://github.com/spring-projects/spring-data-gemfire/blob/master/src/main/java/org/springframework/data/gemfire/repository/config/EnableGemfireRepositories.java" target="_blank" rel="noopener"><code>@EnableGemfireRepositories</code></a>启用Spring Data Repositories <a href="https://github.com/spring-projects/spring-data-gemfire/blob/master/src/main/java/org/springframework/data/gemfire/repository/config/EnableGemfireRepositories.java" target="_blank" rel="noopener">:</a> .</p>
+<h2 id="Solr"><a href="#Solr" class="headerlink" title="Solr"></a>Solr</h2><p><a href="https://lucene.apache.org/solr/" target="_blank" rel="noopener">Apache Solr</a>是一个搜索引擎。Spring Boot为Solr 5客户端库提供了基本的自动配置，并为<a href="https://github.com/spring-projects/spring-data-solr" target="_blank" rel="noopener">Spring Data Solr</a>提供了它的抽象。有一个<code>spring-boot-starter-data-solr</code>启动器用于以方便的方式收集依赖项。</p>
 <h3 id="连接到Solr"><a href="#连接到Solr" class="headerlink" title="连接到Solr"></a>连接到Solr</h3><p>您可以<code>SolrClient</code>像任何其他Spring bean一样注入自动配置的实例。默认情况下，实例尝试连接到服务器 <code>localhost:8983/solr</code>。以下示例显示如何注入Solr bean：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> SolrClient solr;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyBean</span><span class="params">(SolrClient solr)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.solr = solr;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果添加自己<code>@Bean</code>的类型<code>SolrClient</code>，则会替换默认值。</p>
@@ -1582,9 +1582,9 @@
 <p>Spring Boot支持多个HTTP客户端：</p>
 <ul>
 <li>官方Java“低级”和“高级”REST客户端</li>
-<li><a href="https://github.com/searchbox-io/Jest">笑话</a></li>
+<li><a href="https://github.com/searchbox-io/Jest" target="_blank" rel="noopener">笑话</a></li>
 </ul>
-<p><a href="https://github.com/spring-projects/spring-data-elasticsearch">Spring Data Elasticsearch</a>仍在使用传输客户端 ，您可以使用<code>spring-boot-starter-data-elasticsearch</code>启动器开始使用它。</p>
+<p><a href="https://github.com/spring-projects/spring-data-elasticsearch" target="_blank" rel="noopener">Spring Data Elasticsearch</a>仍在使用传输客户端 ，您可以使用<code>spring-boot-starter-data-elasticsearch</code>启动器开始使用它。</p>
 <h3 id="REST客户端连接到Elasticsearch"><a href="#REST客户端连接到Elasticsearch" class="headerlink" title="REST客户端连接到Elasticsearch"></a>REST客户端连接到Elasticsearch</h3><p>Elasticsearch提供了 <a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/index.html" target="_blank" rel="noopener">两个</a> 可用于查询集群的<a href="https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/index.html" target="_blank" rel="noopener">REST客户端</a>：“低级”客户端和“高级”客户端。</p>
 <p>如果您<code>org.elasticsearch.client:elasticsearch-rest-client</code>依赖于类路径，Spring Boot将自动配置并注册<code>RestClient</code>默认目标的bean <code>localhost:9200</code>。您可以进一步调整<code>RestClient</code>配置方式，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.elasticsearch.rest.uris=http://search.example.com:9200</span><br><span class="line">spring.elasticsearch.rest.username=user</span><br><span class="line">spring.elasticsearch.rest.password=secret</span><br></pre></td></tr></table></figure>
@@ -1604,7 +1604,7 @@
 <blockquote>
 <p>有关Spring Data Elasticsearch的完整详细信息，请参阅 <a href="https://docs.spring.io/spring-data/elasticsearch/docs/" target="_blank" rel="noopener">参考文档</a>。</p>
 </blockquote>
-<h2 id="Cassandra"><a href="#Cassandra" class="headerlink" title="Cassandra"></a>Cassandra</h2><p><a href="https://cassandra.apache.org/" target="_blank" rel="noopener">Cassandra</a>是一个开源的分布式数据库管理系统，旨在处理许多商用服务器上的大量数据。Spring Boot提供了Cassandra的自动配置以及<a href="https://github.com/spring-projects/spring-data-cassandra">Spring Data Cassandra</a>提供的抽象。有一个<code>spring-boot-starter-data-cassandra</code>启动器用于以方便的方式收集依赖项。</p>
+<h2 id="Cassandra"><a href="#Cassandra" class="headerlink" title="Cassandra"></a>Cassandra</h2><p><a href="https://cassandra.apache.org/" target="_blank" rel="noopener">Cassandra</a>是一个开源的分布式数据库管理系统，旨在处理许多商用服务器上的大量数据。Spring Boot提供了Cassandra的自动配置以及<a href="https://github.com/spring-projects/spring-data-cassandra" target="_blank" rel="noopener">Spring Data Cassandra</a>提供的抽象。有一个<code>spring-boot-starter-data-cassandra</code>启动器用于以方便的方式收集依赖项。</p>
 <h3 id="连接到Cassandra"><a href="#连接到Cassandra" class="headerlink" title="连接到Cassandra"></a>连接到Cassandra</h3><p>您可以像使用任何其他Spring Bean一样注入自动配置<code>CassandraTemplate</code>或Cassandra <code>Session</code>实例。这些<code>spring.data.cassandra.*</code>属性可用于自定义连接。通常，您提供<code>keyspace-name</code>和 <code>contact-points</code>属性，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.data.cassandra.keyspace-name=mykeyspace</span><br><span class="line">spring.data.cassandra.contact-points=cassandrahost1,cassandrahost2</span><br></pre></td></tr></table></figure>
 <p>您还可以注册任意数量的bean，以实现 <code>ClusterBuilderCustomizer</code>更高级的自定义。</p>
@@ -1615,7 +1615,7 @@
 <blockquote>
 <p>有关Spring Data Cassandra的完整详细信息，请参阅 <a href="https://docs.spring.io/spring-data/cassandra/docs/" target="_blank" rel="noopener">参考文档</a>。</p>
 </blockquote>
-<h2 id="Couchbase"><a href="#Couchbase" class="headerlink" title="Couchbase"></a>Couchbase</h2><p><a href="https://www.couchbase.com/" target="_blank" rel="noopener">Couchbase</a>是一个开源的，分布式的，多模型的NoSQL面向文档的数据库，针对交互式应用程序进行了优化。Spring Boot提供了Couchbase的自动配置以及<a href="https://github.com/spring-projects/spring-data-couchbase">Spring Data Couchbase</a>提供的抽象 。有一个 <code>spring-boot-starter-data-couchbase</code>和<code>spring-boot-starter-data-couchbase-reactive</code> 启动器方便的方法收集的依赖关系。</p>
+<h2 id="Couchbase"><a href="#Couchbase" class="headerlink" title="Couchbase"></a>Couchbase</h2><p><a href="https://www.couchbase.com/" target="_blank" rel="noopener">Couchbase</a>是一个开源的，分布式的，多模型的NoSQL面向文档的数据库，针对交互式应用程序进行了优化。Spring Boot提供了Couchbase的自动配置以及<a href="https://github.com/spring-projects/spring-data-couchbase" target="_blank" rel="noopener">Spring Data Couchbase</a>提供的抽象 。有一个 <code>spring-boot-starter-data-couchbase</code>和<code>spring-boot-starter-data-couchbase-reactive</code> 启动器方便的方法收集的依赖关系。</p>
 <h3 id="连接到Couchbase"><a href="#连接到Couchbase" class="headerlink" title="连接到Couchbase"></a>连接到Couchbase</h3><p>你可以得到一个<code>Bucket</code>和<code>Cluster</code>通过添加Couchbase SDK和一些配置。这些<code>spring.couchbase.*</code>属性可用于自定义连接。通常，您提供引导主机，存储桶名称和密码，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.couchbase.bootstrap-hosts=my-host-1,192.168.1.123</span><br><span class="line">spring.couchbase.bucket.name=my-bucket</span><br><span class="line">spring.couchbase.bucket.password=secret</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -1640,7 +1640,7 @@
 <p>如果要完全绕过Spring Data Couchbase的自动配置，请提供自己的实现<code>org.springframework.data.couchbase.config.AbstractCouchbaseDataConfiguration</code>。</p>
 </blockquote>
 <h2 id="LDAP"><a href="#LDAP" class="headerlink" title="LDAP"></a>LDAP</h2><p><a href="https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol" target="_blank" rel="noopener">LDAP</a>（轻量级目录访问协议）是一种开放的，与供应商无关的行业标准应用程序协议，用于通过IP网络访问和维护分布式目录信息服务。Spring Boot为任何兼容的LDAP服务器提供自动配置，并为<a href="https://www.ldap.com/unboundid-ldap-sdk-for-java" target="_blank" rel="noopener">UnboundID</a>支持嵌入式内存中LDAP服务器 。</p>
-<p>LDAP抽象由 <a href="https://github.com/spring-projects/spring-data-ldap">Spring Data LDAP提供</a>。有一个<code>spring-boot-starter-data-ldap</code>启动器用于以方便的方式收集依赖项。</p>
+<p>LDAP抽象由 <a href="https://github.com/spring-projects/spring-data-ldap" target="_blank" rel="noopener">Spring Data LDAP提供</a>。有一个<code>spring-boot-starter-data-ldap</code>启动器用于以方便的方式收集依赖项。</p>
 <h3 id="连接LDAP服务器"><a href="#连接LDAP服务器" class="headerlink" title="连接LDAP服务器"></a>连接LDAP服务器</h3><p>要连接到LDAP服务器，请确保声明对<code>spring-boot-starter-data-ldap</code>启动器 的依赖关系 <code>spring-ldap-core</code>，然后在application.properties中声明服务器的URL，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.ldap.urls=ldap://myserver:1235</span><br><span class="line">spring.ldap.username=admin</span><br><span class="line">spring.ldap.password=secret</span><br></pre></td></tr></table></figure>
 <p>如果需要自定义连接设置，可以使用<code>spring.ldap.base</code>和 <code>spring.ldap.base-environment</code>属性。</p>
@@ -1721,7 +1721,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-SQL数据库/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-SQL数据库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -1837,7 +1837,7 @@
 </blockquote>
 <h3 id="连接到生产数据库"><a href="#连接到生产数据库" class="headerlink" title="连接到生产数据库"></a>连接到生产数据库</h3><p>也可以使用池自动配置生产数据库连接 <code>DataSource</code>。Spring Boot使用以下算法来选择特定的实现：</p>
 <ol>
-<li>我们更喜欢<a href="https://github.com/brettwooldridge/HikariCP">HikariCP</a>的性能和并发性。如果HikariCP可用，我们总是选择它。</li>
+<li>我们更喜欢<a href="https://github.com/brettwooldridge/HikariCP" target="_blank" rel="noopener">HikariCP</a>的性能和并发性。如果HikariCP可用，我们总是选择它。</li>
 <li>否则，如果Tomcat池<code>DataSource</code>可用，我们将使用它。</li>
 <li>如果HikariCP和Tomcat池化数据源都不可用，并且 <a href="https://commons.apache.org/proper/commons-dbcp/" target="_blank" rel="noopener">Commons DBCP2</a>可用，我们就会使用它。</li>
 </ol>
@@ -1859,7 +1859,7 @@
 <blockquote>
 <p>对于<code>DataSource</code>要创建的池，我们需要能够验证有效的 <code>Driver</code>类是否可用，因此我们在执行任何操作之前检查它。换句话说，如果你设置<code>spring.datasource.driver-class-name=com.mysql.jdbc.Driver</code>，那么该类必须是可加载的。</p>
 </blockquote>
-<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/DataSourceProperties.java"><code>DataSourceProperties</code></a> 更多支持的选项，请参阅 。无论实际实施如何，这些都是标准选项。也可以微调实现特定的设置，使用各自的前缀（<code>spring.datasource.hikari.*</code>， <code>spring.datasource.tomcat.*</code>，和<code>spring.datasource.dbcp2.*</code>）。有关更多详细信息，请参阅您正在使用的连接池实现的文档。</p>
+<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/DataSourceProperties.java" target="_blank" rel="noopener"><code>DataSourceProperties</code></a> 更多支持的选项，请参阅 。无论实际实施如何，这些都是标准选项。也可以微调实现特定的设置，使用各自的前缀（<code>spring.datasource.hikari.*</code>， <code>spring.datasource.tomcat.*</code>，和<code>spring.datasource.dbcp2.*</code>）。有关更多详细信息，请参阅您正在使用的连接池实现的文档。</p>
 <p>例如，如果使用 <a href="https://tomcat.apache.org/tomcat-8.0-doc/jdbc-pool.html#Common_Attributes" target="_blank" rel="noopener">Tomcat连接池</a>，则可以自定义许多其他设置，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">＃如果没有可用连接，则在抛出异常之前要等待的ms数。</span><br><span class="line">spring.datasource.tomcat.max-wait = 10000</span><br><span class="line"></span><br><span class="line">＃可以同时从该池分配的最大活动连接数。</span><br><span class="line">spring.datasource.tomcat.max-active = 50</span><br><span class="line"></span><br><span class="line">＃在从池中借用连接之前验证连接。</span><br><span class="line">spring.datasource.tomcat.test-on-borrow = true</span><br></pre></td></tr></table></figure>
 <h3 id="连接到JNDI数据源"><a href="#连接到JNDI数据源" class="headerlink" title="连接到JNDI数据源"></a>连接到JNDI数据源</h3><p>如果将Spring Boot应用程序部署到Application Server，则可能需要使用Application Server的内置功能配置和管理DataSource，并使用JNDI访问它。</p>
@@ -2004,7 +2004,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-Security/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-Security/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -2112,7 +2112,7 @@
 </ul>
 <p>你可以<code>AuthenticationEventPublisher</code>通过为它添加一个bean 来提供不同的东西。</p>
 <h3 id="MVC安全性"><a href="#MVC安全性" class="headerlink" title="MVC安全性"></a>MVC安全性</h3><p>默认安全配置在<code>SecurityAutoConfiguration</code>和中 实现<code>UserDetailsServiceAutoConfiguration</code>。<code>SecurityAutoConfiguration</code>导入<code>SpringBootWebSecurityConfiguration</code>Web安全性并 <code>UserDetailsServiceAutoConfiguration</code>配置身份验证，这也与非Web应用程序相关。要完全关闭默认Web应用程序安全配置，您可以添加类型的bean <code>WebSecurityConfigurerAdapter</code>（这样做不会禁用<code>UserDetailsService</code>配置或Actuator的安全性）。</p>
-<p>为了还关闭<code>UserDetailsService</code>的配置，您可以添加类型的豆 <code>UserDetailsService</code>，<code>AuthenticationProvider</code>或<code>AuthenticationManager</code>。<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/">Spring Boot示例中</a>有几个安全的应用程序可以帮助您开始使用常见的用例。</p>
+<p>为了还关闭<code>UserDetailsService</code>的配置，您可以添加类型的豆 <code>UserDetailsService</code>，<code>AuthenticationProvider</code>或<code>AuthenticationManager</code>。<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/" target="_blank" rel="noopener">Spring Boot示例中</a>有几个安全的应用程序可以帮助您开始使用常见的用例。</p>
 <p>可以通过添加自定义来覆盖访问规则<code>WebSecurityConfigurerAdapter</code>。Spring Boot提供了便捷方法，可用于覆盖执行器端点和静态资源的访问规则。<code>EndpointRequest</code>可用于创建<code>RequestMatcher</code> 基于<code>management.endpoints.web.base-path</code>属性的。 <code>PathRequest</code>可用于<code>RequestMatcher</code>在常用位置创建资源。</p>
 <h3 id="WebFlux安全性"><a href="#WebFlux安全性" class="headerlink" title="WebFlux安全性"></a>WebFlux安全性</h3><p>与Spring MVC应用程序类似，您可以通过添加<code>spring-boot-starter-security</code>依赖项来保护WebFlux应用程序。默认安全配置在<code>ReactiveSecurityAutoConfiguration</code>和中 实现<code>UserDetailsServiceAutoConfiguration</code>。<code>ReactiveSecurityAutoConfiguration</code>导入<code>WebFluxSecurityConfiguration</code>Web安全性并<code>UserDetailsServiceAutoConfiguration</code> 配置身份验证，这也与非Web应用程序相关。要完全关闭默认Web应用程序安全配置，您可以添加类型的bean <code>WebFilterChainProxy</code>（这样做不会禁用<code>UserDetailsService</code>配置或Actuator的安全性）。</p>
 <p>要关闭<code>UserDetailsService</code>配置，可以添加类型为<code>ReactiveUserDetailsService</code>或的bean <code>ReactiveAuthenticationManager</code>。</p>
@@ -2203,7 +2203,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-开发Web应用程序/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-开发Web应用程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -2320,11 +2320,11 @@
 <p>如果需要添加或自定义转换器，可以使用Spring Boot的 <code>HttpMessageConverters</code>类，如下面的清单所示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.web.HttpMessageConverters;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.converter.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyConfiguration</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> HttpMessageConverters <span class="title">customConverters</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		HttpMessageConverter&lt;?&gt; additional = ...</span><br><span class="line">		HttpMessageConverter&lt;?&gt; another = ...</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> HttpMessageConverters(additional, another);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>HttpMessageConverter</code>上下文中存在的任何bean都将添加到转换器列表中。您也可以以相同的方式覆盖默认转换器。</p>
-<h4 id="自定义JSON序列化程序和反序列化程序"><a href="#自定义JSON序列化程序和反序列化程序" class="headerlink" title="自定义JSON序列化程序和反序列化程序"></a>自定义JSON序列化程序和反序列化程序</h4><p>如果您使用Jackson序列化和反序列化JSON数据，您可能希望编写自己的类<code>JsonSerializer</code>和<code>JsonDeserializer</code>类。自定义序列化程序通常 <a href="https://github.com/FasterXML/jackson-docs/wiki/JacksonHowToCustomSerializers">通过模块向Jackson注册</a>，但Spring Boot提供了另一种<code>@JsonComponent</code>注释，可以更容易地直接注册Spring Beans。</p>
+<h4 id="自定义JSON序列化程序和反序列化程序"><a href="#自定义JSON序列化程序和反序列化程序" class="headerlink" title="自定义JSON序列化程序和反序列化程序"></a>自定义JSON序列化程序和反序列化程序</h4><p>如果您使用Jackson序列化和反序列化JSON数据，您可能希望编写自己的类<code>JsonSerializer</code>和<code>JsonDeserializer</code>类。自定义序列化程序通常 <a href="https://github.com/FasterXML/jackson-docs/wiki/JacksonHowToCustomSerializers" target="_blank" rel="noopener">通过模块向Jackson注册</a>，但Spring Boot提供了另一种<code>@JsonComponent</code>注释，可以更容易地直接注册Spring Beans。</p>
 <p>您可以<code>@JsonComponent</code>直接使用注释<code>JsonSerializer</code>或 <code>JsonDeserializer</code>实现。您还可以在包含序列化程序/反序列化程序作为内部类的类上使用它，如以下示例所示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.*;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.jackson.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@JsonComponent</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Serializer</span> <span class="keyword">extends</span> <span class="title">JsonSerializer</span>&lt;<span class="title">SomeObject</span>&gt; </span>&#123;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Deserializer</span> <span class="keyword">extends</span> <span class="title">JsonDeserializer</span>&lt;<span class="title">SomeObject</span>&gt; </span>&#123;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其中的所有<code>@JsonComponent</code>豆子都会<code>ApplicationContext</code>自动在杰克逊注册。因为<code>@JsonComponent</code>是元注释<code>@Component</code>，所以通常的组件扫描规则适用。</p>
-<p>春季启动也提供 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectSerializer.java"><code>JsonObjectSerializer</code></a>和 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectDeserializer.java"><code>JsonObjectDeserializer</code></a>基础类，序列化对象时提供标准版本的杰克逊有用的替代。见 <a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/api/org/springframework/boot/jackson/JsonObjectSerializer.html" target="_blank" rel="noopener"><code>JsonObjectSerializer</code></a>和<a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/api/org/springframework/boot/jackson/JsonObjectDeserializer.html" target="_blank" rel="noopener"><code>JsonObjectDeserializer</code></a>在Javadoc了解详情。</p>
+<p>春季启动也提供 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectSerializer.java" target="_blank" rel="noopener"><code>JsonObjectSerializer</code></a>和 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectDeserializer.java" target="_blank" rel="noopener"><code>JsonObjectDeserializer</code></a>基础类，序列化对象时提供标准版本的杰克逊有用的替代。见 <a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/api/org/springframework/boot/jackson/JsonObjectSerializer.html" target="_blank" rel="noopener"><code>JsonObjectSerializer</code></a>和<a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/api/org/springframework/boot/jackson/JsonObjectDeserializer.html" target="_blank" rel="noopener"><code>JsonObjectDeserializer</code></a>在Javadoc了解详情。</p>
 <h4 id="MessageCodesResolver"><a href="#MessageCodesResolver" class="headerlink" title="MessageCodesResolver"></a>MessageCodesResolver</h4><p>Spring MVC有一个生成错误代码的策略，用于从绑定错误中呈现错误消息：<code>MessageCodesResolver</code>。如果设置了<code>spring.mvc.message-codes-resolver.format</code>财产<code>PREFIX_ERROR_CODE</code>或 <code>POSTFIX_ERROR_CODE</code>春季启动为您创建一个（见枚举<a href="https://docs.spring.io/spring/docs/5.1.5.RELEASE/javadoc-api/org/springframework/validation/DefaultMessageCodesResolver.Format.html" target="_blank" rel="noopener"><code>DefaultMessageCodesResolver.Format</code></a>）。</p>
 <h4 id="静态内容"><a href="#静态内容" class="headerlink" title="静态内容"></a>静态内容</h4><p>默认情况下，Spring Boot从类路径中的<code>/static</code>（ <code>/public</code>或<code>/resources</code>或<code>/META-INF/resources</code>）目录或者根目录中提供静态内容<code>ServletContext</code>。它使用<code>ResourceHttpRequestHandler</code>Spring MVC，以便您可以通过添加自己<code>WebMvcConfigurer</code>的<code>addResourceHandlers</code>方法来修改该行为并覆盖该 方法。</p>
 <p>在独立的Web应用程序中，容器中的默认servlet也会启用，并作为后备，从<code>ServletContext</code>if 的根目录提供内容，决定不处理它。大多数情况下，这不会发生（除非你修改默认的MVC配置），因为Spring总是可以通过它来处理请求 <code>DispatcherServlet</code>。</p>
@@ -2348,7 +2348,7 @@
 <p>使用（例如）JavaScript模块加载器动态加载资源时，不能重命名文件。这就是为什么其他策略也得到支持并可以合并的原因。“固定”策略在URL中添加静态版本字符串而不更改文件名，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spring.resources.chain.strategy.content.enabled = true</span><br><span class="line">spring.resources.chain.strategy.content.paths = / **</span><br><span class="line">spring.resources.chain.strategy.fixed.enabled = true</span><br><span class="line">spring.resources.chain.strategy.fixed .paths = / js / lib /</span><br><span class="line">spring.resources.chain.strategy.fixed.version = v12</span><br></pre></td></tr></table></figure>
 <p>使用此配置，JavaScript模块位于<code>&quot;/js/lib/&quot;</code>使用固定版本控制策略（<code>&quot;/v12/js/lib/mymodule.js&quot;</code>），而其他资源仍使用内容one（<code>&lt;link href=&quot;/css/spring-2a2d595e6ed9a0b24f027f2b63b134d6.css&quot;/&gt;</code>）。</p>
-<p>有关更多支持选项，请参阅<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ResourceProperties.java"><code>ResourceProperties</code></a> </p>
+<p>有关更多支持选项，请参阅<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ResourceProperties.java" target="_blank" rel="noopener"><code>ResourceProperties</code></a> </p>
 <blockquote>
 <p>此功能已在专门的<a href="https://spring.io/blog/2014/07/24/spring-framework-4-1-handling-static-web-resources" target="_blank" rel="noopener">博客文章</a>和Spring Framework的 <a href="https://docs.spring.io/spring/docs/5.1.5.RELEASE/spring-framework-reference/web.html#mvc-config-static-resources" target="_blank" rel="noopener">参考文档中</a>进行了详细描述 。</p>
 </blockquote>
@@ -2496,7 +2496,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Path</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Endpoint</span> </span>&#123;</span><br><span class="line">	<span class="meta">@GET</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">message</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Hello"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>由于<code>Endpoint</code>是Spring <code>@Component</code>，它的生命周期由Spring管理，您可以使用<code>@Autowired</code>注释注入依赖项并使用<code>@Value</code> 注释注入外部配置。默认情况下，Jersey servlet已注册并映射到<code>/*</code>。您可以通过添加<code>@ApplicationPath</code>到您 的地图来更改映射<code>ResourceConfig</code>。</p>
 <p>默认情况下，Jersey被设置为 名为<code>@Bean</code>的类型的Servlet 。默认情况下，servlet是懒惰地初始化的，但您可以通过设置来自定义该行为。您可以通过创建具有相同名称的bean来禁用或覆盖该bean。您还可以通过设置（在这种情况下，替换或覆盖是）来使用过滤器而不是servlet 。过滤器有一个，您可以设置。通过使用指定属性的映射，可以为servlet和过滤器注册提供init参数。<code>ServletRegistrationBean</code> <code>jerseyServletRegistration</code> <code>spring.jersey.servlet.load-on-startup</code> <code>spring.jersey.type=filter</code> <code>@Bean</code> <code>jerseyFilterRegistration</code> <code>@Order</code> <code>spring.jersey.filter.order</code> <code>spring.jersey.init.*</code></p>
-<p>有一个<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/spring-boot-sample-jersey">Jersey sample</a>以便您可以看到如何设置。</p>
+<p>有一个<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/spring-boot-sample-jersey" target="_blank" rel="noopener">Jersey sample</a>以便您可以看到如何设置。</p>
 <h3 id="嵌入式Servlet容器支持"><a href="#嵌入式Servlet容器支持" class="headerlink" title="嵌入式Servlet容器支持"></a>嵌入式Servlet容器支持</h3><p>Spring Boot包括对嵌入式<a href="https://tomcat.apache.org/" target="_blank" rel="noopener">Tomcat</a>， <a href="https://www.eclipse.org/jetty/" target="_blank" rel="noopener">Jetty</a>和<a href="http://undertow.io/" target="_blank" rel="noopener">Undertow</a>服务器的支持。大多数开发人员使用适当的“Starter”来获取完全配置的实例。默认情况下，嵌入式服务器侦听端口上的HTTP请求<code>8080</code>。</p>
 <blockquote>
 <p>如果您选择在<a href="https://www.centos.org/" target="_blank" rel="noopener">CentOS</a>上使用Tomcat ，请注意，默认情况下，临时目录用于存储已编译的JSP，文件上载等。<code>tmpwatch</code>应用程序运行时可能会删除此目录，从而导致失败。要避免此行为，您可能希望自定义<code>tmpwatch</code>配置，以便<code>tomcat.*</code>不删除或配置目录以<code>server.tomcat.basedir</code>使嵌入式Tomcat使用其他位置。</p>
@@ -2557,7 +2557,7 @@
 </ul>
 <p>Spring Boot尽可能尝试公开常见设置，但这并不总是可行。对于这些情况，专用命名空间提供特定于服务器的自定义（请参阅 <code>server.tomcat</code>和<code>server.undertow</code>）。例如， 可以使用嵌入式servlet容器的特定功能配置<a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#howto-configure-accesslogs" target="_blank" rel="noopener">访问日志</a>。</p>
 <blockquote>
-<p>请参阅 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java"><code>ServerProperties</code></a>课程以获取完整列表。</p>
+<p>请参阅 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java" target="_blank" rel="noopener"><code>ServerProperties</code></a>课程以获取完整列表。</p>
 </blockquote>
 <p><strong>程序化定制</strong></p>
 <p>如果需要以编程方式配置嵌入式servlet容器，可以注册实现该<code>WebServerFactoryCustomizer</code>接口的Spring bean 。 <code>WebServerFactoryCustomizer</code>提供对其的访问 <code>ConfigurableServletWebServerFactory</code>，其中包括许多自定义setter方法。以下示例以编程方式设置端口：</p>
@@ -2575,7 +2575,7 @@
 <li>Undertow不支持JSP。</li>
 <li>创建自定义<code>error.jsp</code>页面不会覆盖<a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#boot-features-error-handling" target="_blank" rel="noopener">错误处理</a>的默认视图 。 应该使用<a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#boot-features-error-handling-custom-error-pages" target="_blank" rel="noopener">自定义错误页面</a>。</li>
 </ul>
-<p>有一个<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/spring-boot-sample-web-jsp">JSP示例</a>以便您可以看到如何设置。</p>
+<p>有一个<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/spring-boot-sample-web-jsp" target="_blank" rel="noopener">JSP示例</a>以便您可以看到如何设置。</p>
 <h3 id="嵌入式Reactive-Server支持"><a href="#嵌入式Reactive-Server支持" class="headerlink" title="嵌入式Reactive Server支持"></a>嵌入式Reactive Server支持</h3><p>Spring Boot包括对以下嵌入式响应式Web服务器的支持：Reactor Netty，Tomcat，Jetty和Undertow。大多数开发人员使用适当的“Starter”来获取完全配置的实例。默认情况下，嵌入式服务器在端口8080上侦听HTTP请求。</p>
 <h3 id="Reactive-Server资源配置"><a href="#Reactive-Server资源配置" class="headerlink" title="Reactive Server资源配置"></a>Reactive Server资源配置</h3><p>在自动配置Reactor Netty或Jetty服务器时，Spring Boot将创建特定的bean，为服务器实例提供HTTP资源：<code>ReactorResourceFactory</code>或<code>JettyResourceFactory</code>。</p>
 <p>默认情况下，这些资源也将与Reactor Netty和Jetty客户端共享，以获得最佳性能，具体如下：</p>

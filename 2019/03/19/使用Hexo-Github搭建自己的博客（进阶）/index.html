@@ -83,7 +83,7 @@
 <meta name="keywords" content="github">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Hexo+Github搭建自己的博客（进阶）">
-<meta property="og:url" content="http://github.com/qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/index.html">
+<meta property="og:url" content="http://qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/index.html">
 <meta property="og:site_name" content="YD Blog">
 <meta property="og:description" content="使用Hexo+Github搭建自己的博客（进阶）主题的配置：这里以NexT主题作为题材 安装NexT在其文件夹中鼠标右键，点击Git Base Here 输入命令：git clone https://github.com/iissnan/hexo-theme-next themes/next 1234567Administrator@yd MINGW64 /d/GitHub/hexo$ git c">
 <meta property="og:locale" content="zh-Hans">
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://github.com/qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/">
+  <link rel="canonical" href="http://qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/">
 
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -387,7 +387,7 @@
 <h2 id="添加关于我页面，步骤和以上差不多"><a href="#添加关于我页面，步骤和以上差不多" class="headerlink" title="添加关于我页面，步骤和以上差不多"></a>添加关于我页面，步骤和以上差不多</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Administrator@yd MINGW64 /d/GitHub/hexo</span><br><span class="line"><span class="meta">$</span> hexo new page about</span><br><span class="line">INFO  Created: D:\GitHub\hexo\source\about\index.md</span><br></pre></td></tr></table></figure>
 <p>在新建的<code>index.md</code>文件中添加如下内容</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: about</span><br><span class="line">date: 2019-03-19 07:27:47</span><br><span class="line">---</span><br><span class="line"><span class="section">## 关于我</span></span><br><span class="line"></span><br><span class="line">一个爱学习的好宝宝~~~</span><br><span class="line"></span><br><span class="line">email：994300880@qq.com</span><br></pre></td></tr></table></figure>
-<h2 id="在首页添加github导航条"><a href="#在首页添加github导航条" class="headerlink" title="在首页添加github导航条"></a>在首页添加github导航条</h2><p>点击<a href="https://github.com/blog/273-github-ribbons">这里</a>选择需要的样式，然后将代码复制到<code>themes/next/layout/_layout.swig</code></p>
+<h2 id="在首页添加github导航条"><a href="#在首页添加github导航条" class="headerlink" title="在首页添加github导航条"></a>在首页添加github导航条</h2><p>点击<a href="https://github.com/blog/273-github-ribbons" target="_blank" rel="noopener">这里</a>选择需要的样式，然后将代码复制到<code>themes/next/layout/_layout.swig</code></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"&#123;&#123; container_class &#125;&#125; &#123;% block page_class %&#125;&#123;% endblock %&#125;"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"headband"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 添加到这里 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"https://github.com/you"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">img</span> <span class="attr">width</span>=<span class="string">"149"</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">height</span>=<span class="string">"149"</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">src</span>=<span class="string">"https://github.blog/wp-content/uploads/2008/12/forkme_right_gray_6d6d6d.png?resize=149%2C149"</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">class</span>=<span class="string">"attachment-full size-full"</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">alt</span>=<span class="string">"Fork me on GitHub"</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">data-recalc-dims</span>=<span class="string">"1"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 结束 --&gt;</span></span><br></pre></td></tr></table></figure>
 <p>并将<code>href</code>改为你的github地址</p>
 <h2 id="实现点击出现桃心效果"><a href="#实现点击出现桃心效果" class="headerlink" title="实现点击出现桃心效果"></a>实现点击出现桃心效果</h2><p>创建js文件：在<code>/themes/next/source/js/src</code>下新建文件<code>clicklove.js</code>，接着把该链接下的代码拷贝粘贴到<code>clicklove.js</code>文件中。<br>代码如下：</p>
@@ -445,7 +445,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://github.com/qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/" title="使用Hexo+Github搭建自己的博客（进阶）">http://github.com/qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/</a>
+    <a href="http://qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/" title="使用Hexo+Github搭建自己的博客（进阶）">http://qq994300880.github.io/2019/03/19/使用Hexo-Github搭建自己的博客（进阶）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>

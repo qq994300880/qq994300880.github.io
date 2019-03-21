@@ -83,7 +83,7 @@
 <meta name="keywords" content="properties,yaml">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用SpringBoot-类型安全配置属性">
-<meta property="og:url" content="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/index.html">
+<meta property="og:url" content="http://qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/index.html">
 <meta property="og:site_name" content="YD Blog">
 <meta property="og:description" content="类型安全配置属性使用@Value(&amp;quot;${property}&amp;quot;)注释注入配置属性有时会很麻烦，尤其是在使用多个属性或数据本质上是分层的情况下。Spring Boot提供了一种使用属性的替代方法，该方法允许强类型bean管理和验证应用程序的配置，如以下示例所示： 123456789101112131415161718192021222324252627282930313233343">
 <meta property="og:locale" content="zh-Hans">
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/">
+  <link rel="canonical" href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/">
 
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -540,7 +540,7 @@
 </blockquote>
 <p>虽然嵌套属性也会在绑定时进行验证，但最好还是将关联字段注释为<code>@Valid</code>。这确保即使没有找到嵌套属性也会触发验证。以下示例基于前面的<code>AcmeProperties</code>示例构建 ：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"acme"</span>)</span><br><span class="line"><span class="meta">@Validated</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AcmeProperties</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@NotNull</span></span><br><span class="line">	<span class="keyword">private</span> InetAddress remoteAddress;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Valid</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> Security security = <span class="keyword">new</span> Security();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ... getters and setters</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Security</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="meta">@NotEmpty</span></span><br><span class="line">		<span class="keyword">public</span> String username;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// ... getters and setters</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>您还可以<code>Validator</code>通过创建名为的bean定义 来添加自定义Spring <code>configurationPropertiesValidator</code>。<code>@Bean</code>应声明该方法<code>static</code>。配置属性验证器是在应用程序生命周期的早期创建的，并且将该<code>@Bean</code>方法声明为static可以创建bean而无需实例化<code>@Configuration</code>该类。这样做可以避免早期实例化可能导致的任何问题。有一个 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/spring-boot-sample-property-validation">属性验证示例</a>，显示如何设置。</p>
+<p>您还可以<code>Validator</code>通过创建名为的bean定义 来添加自定义Spring <code>configurationPropertiesValidator</code>。<code>@Bean</code>应声明该方法<code>static</code>。配置属性验证器是在应用程序生命周期的早期创建的，并且将该<code>@Bean</code>方法声明为static可以创建bean而无需实例化<code>@Configuration</code>该类。这样做可以避免早期实例化可能导致的任何问题。有一个 <a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-samples/spring-boot-sample-property-validation" target="_blank" rel="noopener">属性验证示例</a>，显示如何设置。</p>
 <blockquote>
 <p>该<code>spring-boot-actuator</code>模块包括一个暴露所有<code>@ConfigurationProperties</code>bean 的端点 。将Web浏览器指向 <code>/actuator/configprops</code>或使用等效的JMX端点。有关详细信息，请参阅“ <a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#production-ready-endpoints" target="_blank" rel="noopener">生产就绪功能</a> ”部分。</p>
 </blockquote>
@@ -609,7 +609,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/" title="使用SpringBoot-类型安全配置属性">http://github.com/qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/</a>
+    <a href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/" title="使用SpringBoot-类型安全配置属性">http://qq994300880.github.io/2019/03/20/使用SpringBoot-类型安全配置属性/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>

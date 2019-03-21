@@ -83,7 +83,7 @@
 <meta name="keywords" content="jms,amqp,rabbitmq,kafka">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用SpringBoot-消息中间件">
-<meta property="og:url" content="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/index.html">
+<meta property="og:url" content="http://qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/index.html">
 <meta property="og:site_name" content="YD Blog">
 <meta property="og:description" content="MessagingSpring Framework为与消息传递系统的集成提供了广泛的支持，从简化使用JMS API JmsTemplate到完整的基础架构，以异步接收消息。Spring AMQP为高级消息队列协议提供了类似的功能集。Spring Boot还为RabbitTemplateRabbitMQ 提供了自动配置选项。Spring WebSocket本身包含对STOMP消息传递的支持，Spri">
 <meta property="og:locale" content="zh-Hans">
@@ -120,7 +120,7 @@
 
 
 
-  <link rel="canonical" href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/">
+  <link rel="canonical" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/">
 
 
 
@@ -267,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YoungDream">
@@ -369,7 +369,7 @@
 <p>如果您更愿意使用本机池，则可以通过向相应位置添加依赖关系 <code>org.messaginghub:pooled-jms</code>并进行相应配置来实现<code>JmsPoolConnectionFactory</code>，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.activemq.pool.enabled=true</span><br><span class="line">spring.activemq.pool.max-connections=50</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/activemq/ActiveMQProperties.java"><code>ActiveMQProperties</code></a> 更多支持的选项，请参阅 。您还可以注册任意数量的bean，以实现<code>ActiveMQConnectionFactoryCustomizer</code>更高级的自定义。</p>
+<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/activemq/ActiveMQProperties.java" target="_blank" rel="noopener"><code>ActiveMQProperties</code></a> 更多支持的选项，请参阅 。您还可以注册任意数量的bean，以实现<code>ActiveMQConnectionFactoryCustomizer</code>更高级的自定义。</p>
 </blockquote>
 <p>默认情况下，ActiveMQ会创建一个目标（如果它尚不存在），以便根据提供的名称解析目标。</p>
 <h3 id="Artemis-Support"><a href="#Artemis-Support" class="headerlink" title="Artemis Support"></a>Artemis Support</h3><p>Spring Boot可以<code>ConnectionFactory</code>在检测到<a href="http://activemq.apache.org/artemis/" target="_blank" rel="noopener">Artemis</a>在类路径上可用时 自动配置。如果代理存在，则会自动启动并配置嵌入式代理（除非已明确设置mode属性）。支持的模式是<code>embedded</code>（明确表示需要嵌入式代理，如果代理在类路径上不可用则发生错误）和<code>native</code>（使用<code>netty</code> 传输协议连接到代理）。配置后者后，Spring Boot会<code>ConnectionFactory</code>使用默认设置配置 连接到本地计算机上运行的代理的连接。</p>
@@ -383,7 +383,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.jms.cache.session-cache-size=5</span><br></pre></td></tr></table></figure>
 <p>如果您更愿意使用本机池，则可以通过向相应位置添加依赖关系 <code>org.messaginghub:pooled-jms</code>并进行相应配置来实现<code>JmsPoolConnectionFactory</code>，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.artemis.pool.enabled=true</span><br><span class="line">spring.artemis.pool.max-connections=50</span><br></pre></td></tr></table></figure>
-<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/artemis/ArtemisProperties.java"><code>ArtemisProperties</code></a> 更多支持选项，请参阅</p>
+<p>有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/artemis/ArtemisProperties.java" target="_blank" rel="noopener"><code>ArtemisProperties</code></a> 更多支持选项，请参阅</p>
 <p>不涉及JNDI查找，并使用<code>name</code>Artemis配置中的属性或通过配置提供的名称来解析目标名称。</p>
 <h3 id="使用JNDI-ConnectionFactory"><a href="#使用JNDI-ConnectionFactory" class="headerlink" title="使用JNDI ConnectionFactory"></a>使用JNDI ConnectionFactory</h3><p>如果您在应用程序服务器中运行应用程序，Spring Boot会尝试<code>ConnectionFactory</code>使用JNDI 查找JMS 。默认情况下，将检查<code>java:/JmsXA</code>和<code>java:/XAConnectionFactory</code>位置。<code>spring.jms.jndi-name</code> 如果需要指定备用位置，可以使用该属性，如以下示例所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.jms.jndi-name=java:/MyConnectionFactory</span><br></pre></td></tr></table></figure>
@@ -408,7 +408,7 @@
 <h3 id="RabbitMQ支持"><a href="#RabbitMQ支持" class="headerlink" title="RabbitMQ支持"></a>RabbitMQ支持</h3><p><a href="https://www.rabbitmq.com/" target="_blank" rel="noopener">RabbitMQ</a>是一个基于AMQP协议的轻量级，可靠，可扩展且可移植的消息代理。Spring用于<code>RabbitMQ</code>通过AMQP协议进行通信。</p>
 <p>RabbitMQ配置由外部配置属性控制 <code>spring.rabbitmq.*</code>。例如，您可以在以下部分声明以下部分 <code>application.properties</code>：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">spring.rabbitmq.host=localhost</span><br><span class="line">spring.rabbitmq.port=5672</span><br><span class="line">spring.rabbitmq.username=admin</span><br><span class="line">spring.rabbitmq.password=secret</span><br></pre></td></tr></table></figure>
-<p>如果<code>ConnectionNameStrategy</code>上下文中存在bean，则它将自动用于命名由自动配置创建的连接<code>ConnectionFactory</code>。有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/amqp/RabbitProperties.java"><code>RabbitProperties</code></a>更多支持的选项，请参阅 。</p>
+<p>如果<code>ConnectionNameStrategy</code>上下文中存在bean，则它将自动用于命名由自动配置创建的连接<code>ConnectionFactory</code>。有关<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/amqp/RabbitProperties.java" target="_blank" rel="noopener"><code>RabbitProperties</code></a>更多支持的选项，请参阅 。</p>
 <blockquote>
 <p>有关详细信息<a href="https://spring.io/blog/2010/06/14/understanding-amqp-the-protocol-used-by-rabbitmq/" target="_blank" rel="noopener">，</a>请参阅 <a href="https://spring.io/blog/2010/06/14/understanding-amqp-the-protocol-used-by-rabbitmq/" target="_blank" rel="noopener">了解RabbitQQ使用的协议AMQP</a>。</p>
 </blockquote>
@@ -446,7 +446,7 @@
 <blockquote>
 <p>要在启动时创建主题，请添加类型的bean <code>NewTopic</code>。如果主题已存在，则忽略该bean。</p>
 </blockquote>
-<p>有关更多支持选项，请参阅<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/kafka/KafkaProperties.java"><code>KafkaProperties</code></a> </p>
+<p>有关更多支持选项，请参阅<a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/kafka/KafkaProperties.java" target="_blank" rel="noopener"><code>KafkaProperties</code></a> </p>
 <h3 id="发送消息-2"><a href="#发送消息-2" class="headerlink" title="发送消息"></a>发送消息</h3><p>Spring <code>KafkaTemplate</code>是自动配置的，您可以直接在自己的bean中自动装配它，如下例所示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> KafkaTemplate kafkaTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyBean</span><span class="params">(KafkaTemplate kafkaTemplate)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.kafkaTemplate = kafkaTemplate;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -514,7 +514,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/" title="使用SpringBoot-消息中间件">http://github.com/qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/</a>
+    <a href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/" title="使用SpringBoot-消息中间件">http://qq994300880.github.io/2019/03/21/使用SpringBoot-消息中间件/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>

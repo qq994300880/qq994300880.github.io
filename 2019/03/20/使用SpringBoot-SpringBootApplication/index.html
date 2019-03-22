@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="YD Blog">
 <meta property="og:description" content="使用@SpringBootApplication Annotation许多Spring Boot开发人员喜欢他们的应用程序使用自动配置，组件扫描，并能够在他们的“应用程序类”上定义额外的配置。@SpringBootApplication可以使用单个 注释来启用这三个功能，即：  @EnableAutoConfiguration：启用Spring Boot的自动配置机制 @ComponentScan">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-20T11:53:51.428Z">
+<meta property="og:updated_time" content="2019-03-22T09:01:40.627Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用SpringBoot-@SpringBootApplication">
 <meta name="twitter:description" content="使用@SpringBootApplication Annotation许多Spring Boot开发人员喜欢他们的应用程序使用自动配置，组件扫描，并能够在他们的“应用程序类”上定义额外的配置。@SpringBootApplication可以使用单个 注释来启用这三个功能，即：  @EnableAutoConfiguration：启用Spring Boot的自动配置机制 @ComponentScan">
@@ -373,7 +373,7 @@
 <li><code>@Configuration</code>：允许在上下文中注册额外的bean或导入其他配置类</li>
 </ul>
 <p>的<code>@SpringBootApplication</code>注释是相当于使用<code>@Configuration</code>， <code>@EnableAutoConfiguration</code>以及<code>@ComponentScan</code>与他们的默认属性，如显示在下面的例子：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.myapplication;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span>  <span class="comment">//与@Configuration相同@EnableAutoConfiguration @ComponentScan </span></span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span> main（String [] args）&#123;</span><br><span class="line">		SpringApplication.run（Application .class，args）;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.myapplication;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="comment">//相当于@Configuration,@EnableAutoConfiguration和@ComponentScan一起使用</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span> main（String [] args）&#123;</span><br><span class="line">		SpringApplication.run（Application .class，args）;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><code>@SpringBootApplication</code>还提供了别名定制的属性 <code>@EnableAutoConfiguration</code>和<code>@ComponentScan</code>。</p>
 </blockquote>
@@ -554,7 +554,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -565,7 +565,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -576,7 +576,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

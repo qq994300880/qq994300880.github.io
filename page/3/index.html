@@ -277,6 +277,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-WebClient/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/21/使用SpringBoot-WebClient/" itemprop="url">使用SpringBoot-WebClient</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T13:39:14+08:00">
+                2019-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springboot/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="WebClient"><a href="#WebClient" class="headerlink" title="WebClient"></a>WebClient</h1><p>如果在类路径上有Spring WebFlux，则还可以选择<code>WebClient</code>用于调用远程REST服务。相比之下<code>RestTemplate</code>，这个客户端具有更多的功能感并且完全被动。您可以<a href="https://docs.spring.io/spring/docs/5.1.5.RELEASE/spring-framework-reference/web-reactive.html#webflux-client" target="_blank" rel="noopener">在Spring Framework文档</a><code>WebClient</code>的专用 <a href="https://docs.spring.io/spring/docs/5.1.5.RELEASE/spring-framework-reference/web-reactive.html#webflux-client" target="_blank" rel="noopener">部分中</a>了解有关该内容的更多信息。</p>
+<p>Spring Boot <code>WebClient.Builder</code>为您创建并预配置一个; 强烈建议将其注入组件并使用它来创建<code>WebClient</code>实例。Spring Boot正在配置该构建器以共享HTTP资源，以与服务器相同的方式反映编解码器设置（请参阅 <a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#boot-features-webflux-httpcodecs" target="_blank" rel="noopener">WebFlux HTTP编解码器自动配置</a>）等。</p>
+<p>以下代码显示了一个典型示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> WebClient webClient;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyService</span><span class="params">(WebClient.Builder webClientBuilder)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.webClient = webClientBuilder.baseUrl(<span class="string">"http://example.org"</span>).build();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Mono&lt;Details&gt; <span class="title">someRestCall</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.webClient.get().uri(<span class="string">"/&#123;name&#125;/details"</span>, name)</span><br><span class="line">						.retrieve().bodyToMono(Details.class);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="WebClient运行时"><a href="#WebClient运行时" class="headerlink" title="WebClient运行时"></a>WebClient运行时</h2><p>Spring Boot将自动检测<code>ClientHttpConnector</code>用于驱动的驱动程序<code>WebClient</code>，具体取决于应用程序类路径上可用的库。目前，支持Reactor Netty和Jetty RS客户端。</p>
+<p>在<code>spring-boot-starter-webflux</code>启动依赖于<code>io.projectreactor.netty:reactor-netty</code> 默认情况下，这使服务器和客户端的实现。如果您选择将Jetty用作反应式服务器，则应该在Jetty Reactive HTTP客户端库上添加依赖项<code>org.eclipse.jetty:jetty-reactive-httpclient</code>。对服务器和客户端使用相同的技术具有优势，因为它将自动在客户端和服务器之间共享HTTP资源。</p>
+<p>开发人员可以通过提供自定义<code>ReactorResourceFactory</code>或<code>JettyResourceFactory</code>bean 来覆盖Jetty和Reactor Netty的资源配置- 这将应用于客户端和服务器。</p>
+<p>如果您希望覆盖客户端的该选项，则可以定义自己的 <code>ClientHttpConnector</code>bean并完全控制客户端配置。</p>
+<p>您可以<a href="https://docs.spring.io/spring/docs/5.1.5.RELEASE/spring-framework-reference/web-reactive.html#webflux-client-builder" target="_blank" rel="noopener"><code>WebClient</code>在Spring Framework参考文档中</a>了解有关<a href="https://docs.spring.io/spring/docs/5.1.5.RELEASE/spring-framework-reference/web-reactive.html#webflux-client-builder" target="_blank" rel="noopener">配置选项的</a>更多信息 。</p>
+<h2 id="WebClient自定义"><a href="#WebClient自定义" class="headerlink" title="WebClient自定义"></a>WebClient自定义</h2><p><code>WebClient</code>自定义有三种主要方法，具体取决于您希望自定义应用的广泛程度。</p>
+<p>要使任何自定义的范围尽可能窄，请注入自动配置 <code>WebClient.Builder</code>，然后根据需要调用其方法。<code>WebClient.Builder</code>实例是有状态的：构建器上的任何更改都会反映在随后使用它创建的所有客户端中。如果要使用相同的构建器创建多个客户端，还可以考虑使用克隆构建器<code>WebClient.Builder other = builder.clone();</code>。</p>
+<p>要对所有<code>WebClient.Builder</code>实例进行应用程序范围的附加自定义，您可以声明<code>WebClientCustomizer</code>bean并<code>WebClient.Builder</code>在注入点更改本地。</p>
+<p>最后，您可以回退到原始API并使用<code>WebClient.create()</code>。在这种情况下，不会自动配置或<code>WebClientCustomizer</code>应用。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-RestTemplate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2483,420 +2643,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/20/使用SpringBoot-Logging/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YoungDream">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/user.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YD Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/20/使用SpringBoot-Logging/" itemprop="url">使用SpringBoot-Logging</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T21:13:21+08:00">
-                2019-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h2><p>Spring Boot使用<a href="https://commons.apache.org/logging" target="_blank" rel="noopener">Commons Logging</a>进行所有内部日志记录，但保留底层日志实现。为<a href="https://docs.oracle.com/javase/8/docs/api//java/util/logging/package-summary.html" target="_blank" rel="noopener">Java Util Logging</a>，<a href="https://logging.apache.org/log4j/2.x/" target="_blank" rel="noopener">Log4J2</a>和 <a href="http://logback.qos.ch/" target="_blank" rel="noopener">Logback</a>提供了默认配置 。在每种情况下，记录器都预先配置为使用控制台输出，并且还提供可选的文件输出。</p>
-<p>默认情况下，如果使用“Starters”，则使用Logback进行日志记录。还包括适当的Logback路由，以确保使用Java Util Logging，Commons Logging，Log4J或SLF4J的依赖库都能正常工作。</p>
-<blockquote>
-<p>Java有很多日志框架可供使用。如果以上列表看起来令人困惑，请不要担心。通常，您不需要更改日志记录依赖项，并且Spring Boot默认值可以正常工作。</p>
-</blockquote>
-<h3 id="日志格式"><a href="#日志格式" class="headerlink" title="日志格式"></a>日志格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2014-03-05 10:57:51.112  INFO 45469 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/7.0.52</span><br><span class="line">2014-03-05 10:57:51.253  INFO 45469 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext</span><br><span class="line">2014-03-05 10:57:51.253  INFO 45469 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1358 ms</span><br><span class="line">2014-03-05 10:57:51.698  INFO 45469 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]</span><br><span class="line">2014-03-05 10:57:51.702  INFO 45469 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]</span><br></pre></td></tr></table></figure>
-<p>输出以下信息：</p>
-<ul>
-<li>日期和时间：毫秒精度，易于排序。</li>
-<li>日志级别：<code>ERROR</code>，<code>WARN</code>，<code>INFO</code>，<code>DEBUG</code>，或<code>TRACE</code>。</li>
-<li>进程ID。</li>
-<li>一个<code>---</code>分离器来区分实际日志消息的开始。</li>
-<li>线程名称：用方括号括起来（可能会截断控制台输出）。</li>
-<li>记录器名称：这通常是源类名称（通常缩写）。</li>
-<li>日志消息。</li>
-</ul>
-<blockquote>
-<p>Logback没有<code>FATAL</code>级别。它映射到<code>ERROR</code>。</p>
-</blockquote>
-<h3 id="控制台输出"><a href="#控制台输出" class="headerlink" title="控制台输出"></a>控制台输出</h3><p>默认日志配置会在写入时将消息回显到控制台。默认情况下，会记录<code>ERROR</code>-level，<code>WARN</code>-level和<code>INFO</code>-level消息。您还可以通过使用<code>--debug</code>标志启动应用程序来启用“调试”模式。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> java -jar myapp.jar --debug</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>你也可以<code>debug=true</code>在你的指定<code>application.properties</code>。</p>
-</blockquote>
-<p>启用调试模式后，将选择一些核心记录器（嵌入式容器，Hibernate和Spring Boot）以输出更多信息。启用调试模式并<em>没有</em>配置您的应用程序记录所有消息<code>DEBUG</code>的水平。</p>
-<p>或者，您可以通过使用<code>--trace</code>标志（或<code>trace=true</code>在您的应用程序中）启动应用程序来启用“跟踪”模式 <code>application.properties</code>。这样做可以为选择的核心记录器（嵌入式容器，Hibernate模式生成和整个Spring组合）启用跟踪日志记录。</p>
-<h3 id="彩色编码输出"><a href="#彩色编码输出" class="headerlink" title="彩色编码输出"></a>彩色编码输出</h3><p>如果您的终端支持ANSI，则使用颜色输出来提高可读性。您可以设置 <code>spring.output.ansi.enabled</code>为 <a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/api/org/springframework/boot/ansi/AnsiOutput.Enabled.html" target="_blank" rel="noopener">支持的值</a>以覆盖自动检测。</p>
-<p>通过使用<code>%clr</code>转换字配置颜色编码。在最简单的形式中，转换器根据日志级别为输出着色，如以下示例所示：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span>clr(%5p)</span><br></pre></td></tr></table></figure>
-<p>下表描述了日志级别到颜色的映射：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">水平</th>
-<th style="text-align:center">颜色</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>FATAL</code></td>
-<td style="text-align:center">红色</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>ERROR</code></td>
-<td style="text-align:center">红色</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>WARN</code></td>
-<td style="text-align:center">黄色</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>INFO</code></td>
-<td style="text-align:center">绿色</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>DEBUG</code></td>
-<td style="text-align:center">绿色</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>TRACE</code></td>
-<td style="text-align:center">绿色</td>
-</tr>
-</tbody>
-</table>
-<p>或者，您可以通过将其作为转换选项指定应使用的颜色或样式。例如，要使文本变为黄色，请使用以下设置：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span>clr(%d&#123;yyyy-MM-dd HH:mm:ss.SSS&#125;)&#123;yellow&#125;</span><br></pre></td></tr></table></figure>
-<p>支持以下颜色和样式：</p>
-<ul>
-<li><code>blue</code></li>
-<li><code>cyan</code></li>
-<li><code>faint</code></li>
-<li><code>green</code></li>
-<li><code>magenta</code></li>
-<li><code>red</code></li>
-<li><code>yellow</code></li>
-</ul>
-<h3 id="文件输出"><a href="#文件输出" class="headerlink" title="文件输出"></a>文件输出</h3><p>默认情况下，Spring Boot仅记录到控制台，不会写入日志文件。如果除了控制台输出之外还要编写日志文件，则需要设置 <code>logging.file</code>或<code>logging.path</code>属性（例如，在您的中 <code>application.properties</code>）。</p>
-<p>下表显示了如何<code>logging.*</code>一起使用这些属性：</p>
-<p><strong>记录属性</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"><code>logging.file</code></th>
-<th style="text-align:center"><code>logging.path</code></th>
-<th style="text-align:center">例子</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><em>（没有）</em></td>
-<td style="text-align:center"><em>（没有）</em></td>
-<td style="text-align:center"></td>
-<td style="text-align:center">仅控制台记录。</td>
-</tr>
-<tr>
-<td style="text-align:center">具体文件</td>
-<td style="text-align:center"><em>（没有）</em></td>
-<td style="text-align:center"><code>my.log</code></td>
-<td style="text-align:center">写入指定的日志文件。名称可以是精确位置或相对于当前目录。</td>
-</tr>
-<tr>
-<td style="text-align:center"><em>（没有）</em></td>
-<td style="text-align:center">具体目录</td>
-<td style="text-align:center"><code>/var/log</code></td>
-<td style="text-align:center">写入<code>spring.log</code>指定的目录。名称可以是精确位置或相对于当前目录。</td>
-</tr>
-</tbody>
-</table>
-<p>日志文件在达到10 MB时会轮换，与控制台输出一样，默认情况下会记录<code>ERROR</code>-level， <code>WARN</code>-level和<code>INFO</code>-level消息。可以使用<code>logging.file.max-size</code>属性更改大小限制。除非<code>logging.file.max-history</code>已设置属性，否则以前轮换的文件将无限期归档。</p>
-<blockquote>
-<p>日志记录系统在应用程序生命周期的早期初始化。因此，在通过<code>@PropertySource</code> 注释加载的属性文件中找不到日志记录属性。</p>
-</blockquote>
-<blockquote>
-<p>日志记录属性独立于实际的日志记录基础结构。因此，<code>logback.configurationFile</code>spring Boot不管理特定的配置键（例如Logback）。</p>
-</blockquote>
-<h3 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h3><p>所有支持的日志系统可以在弹簧设置的记录器级别 <code>Environment</code>（例如，<code>application.properties</code>通过使用） <code>logging.level.&lt;logger-name&gt;=&lt;level&gt;</code>，其中<code>level</code>为TRACE，DEBUG，INFO，WARN，ERROR，FATAL或OFF之一。该<code>root</code>记录器可以通过使用被配置<code>logging.level.root</code>。</p>
-<p>以下示例显示了潜在的日志记录设置<code>application.properties</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logging.level.root=WARN</span><br><span class="line">logging.level.org.springframework.web=DEBUG</span><br><span class="line">logging.level.org.hibernate=ERROR</span><br></pre></td></tr></table></figure>
-<h3 id="日志组"><a href="#日志组" class="headerlink" title="日志组"></a>日志组</h3><p>能够将相关记录器组合在一起以便可以同时配置它们通常很有用。例如，您通常可以更改<em>所有</em> Tomcat相关记录器的日志记录级别 ，但您无法轻松记住顶级软件包。</p>
-<p>为了解决这个问题，Spring Boot允许您在Spring中定义日志记录组 <code>Environment</code>。例如，以下是如何通过将“Tomcat”组添加到您的<code>application.properties</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging.group.tomcat = org.apache.catalina，org.apache.coyote，org.apache.tomcat</span><br></pre></td></tr></table></figure>
-<p>定义后，您可以使用一行更改组中所有记录器的级别：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging.level.tomcat = TRACE</span><br></pre></td></tr></table></figure>
-<p>Spring Boot包含以下预定义的日志记录组，可以直接使用：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">名称</th>
-<th style="text-align:center">Loggers</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">WEB</td>
-<td style="text-align:center"><code>org.springframework.core.codec</code>，<code>org.springframework.http</code>，<code>org.springframework.web</code></td>
-</tr>
-<tr>
-<td style="text-align:center">SQL</td>
-<td style="text-align:center"><code>org.springframework.jdbc.core</code>， <code>org.hibernate.SQL</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="自定义日志配置"><a href="#自定义日志配置" class="headerlink" title="自定义日志配置"></a>自定义日志配置</h3><p>可以通过在类路径中包含适当的库来激活各种日志记录系统，并且可以通过在类路径的根目录中或在以下Spring <code>Environment</code> 属性指定的位置提供合适的配置文件来进一步自定义：<code>logging.config</code>。</p>
-<p>您可以使用<code>org.springframework.boot.logging.LoggingSystem</code>系统属性强制Spring Boot使用特定的日志记录系统 。该值应该是实现的完全限定类名<code>LoggingSystem</code>。您还可以通过使用值来完全禁用Spring Boot的日志记录配置<code>none</code>。</p>
-<blockquote>
-<p>由于记录被初始化<strong>之前</strong>的<code>ApplicationContext</code>创建，这是不可能控制来自伐木<code>@PropertySources</code>春季<code>@Configuration</code>文件。更改日志记录系统或完全禁用它的唯一方法是通过系统属性。</p>
-</blockquote>
-<p>根据您的日志记录系统，将加载以下文件：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">日志实现</th>
-<th style="text-align:center">定制</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">logback</td>
-<td style="text-align:center"><code>logback-spring.xml</code>，<code>logback-spring.groovy</code>，<code>logback.xml</code>，或者<code>logback.groovy</code></td>
-</tr>
-<tr>
-<td style="text-align:center">Log4j2</td>
-<td style="text-align:center"><code>log4j2-spring.xml</code> 或者 <code>log4j2.xml</code></td>
-</tr>
-<tr>
-<td style="text-align:center">JDK（Java Util Logging）</td>
-<td style="text-align:center"><code>logging.properties</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>如果可能，我们建议您使用<code>-spring</code>变量进行日志记录配置（例如，<code>logback-spring.xml</code>而不是<code>logback.xml</code>）。如果使用标准配置位置，Spring无法完全控制日志初始化。</p>
-</blockquote>
-<blockquote>
-<p>Java Util Logging存在已知的类加载问题，从“可执行jar”运行时会导致问题。如果可能的话，我们建议您在从“可执行jar”运行时避免使用它。</p>
-</blockquote>
-<p>为了帮助进行自定义，一些其他属性从Spring转移 <code>Environment</code>到System属性，如下表所述：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Spring环境</th>
-<th style="text-align:center">系统属性</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>logging.exception-conversion-word</code></td>
-<td style="text-align:center"><code>LOG_EXCEPTION_CONVERSION_WORD</code></td>
-<td style="text-align:center">记录异常时使用的转换字。</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>logging.file</code></td>
-<td style="text-align:center"><code>LOG_FILE</code></td>
-<td style="text-align:center">如果已定义，则在默认日志配置中使用它。</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>logging.file.max-size</code></td>
-<td style="text-align:center"><code>LOG_FILE_MAX_SIZE</code></td>
-<td style="text-align:center">最大日志文件大小（如果启用了LOG_FILE）。（仅支持默认的Logback设置。）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>logging.file.max-history</code></td>
-<td style="text-align:center"><code>LOG_FILE_MAX_HISTORY</code></td>
-<td style="text-align:center">要保留的最大归档日志文件数（如果启用了LOG_FILE）。（仅支持默认的Logback设置。）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>logging.path</code></td>
-<td style="text-align:center"><code>LOG_PATH</code></td>
-<td style="text-align:center">如果已定义，则在默认日志配置中使用它。</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>logging.pattern.console</code></td>
-<td style="text-align:center"><code>CONSOLE_LOG_PATTERN</code></td>
-<td style="text-align:center">要在控制台上使用的日志模式（stdout）。（仅支持默认的Logback设置。）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>logging.pattern.dateformat</code></td>
-<td style="text-align:center"><code>LOG_DATEFORMAT_PATTERN</code></td>
-<td style="text-align:center">日志日期格式的Appender模式。（仅支持默认的Logback设置。）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>logging.pattern.file</code></td>
-<td style="text-align:center"><code>FILE_LOG_PATTERN</code></td>
-<td style="text-align:center">要在文件中使用的日志模式（如果<code>LOG_FILE</code>已启用）。（仅支持默认的Logback设置。）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>logging.pattern.level</code></td>
-<td style="text-align:center"><code>LOG_LEVEL_PATTERN</code></td>
-<td style="text-align:center">呈现日志级别时使用的格式（默认<code>%5p</code>）。（仅支持默认的Logback设置。）</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>PID</code></td>
-<td style="text-align:center"><code>PID</code></td>
-<td style="text-align:center">当前进程ID（如果可能，则在未定义为OS环境变量时发现）。</td>
-</tr>
-</tbody>
-</table>
-<p>所有受支持的日志记录系统在分析其配置文件时都可以查阅系统属性。有关<code>spring-boot.jar</code>示例，请参阅默认配置：</p>
-<ul>
-<li><a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/logback/defaults.xml" target="_blank" rel="noopener">logback</a></li>
-<li><a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/log4j2/log4j2.xml" target="_blank" rel="noopener">Log4j 2</a></li>
-<li><a href="https://github.com/spring-projects/spring-boot/tree/v2.1.3.RELEASE/spring-boot-project/spring-boot/src/main/resources/org/springframework/boot/logging/java/logging-file.properties" target="_blank" rel="noopener">Java Util日志记录</a></li>
-</ul>
-<blockquote>
-<p>如果要在日志记录属性中使用占位符，则应使用 <a href="https://docs.spring.io/spring-boot/docs/2.1.3.RELEASE/reference/htmlsingle/#boot-features-external-config-placeholders-in-properties" target="_blank" rel="noopener">Spring Boot的语法</a>而不是底层框架的语法。值得注意的是，如果使用Logback，则应将其<code>:</code> 用作属性名称与其默认值之间的分隔符，而不是使用<code>:-</code>。</p>
-</blockquote>
-<blockquote>
-<p>您可以通过仅覆盖<code>LOG_LEVEL_PATTERN</code>（或<code>logging.pattern.level</code>使用Logback）将MDC和其他临时内容添加到日志行 。例如，如果使用<code>logging.pattern.level=user:%X{user} %5p</code>，则默认日志格式包含“user”的MDC条目（如果存在），如以下示例所示。</p>
-<p>2015-09-30 12:30:04.031 user:someone INFO 22174 — [  nio-8080-exec-0] demo.Controller<br>Handling authenticated request</p>
-</blockquote>
-<h3 id="Logback扩展"><a href="#Logback扩展" class="headerlink" title="Logback扩展"></a>Logback扩展</h3><p>Spring Boot包含许多Logback扩展，可以帮助进行高级配置。您可以在<code>logback-spring.xml</code>配置文件中使用这些扩展名。</p>
-<blockquote>
-<p>由于标准<code>logback.xml</code>配置文件加载过早，因此无法在其中使用扩展。您需要使用<code>logback-spring.xml</code>或定义 <code>logging.config</code>属性。</p>
-</blockquote>
-<blockquote>
-<p>扩展不能与Logback的 <a href="http://logback.qos.ch/manual/configuration.html#autoScan" target="_blank" rel="noopener">配置扫描一起使用</a>。如果您尝试这样做，更改配置文件会导致类似于以下记录之一的错误：</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action for [springProperty], current ElementPath is [[configuration][springProperty]]</span><br><span class="line">ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action for [springProfile], current ElementPath is [[configuration][springProfile]]</span><br></pre></td></tr></table></figure>
-<h4 id="特定于配置文件的配置"><a href="#特定于配置文件的配置" class="headerlink" title="特定于配置文件的配置"></a>特定于配置文件的配置</h4><p>该<code>&lt;springProfile&gt;</code>标签可以让你选择性地包括或排除基于主动春型材配置的部分。在<code>&lt;configuration&gt;</code>元素内的任何位置都支持配置文件节。使用该<code>name</code>属性指定哪个配置文件接受配置。所述<code>&lt;springProfile&gt;</code>标记可包含一个简单的配置文件的名称（例如<code>staging</code>）或轮廓表达。例如，简档表达式允许表达更复杂的简档逻辑 <code>production &amp; (eu-central | eu-west)</code>。有关详细信息，请查阅 <a href="https://docs.spring.io/spring/docs/5.1.5.RELEASE/spring-framework-reference/core.html#beans-definition-profiles-java" target="_blank" rel="noopener">参考指南</a>。以下清单显示了三个示例配置文件：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">springProfile</span>  <span class="attr">name</span> = <span class="string">“staging”</span> &gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">！</span> <span class="attr">-</span> “暂存”配置文件处于活动状态时要启用的配置 <span class="attr">-</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt;/ <span class="attr">springProfile</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">springProfile</span>  <span class="attr">name</span> = <span class="string">“dev</span> | <span class="attr">staging</span>” &gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">！</span> <span class="attr">-</span> 在“<span class="attr">dev</span>”或“<span class="attr">staging</span>”配置文件处于活动状态时启用的配置 <span class="attr">-</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt;/ <span class="attr">springProfile</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">springProfile</span>  <span class="attr">name</span> = <span class="string">“！production”</span> &gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">！</span> <span class="attr">-</span> “生产”配置文件未激活时要启用的配置 <span class="attr">-</span> &gt;</span> </span><br><span class="line"><span class="tag">&lt;/ <span class="attr">springProfile</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="环境属性"><a href="#环境属性" class="headerlink" title="环境属性"></a>环境属性</h4><p>该<code>&lt;springProperty&gt;</code>标记允许您公开Spring中的属性<code>Environment</code>以便在Logback中使用。如果要<code>application.properties</code>在Logback配置中访问文件中的值，则此操作非常有用 。标签的工作方式与Logback的标准<code>&lt;property&gt;</code>标签类似。但是，<code>value</code>您可以指定<code>source</code>属性（来自<code>Environment</code>），而不是指定直接 属性。如果需要将属性存储在<code>local</code>范围之外的其他位置，则可以使用该<code>scope</code> 属性。如果需要回退值（如果未在中设置属性 <code>Environment</code>），则可以使用该<code>defaultValue</code>属性。以下示例显示如何公开在Logback中使用的属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">springProperty</span>  <span class="attr">scope</span> = <span class="string">“context”</span>  <span class="attr">name</span> = <span class="string">“fluentHost”</span>  <span class="attr">source</span> = <span class="string">“myapp.fluentd.host”</span> </span></span><br><span class="line"><span class="tag">		<span class="attr">defaultValue</span> = <span class="string">“localhost”</span> /&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">“FLUENT”</span> <span class="attr">class</span>=<span class="string">“ch.qos.logback.more.appenders.DataFluentAppender”</span> &gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">remoteHost</span>&gt;</span> $ &#123;fluentHost&#125; <span class="tag">&lt;/ <span class="attr">remoteHost</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line"><span class="tag">&lt;/<span class="name">springProperty</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在<code>source</code>必须在串的情况下（如指定<code>my.property-name</code>）。但是，可以<code>Environment</code>使用宽松规则将属性添加到属性中。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-	
-	
-	<div>
-	
-	</div>
-	
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2949,7 +2695,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2960,7 +2706,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2971,7 +2717,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

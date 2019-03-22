@@ -277,6 +277,318 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/23/Java11尝鲜/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YoungDream">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/user.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YD Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/23/Java11尝鲜/" itemprop="url">Java11尝鲜</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-23T01:05:27+08:00">
+                2019-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Java11新工具"><a href="#Java11新工具" class="headerlink" title="Java11新工具"></a>Java11新工具</h2><h3 id="JShell"><a href="#JShell" class="headerlink" title="JShell"></a>JShell</h3><p>​    用过Python的童鞋都知道读取-求值-打印循环(Read-Evaluation-Print Loop)很方便。他的目的在于以即时结果和反馈的形式。java9引入了JShell这个交互性工具，让Java也可以像脚本语言一样来运行，可以从控制台启动JShell，在JShell中直接输入表达式并查看其执行结果。当需要测试一个方法的运行效果或者是快速的对表达式进行求值时，JShell都十分方便。除了表达式之外，还可以创建 Java 类和方法。jshell 也有基本的代码完成功能。我们在教人们如何编写 Java 的过程中，不再需要解释 “public static void main（String [] args）” 这句废话。</p>
+<h3 id="Dynamic-Class-File-Constants类文件新添的一种结构"><a href="#Dynamic-Class-File-Constants类文件新添的一种结构" class="headerlink" title="Dynamic Class-File Constants类文件新添的一种结构"></a>Dynamic Class-File Constants类文件新添的一种结构</h3><p>Java的类型文件格式将被拓展，支持一种新的常量池格式：CONSTANT_Dynamic，加载CONSTANT_Dynamic会将创建委托给bootstrap方法。</p>
+<p>目的<br>其目的是降低开发新形式的可实现类文件约束带来的成本和干扰。</p>
+<h3 id="局部变量类型推断（var-”关键字”）"><a href="#局部变量类型推断（var-”关键字”）" class="headerlink" title="局部变量类型推断（var ”关键字”）"></a>局部变量类型推断（var ”关键字”）</h3><p>什么是局部变量类型推断？</p>
+<p>var javastack = “javastack”;<br>System.out.println(javastack);<br>大家看出来了，局部变量类型推断就是左边的类型直接使用 var 定义，而不用写具体的类型，编译器能根据右边的表达式自动推断类型，如上面的 String 。</p>
+<p>var javastack = “javastack”;<br>就等于：<br>String javastack = “javastack”;</p>
+<p>在声明隐式类型的lambda表达式的形参时允许使用var<br>使用var的好处是在使用lambda表达式时给参数加上注解<br>(@Deprecated var x, @Nullable var y) -&gt; x.process(y);</p>
+<blockquote>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>var a; 这样不可以, 因为无法推断</li>
+<li>类的属性的数据类型不可以使用var</li>
+</ol>
+<p><strong>有参数的lambda表达式使用</strong><br>函数式接口 :<br>    Consumer<t> : 消费型函数式接口.<br>        public void accept(T t);</t></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = t -&gt; System.out.println(t.toUpperCase());</span><br><span class="line">Consumer&lt;String&gt; consumer = (<span class="keyword">var</span> t) -&gt; System.out.println(t.toUpperCase());</span><br><span class="line"></span><br><span class="line"><span class="comment">//错误的形式: 必须要有类型, 可以加上var</span></span><br><span class="line">Consumer&lt;String&gt; consumer = (<span class="meta">@Deprecated</span> t) -&gt; System.out.println(t.toUpperCase());</span><br><span class="line"><span class="comment">//正确的形式:</span></span><br><span class="line">Consumer&lt;String&gt; consumer = (<span class="meta">@Deprecated</span> <span class="keyword">var</span> t) -&gt; System.out.println(t.toUpperCase());</span><br></pre></td></tr></table></figure>
+<h2 id="Java11新API-实用"><a href="#Java11新API-实用" class="headerlink" title="Java11新API(实用)"></a>Java11新API(实用)</h2><h3 id="新的本机不可修改集合API"><a href="#新的本机不可修改集合API" class="headerlink" title="新的本机不可修改集合API"></a>新的本机不可修改集合API</h3><p>自 Java 9 开始，Jdk 里面为集合（List/ Set/ Map）都添加了 of 和 copyOf 方法，它们两个都用来创建不可变的集合，来看下它们的使用和区别。</p>
+<p>示例1：</p>
+<p>var list = List.of(“Java”, “Python”, “C”);<br>var copy = List.copyOf(list);<br>System.out.println(list == copy); // true<br>示例2：</p>
+<p>var list = new ArrayList<string>();<br>var copy = List.copyOf(list);<br>System.out.println(list == copy); // false<br>示例1和2代码差不多，为什么一个为true,一个为false?</string></p>
+<p>来看下它们的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &lt;E&gt; <span class="function">List&lt;E&gt; <span class="title">of</span><span class="params">(E... elements)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (elements.length) &#123; <span class="comment">// implicit null check of elements</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> ImmutableCollections.emptyList();</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ImmutableCollections.List12&lt;&gt;(elements[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ImmutableCollections.List12&lt;&gt;(elements[<span class="number">0</span>], elements[<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ImmutableCollections.ListN&lt;&gt;(elements);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">static</span> &lt;E&gt; <span class="function">List&lt;E&gt; <span class="title">copyOf</span><span class="params">(Collection&lt;? extends E&gt; coll)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> ImmutableCollections.listCopy(coll);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">static</span> &lt;E&gt; <span class="function">List&lt;E&gt; <span class="title">listCopy</span><span class="params">(Collection&lt;? extends E&gt; coll)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (coll <span class="keyword">instanceof</span> AbstractImmutableList &amp;&amp; coll.getClass() != SubList.class) &#123;</span><br><span class="line">        <span class="keyword">return</span> (List&lt;E&gt;)coll;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (List&lt;E&gt;)List.of(coll.toArray());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出 copyOf 方法会先判断来源集合是不是 AbstractImmutableList 类型的，如果是，就直接返回，如果不是，则调用 of 创建一个新的集合。</p>
+<p>示例2因为用的 new 创建的集合，不属于不可变 AbstractImmutableList 类的子类，所以 copyOf 方法又创建了一个新的实例，所以为false.</p>
+<p>注意：使用of和copyOf创建的集合为不可变集合，不能进行添加、删除、替换、排序等操作，不然会报 java.lang.UnsupportedOperationException 异常。</p>
+<p>上面演示了 List 的 of 和 copyOf 方法，Set 和 Map 接口都有。</p>
+<p>除了更短和更好阅读之外，这些方法也可以避免您选择特定的集合实现。在创建后，继续添加元素到这些集合会导致 “UnsupportedOperationException” 。</p>
+<h3 id="Stream-加强"><a href="#Stream-加强" class="headerlink" title="Stream 加强"></a>Stream 加强</h3><p>Stream 是 Java 8 中的新特性，Java 9 开始对 Stream 增加了以下 4 个新方法。</p>
+<ol>
+<li><p>增加单个参数构造方法，可为null</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stream.ofNullable(<span class="keyword">null</span>).count(); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增加 takeWhile 和 dropWhile 方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从开始计算，当 n &lt; 3 时就截止。终止后，不管之后的元素满不满足条件，都不再进行判断</span></span><br><span class="line">ream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>).takeWhile(n -&gt; n &lt; <span class="number">3</span>)</span><br><span class="line">    .collect(Collectors.toList()); <span class="comment">// [1, 2]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这个和上面的相反，一旦 n &lt; 3 不成立就开始计算。</span></span><br><span class="line">Stream.of(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>).dropWhile(n -&gt; n &lt; <span class="number">3</span>)</span><br><span class="line">    .collect(Collectors.toList()); <span class="comment">// [3, 2, 1]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>iterate重载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//老版本的使用方法</span></span><br><span class="line">Stream&lt;Integer&gt; iterate = Stream.iterate(<span class="number">1</span>, t -&gt; (<span class="number">2</span> * t) + <span class="number">1</span>);</span><br><span class="line">iterate.forEach(System.out::println);<span class="comment">//无限流，原因：溢出了</span></span><br><span class="line">iterate.limit(<span class="number">200</span>).forEach(System.out::println);<span class="comment">//限制条数</span></span><br><span class="line"><span class="comment">//这个 iterate 方法的新重载方法，可以让你提供一个 Predicate (判断条件)来指定什么时候结束迭代。</span></span><br><span class="line">Stream&lt;Integer&gt; newIterate = Stream.iterate(<span class="number">1</span>, t -&gt; t &gt; <span class="number">200</span>, t -&gt; (<span class="number">2</span> * t) + <span class="number">1</span>);</span><br><span class="line">newIterate.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="增加了一系列的字符串处理方法"><a href="#增加了一系列的字符串处理方法" class="headerlink" title="增加了一系列的字符串处理方法"></a>增加了一系列的字符串处理方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断字符串是否为空白</span></span><br><span class="line"><span class="string">" "</span>.isBlank(); <span class="comment">// true</span></span><br><span class="line"><span class="comment">// 去除首尾空白</span></span><br><span class="line"><span class="string">" Javastack "</span>.strip(); <span class="comment">// "Javastack"</span></span><br><span class="line"><span class="comment">// 去除尾部空格</span></span><br><span class="line"><span class="string">" Javastack "</span>.stripTrailing(); <span class="comment">// " Javastack"</span></span><br><span class="line"><span class="comment">// 去除首部空格</span></span><br><span class="line"><span class="string">" Javastack "</span>.stripLeading(); <span class="comment">// "Javastack "</span></span><br><span class="line"><span class="comment">// 复制字符串</span></span><br><span class="line"><span class="string">"Java"</span>.repeat(<span class="number">3</span>);<span class="comment">// "JavaJavaJava"</span></span><br><span class="line"><span class="comment">// 行数统计</span></span><br><span class="line"><span class="string">"A\nB\nC"</span>.lines().count(); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<h3 id="Optional-加强"><a href="#Optional-加强" class="headerlink" title="Optional 加强"></a>Optional 加强</h3><p>Opthonal 也增加了几个非常酷的方法，现在可以很方便的将一个 Optional 转换成一个 Stream, 或者当一个空 Optional 时给它一个替代的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Optional.of(<span class="string">"javastack"</span>).orElseThrow(); <span class="comment">// javastack</span></span><br><span class="line">Optional.of(<span class="string">"javastack"</span>).stream().count(); <span class="comment">// 1</span></span><br><span class="line">Optional.ofNullable(<span class="keyword">null</span>).or(() -&gt; Optional.of(<span class="string">"javastack"</span>)).get(); <span class="comment">// javastack</span></span><br></pre></td></tr></table></figure>
+<h3 id="改进的文件API"><a href="#改进的文件API" class="headerlink" title="改进的文件API"></a>改进的文件API</h3><p>InputStream 加强</p>
+<p>InputStream 终于有了一个非常有用的方法：transferTo，可以用来将数据直接传输到 OutputStream，这是在处理原始数据流时非常常见的一种用法，如下示例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> classLoader = ClassLoader.getSystemClassLoader();</span><br><span class="line"><span class="keyword">var</span> inputStream = classLoader.getResourceAsStream(<span class="string">"javastack.txt"</span>);</span><br><span class="line"><span class="keyword">var</span> javastack = File.createTempFile(<span class="string">"javastack2"</span>, <span class="string">"txt"</span>);</span><br><span class="line"><span class="keyword">try</span> (<span class="keyword">var</span> outputStream = <span class="keyword">new</span> FileOutputStream(javastack)) &#123;</span><br><span class="line">    inputStream.transferTo(outputStream);<span class="comment">//把输入流中的所有数据直接自动地复制到输出流中</span></span><br><span class="line">&#125;</span><br><span class="line">inputStream.close();</span><br></pre></td></tr></table></figure>
+<h3 id="移除的一些其他内容"><a href="#移除的一些其他内容" class="headerlink" title="移除的一些其他内容"></a>移除的一些其他内容</h3><p><strong>移除项</strong>：</p>
+<ol>
+<li><p>移除了com.sun.awt.AWTUtilities</p>
+</li>
+<li><p>移除了sun.misc.Unsafe.defineClass，</p>
+<p>使用java.lang.invoke.MethodHandles.Lookup.defineClass来替代</p>
+</li>
+<li><p>移除了Thread.destroy()以及 Thread.stop(Throwable)方法</p>
+</li>
+<li><p>移除了sun.nio.ch.disableSystemWideOverlappingFileLockCheck</p>
+<p>sun.locale.formatasdefault属性</p>
+</li>
+<li><p>移除了jdk.snmp模块</p>
+</li>
+<li><p>移除了javafx，openjdk估计是从java10版本就移除了，oracle jdk10还尚未移除javafx，而java11版本则oracle的jdk版本也移除了javafx</p>
+</li>
+<li><p>移除了Java Mission Control，从JDK中移除之后，需要自己单独下载</p>
+</li>
+<li><p>移除了这些Root Certificates ：Baltimore Cybertrust Code Signing CA，SECOM ，AOL and Swisscom</p>
+</li>
+</ol>
+<p><strong>废弃项</strong>：</p>
+<ol>
+<li>-XX+AggressiveOpts选项</li>
+<li>-XX:+UnlockCommercialFeatures</li>
+<li>-XX:+LogCommercialFeatures选项也不再需要</li>
+</ol>
+<h3 id="标准Java异步HTTP客户端"><a href="#标准Java异步HTTP客户端" class="headerlink" title="标准Java异步HTTP客户端"></a>标准Java异步HTTP客户端</h3><p>这是 Java 9 开始引入的一个处理 HTTP 请求的的 HTTP Client API，该 API 支持同步和异步，而在 Java 11 中已经为正式可用状态，你可以在 java.net 包中找到这个 API。</p>
+<p>来看一下 HTTP Client 的用法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = HttpRequest.newBuilder()</span><br><span class="line">    .uri(URI.create(<span class="string">"https://javastack.cn"</span>))</span><br><span class="line">    .GET()</span><br><span class="line">    .build();</span><br><span class="line"><span class="keyword">var</span> client = HttpClient.newHttpClient();</span><br><span class="line"><span class="comment">// 同步</span></span><br><span class="line">HttpResponse&lt;String&gt; response = client.send(request, </span><br><span class="line">                                            HttpResponse.BodyHandlers.ofString());</span><br><span class="line">System.out.println(response.body());</span><br><span class="line"><span class="comment">// 异步</span></span><br><span class="line">client.sendAsync(request, HttpResponse.BodyHandlers.ofString())</span><br><span class="line">    .thenApply(HttpResponse::body)</span><br><span class="line">    .thenAccept(System.out::println);</span><br></pre></td></tr></table></figure>
+<p>上面的 .GET() 可以省略，默认请求方式为 Get！</p>
+<p>更多使用示例可以看这个 API，后续再做演示。</p>
+<p>现在 Java 自带了这个 HTTP Client API，我们以后还有必要用 Apache 的 HttpClient 工具包吗？</p>
+<h3 id="更简化的编译运行程序"><a href="#更简化的编译运行程序" class="headerlink" title="更简化的编译运行程序"></a>更简化的编译运行程序</h3><p>JEP 330 : 增强java启动器支持运行单个java源代码文件的程序.</p>
+<blockquote>
+<p><strong>注意点</strong> :</p>
+<ol>
+<li>执行源文件中的第一个类, 第一个类必须包含主方法</li>
+<li>并且不可以使用别源文件中的自定义类, 本文件中的自定义类是可以使用的.</li>
+</ol>
+</blockquote>
+<p>一个命令编译运行源代码</p>
+<p>看下面的代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 编译</span><br><span class="line">javac Javastack.java</span><br><span class="line">// 运行</span><br><span class="line">java Javastack</span><br></pre></td></tr></table></figure>
+<p>在我们的认知里面，要运行一个 Java 源代码必须先编译，再运行，两步执行动作。而在未来的 Java 11 版本中，通过一个 java 命令就直接搞定了，如以下所示。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java Javastack.java</span><br></pre></td></tr></table></figure>
+<h3 id="Unicode-10"><a href="#Unicode-10" class="headerlink" title="Unicode 10"></a>Unicode 10</h3><p>Unicode 10 增加了8518个字符, 总计达到了136690个字符. 并且增加了4个脚本.同时还有56个新的emoji表情符号.</p>
+<h3 id="Remove-the-JavaEE-and-CORBA-Moudles"><a href="#Remove-the-JavaEE-and-CORBA-Moudles" class="headerlink" title="Remove the JavaEE and CORBA Moudles"></a>Remove the JavaEE and CORBA Moudles</h3><p>在java11中移除了不太使用的JavaEE模块和CORBA技术<br>CORBA来自于二十世纪九十年代，Oracle说，现在用CORBA开发现代Java应用程序已经没有意义了，维护CORBA的成本已经超过了保留它带来的好处。</p>
+<p>但是删除CORBA将使得那些依赖于JDK提供部分CORBA API的CORBA实现无法运行。目前还没有第三方CORBA版本，也不确定是否会有第三方愿意接手CORBA API的维护工作。</p>
+<p>在java11中将java9标记废弃的Java EE及CORBA模块移除掉，具体如下：</p>
+<ol>
+<li>xml相关的，<br>java.xml.ws,<br>java.xml.bind，<br>java.xml.ws，<br>java.xml.ws.annotation，<br>jdk.xml.bind，<br>jdk.xml.ws被移除，<br>只剩下java.xml，java.xml.crypto,jdk.xml.dom这几个模块；</li>
+<li>java.corba，<br>java.se.ee，<br>java.activation，<br>java.transaction被移除，<br>但是java11新增一个java.transaction.xa模块</li>
+</ol>
+<h3 id="JEP-335-Deprecate-the-Nashorn-JavaScript-Engine"><a href="#JEP-335-Deprecate-the-Nashorn-JavaScript-Engine" class="headerlink" title="JEP : 335 : Deprecate the Nashorn JavaScript Engine"></a>JEP : 335 : Deprecate the Nashorn JavaScript Engine</h3><p>废除Nashorn javascript引擎，在后续版本准备移除掉，有需要的可以考虑使用GraalVM</p>
+<h3 id="JEP-336-Deprecate-the-Pack200-Tools-and-API"><a href="#JEP-336-Deprecate-the-Pack200-Tools-and-API" class="headerlink" title="JEP : 336 : Deprecate the Pack200 Tools and API"></a>JEP : 336 : Deprecate the Pack200 Tools and API</h3><p>Java5中带了一个压缩工具:Pack200，这个工具能对普通的jar文件进行高效压缩。其实现原理是根据Java类特有的结构，合并常数池，去掉无用信息等来实现对java类的高效压缩。由于是专门对Java类进行压缩的，所以对普通文件的压缩和普通压缩软件没有什么两样，但是对于Jar  文件却能轻易达到10-40%的压缩率。这在Java应用部署中很有用，尤其对于移动Java计算，能够大大减小代码下载量。<br>Java5中还提供了这一技术的API接口，你可以将其嵌入到你的程序中使用。使用的方法很简单，下面的短短几行代码即可以实现jar的压缩和解压：</p>
+<ol>
+<li>压缩<br>Packer packer=Pack200.newPacker();<br>OutputStream output=new BufferedOutputStream(new  FileOutputStream(outfile));<br>packer.pack(new JarFile(jarFile), output);<br>output.close(); </li>
+<li>解压<br>Unpacker unpacker=Pack200.newUnpacker();<br>output=new JarOutputStream(new FileOutputStream(jarFile));<br>unpacker.unpack(pack200File, output);<br>output.close(); </li>
+</ol>
+<p>Pack200的压缩和解压缩速度是比较快的，而且压缩率也是很惊人的，在我是使用  的包4.46MB压缩后成了1.44MB（0.322%），而且随着包的越大压缩率会更加明显，据说如果jar包都是class类可以压缩到1/9的大  小。其实JavaWebStart还有很多功能，例如可以按不同的jar包进行lazy下载和 单独更新，设置可以根据jar中的类变动进行class粒度的下载。</p>
+<p>但是在java11中废除了pack200以及unpack200工具以及java.util.jar中的Pack200 API。因为Pack200主要是用来压缩jar包的工具，由于网络下载速度的提升以及java9引入模块化系统之后不再依赖Pack200，因此这个版本将其移除掉。</p>
+<h3 id="新的Epsilon垃圾收集器"><a href="#新的Epsilon垃圾收集器" class="headerlink" title="新的Epsilon垃圾收集器"></a>新的Epsilon垃圾收集器</h3><p>A NoOp Garbage Collector<br>JDK上对这个特性的描述是: 开发一个处理内存分配但不实现任何实际内存回收机制的GC, 一旦可用堆内存用完, JVM就会退出.<br>如果有System.gc()调用, 实际上什么也不会发生(这种场景下和-XX:+DisableExplicitGC效果一样), 因为没有内存回收, 这个实现可能会警告用户尝试强制GC是徒劳.</p>
+<p>用法 : <code>-XX:+UnlockExperimentalVMOptions -XX:+UseEpsilonGC</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Garbage</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n = (<span class="keyword">int</span>)(Math.random() * <span class="number">100</span>);</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="keyword">this</span> + <span class="string">" : "</span> + n + <span class="string">" is dying"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EpsilonTest</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">		List&lt;Garbage&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		<span class="keyword">long</span> count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (flag) &#123;</span><br><span class="line">			list.add(<span class="keyword">new</span> Garbage());</span><br><span class="line">			<span class="keyword">if</span> (list.size() == <span class="number">1000000</span> &amp;&amp; count == <span class="number">0</span>) &#123;</span><br><span class="line">				list.clear();</span><br><span class="line">				count++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"程序结束"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果使用选项-XX:+UseEpsilonGC, 程序很快就因为堆空间不足而退出</p>
+<p>使用这个选项的原因 :<br>提供完全被动的GC实现, 具有有限的分配限制和尽可能低的延迟开销,但代价是内存占用和内存吞吐量.<br>众所周知, java实现可广泛选择高度可配置的GC实现. 各种可用的收集器最终满足不同的需求, 即使它们的可配置性使它们的功能相交. 有时更容易维护单独的实现, 而不是在现有GC实现上堆积另一个配置选项.</p>
+<p>主要用途如下 :</p>
+<pre><code>1. 性能测试(它可以帮助过滤掉GC引起的性能假象)
+2. 内存压力测试(例如,知道测试用例 应该分配不超过1GB的内存, 我们可以使用-Xmx1g –XX:+UseEpsilonGC, 如果程序有问题, 则程序会崩溃)
+3. 非常短的JOB任务(对象这种任务, 接受GC清理堆那都是浪费空间)
+4. VM接口测试
+5. Last-drop 延迟&amp;吞吐改进
+</code></pre><h3 id="ZGC"><a href="#ZGC" class="headerlink" title="ZGC"></a>ZGC</h3><p>这应该是JDK11最为瞩目的特性, 没有之一. 但是后面带了Experimental, 说明这还不建议用到生产环境</p>
+<ol>
+<li>GC暂停时间不会超过10ms</li>
+<li>既能处理几百兆的小堆, 也能处理几个T的大堆(OMG)</li>
+<li>和G1相比, 应用吞吐能力不会下降超过15%</li>
+<li>为未来的GC功能和利用colord指针以及Load barriers优化奠定基础</li>
+<li>初始只支持64位系统</li>
+</ol>
+<p>ZGC的设计目标是：支持TB级内存容量，暂停时间低（&lt;10ms），对整个程序吞吐量的影响小于15%。 将来还可以扩展实现机制，以支持不少令人兴奋的功能，例如多层堆（即热对象置于DRAM和冷对象置于NVMe闪存），或压缩堆。</p>
+<p>GC是java主要优势之一. 然而, 当GC停顿太长, 就会开始影响应用的响应时间.消除或者减少GC停顿时长, java将对更广泛的应用场景是一个更有吸引力的平台. 此外, 现代系统中可用内存不断增长,用户和程序员希望JVM能够以高效的方式充分利用这些内存, 并且无需长时间的GC暂停时间.</p>
+<p>STW – stop the world</p>
+<p>ZGC是一个并发, 基于region, 压缩型的垃圾收集器, 只有root扫描阶段会STW, 因此GC停顿时间不会随着堆的增长和存活对象的增长而变长.</p>
+<p>ZGC : avg 1.091ms    max:1.681<br>G1   : avg 156.806  max:543.846</p>
+<p>用法 : -XX:+UnlockExperimentalVMOptions –XX:+UseZGC, 因为ZGC还处于实验阶段, 所以需要通过JVM参数来解锁这个特性</p>
+<h3 id="完全支持Linux容器（包括Docker）"><a href="#完全支持Linux容器（包括Docker）" class="headerlink" title="完全支持Linux容器（包括Docker）"></a>完全支持Linux容器（包括Docker）</h3><p>许多运行在Java虚拟机中的应用程序（包括Apache Spark和Kafka等数据服务以及传统的企业应用程序）都可以在Docker容器中运行。但是在Docker容器中运行Java应用程序一直存在一个问题，那就是在容器中运行JVM程序在设置内存大小和CPU使用率后，会导致应用程序的性能下降。这是因为Java应用程序没有意识到它正在容器中运行。随着Java 10的发布，这个问题总算得以解决，JVM现在可以识别由容器控制组（cgroups）设置的约束。可以在容器中使用内存和CPU约束来直接管理Java应用程序，其中包括：</p>
+<p>遵守容器中设置的内存限制<br>在容器中设置可用的CPU<br>在容器中设置CPU约束<br>Java 10的这个改进在Docker for Mac、Docker for Windows以及Docker Enterprise Edition等环境均有效。</p>
+<p>容器的内存限制<br>在Java 9之前，JVM无法识别容器使用标志设置的内存限制和CPU限制。而在Java 10中，内存限制会自动被识别并强制执行。</p>
+<p>Java将服务器类机定义为具有2个CPU和2GB内存，以及默认堆大小为物理内存的1/4。例如，Docker企业版安装设置为2GB内存和4个CPU的环境，我们可以比较在这个Docker容器上运行Java 8和Java 10的区别。</p>
+<p>首先，对于Java 8：</p>
+<p>docker container run -it -m512 –entrypoint bash openjdk:latest<br>$ docker-java-home/bin/java -XX:+PrintFlagsFinal -version | grep MaxHeapSize<br>uintx MaxHeapSize                              := 524288000                          {product}<br>openjdk version “1.8.0_162”<br>1<br>2<br>3<br>4<br>最大堆大小为512M或Docker EE安装设置的2GB的1/4，而不是容器上设置的512M限制。</p>
+<p>相比之下，在Java 10上运行相同的命令表明，容器中设置的内存限制与预期的128M非常接近：</p>
+<p>docker container run -it -m512M –entrypoint bash openjdk:10-jdk<br>$ docker-java-home/bin/java -XX:+PrintFlagsFinal -version | grep MaxHeapSize<br>size_t MaxHeapSize                              = 134217728                          {product} {ergonomic}<br>openjdk version “10” 2018-03-20<br>1<br>2<br>3<br>4<br>设置可用的CPU<br>默认情况下，每个容器对主机CPU周期的访问是无限的。可以设置各种约束来限制给定容器对主机CPU周期的访问。Java 10可以识别这些限制：</p>
+<p>docker container run -it –cpus 2 openjdk:10-jdk<br>jshell&gt; Runtime.getRuntime().availableProcessors()<br>$1 ==&gt; 2<br>1<br>2<br>3<br>分配给Docker EE的所有CPU会获得相同比例的CPU周期。这个比例可以通过修改容器的CPU share权重来调整，而CPU share权重与其它所有运行在容器中的权重相关。此比例仅适用于正在运行的CPU密集型的进程。当某个容器中的任务空闲时，其他容器可以使用余下的CPU时间。实际的CPU时间的数量取决于系统上运行的容器的数量。这些可以在Java 10中设置：</p>
+<p>docker container run -it –cpu-shares 2048 openjdk:10-jdk<br>jshell&gt; Runtime.getRuntime().availableProcessors()<br>$1 ==&gt; 2<br>1<br>2<br>3<br>cpuset约束设置了哪些CPU允许在Java 10中执行。</p>
+<p>docker run -it –cpuset-cpus=”1,2,3” openjdk:10-jdk<br>jshell&gt; Runtime.getRuntime().availableProcessors()<br>$1 ==&gt; 3<br>1<br>2<br>3<br>分配内存和CPU<br>使用Java 10，可以使用容器设置来估算部署应用程序所需的内存和CPU的分配。我们假设已经确定了容器中运行的每个进程的内存堆和CPU需求，并设置了JAVA_OPTS配置。例如，如果有一个跨10个节点分布的应用程序，其中五个节点每个需要512Mb的内存和1024个CPU-shares，另外五个节点每个需要256Mb和512个CPU-shares。</p>
+<p>请注意，1个CPU share比例由1024表示。</p>
+<p>对于内存，应用程序至少需要分配5Gb。</p>
+<p>512Mb × 5 = 2.56Gb<br>256Mb × 5 = 1.28Gb<br>该应用程序需要8个CPU才能高效运行。</p>
+<p>1024 x 5 = 5个CPU<br>512 x 5 = 3个CPU<br>最佳实践是建议分析应用程序以确定运行在JVM中的每个进程实际需要多少内存和分配多少CPU。但是，Java 10消除了这种猜测，可以通过调整容器大小以防止Java应用程序出现内存不足的错误以及分配足够的CPU来处理工作负载。</p>
+<h3 id="支持G1上的并行完全垃圾收集"><a href="#支持G1上的并行完全垃圾收集" class="headerlink" title="支持G1上的并行完全垃圾收集"></a>支持G1上的并行完全垃圾收集</h3><p>对于 G1 GC，相比于 JDK 8，升级到 JDK 11 即可免费享受到：并行的 Full GC，快速的 CardTable 扫描，自适应的堆占用比例调整（IHOP），在并发标记阶段的类型卸载等等。这些都是针对 G1 的不断增强，其中串行 Full GC 等甚至是曾经被广泛诟病的短板，你会发现 GC 配置和调优在 JDK11 中越来越方便。</p>
+<h3 id="JEP-331-Low-Overhead-Heap-Profiling免费的低耗能飞行记录仪和堆分析仪"><a href="#JEP-331-Low-Overhead-Heap-Profiling免费的低耗能飞行记录仪和堆分析仪" class="headerlink" title="JEP 331 : Low-Overhead Heap Profiling免费的低耗能飞行记录仪和堆分析仪"></a>JEP 331 : Low-Overhead Heap Profiling免费的低耗能飞行记录仪和堆分析仪</h3><p>通过JVMTI的SampledObjectAlloc回调提供了一个开销低的heap分析方式</p>
+<p>提供一个低开销的, 为了排错java应用问题, 以及JVM问题的数据收集框架, 希望达到的目标如下 :</p>
+<ol>
+<li>提供用于生产和消费数据作为事件的API</li>
+<li>提供缓存机制和二进制数据格式</li>
+<li>允许事件配置和事件过滤</li>
+<li>提供OS,JVM和JDK库的事件</li>
+</ol>
+<h3 id="JEP-329-实现RFC7539中指定的ChaCha20和Poly1305两种加密算法-代替RC4"><a href="#JEP-329-实现RFC7539中指定的ChaCha20和Poly1305两种加密算法-代替RC4" class="headerlink" title="JEP 329 : 实现RFC7539中指定的ChaCha20和Poly1305两种加密算法, 代替RC4"></a>JEP 329 : 实现RFC7539中指定的ChaCha20和Poly1305两种加密算法, 代替RC4</h3><p>实现 RFC 7539的ChaCha20 and ChaCha20-Poly1305加密算法</p>
+<p>RFC7748定义的秘钥协商方案更高效, 更安全. JDK增加两个新的接口<br>XECPublicKey 和 XECPrivateKey</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">KeyPairGenerator kpg = KeyPairGenerator.getInstance(“XDH”);</span><br><span class="line">NamedParameterSpec paramSpec = <span class="keyword">new</span> NamedParameterSpec(“X25519”);</span><br><span class="line">kpg.initialize(paramSpec);</span><br><span class="line">KeyPair kp = kgp.generateKeyPair();</span><br><span class="line"></span><br><span class="line">KeyFactory kf = KeyFactory.getInstance(“XDH”);</span><br><span class="line">BigInteger u = <span class="keyword">new</span> BigInteger(“xxx”);</span><br><span class="line">XECPublicKeySpec pubSpec = <span class="keyword">new</span> XECPublicKeySpec(paramSpec, u);</span><br><span class="line">PublicKey pubKey = kf.generatePublic(pubSpec);</span><br><span class="line"></span><br><span class="line">KeyAgreement ka = KeyAgreement.getInstance(“XDH”);</span><br><span class="line">ka.init(kp.getPrivate());</span><br><span class="line">ka.doPhase(pubKey, <span class="keyword">true</span>);</span><br><span class="line"><span class="keyword">byte</span>[] secret = ka.generateSecret();</span><br></pre></td></tr></table></figure>
+<h3 id="新的默认根权限证书集"><a href="#新的默认根权限证书集" class="headerlink" title="新的默认根权限证书集"></a>新的默认根权限证书集</h3><h3 id="JEP-332最新的HTTPS安全协议TLS-1-3"><a href="#JEP-332最新的HTTPS安全协议TLS-1-3" class="headerlink" title="JEP 332最新的HTTPS安全协议TLS 1.3"></a>JEP 332最新的HTTPS安全协议TLS 1.3</h3><p>实现TLS协议1.3版本, TLS允许客户端和服务器端通过互联网以一种防止窃听, 篡改以及消息伪造的方式进行通信.</p>
+<h3 id="Java-Flight-Recorder"><a href="#Java-Flight-Recorder" class="headerlink" title="Java Flight Recorder"></a>Java Flight Recorder</h3><p>Flight Recorder源自飞机的黑盒子</p>
+<p>Flight Recorder以前是商业版的特性，在java11当中开源出来，它可以导出事件到文件中，之后可以用Java Mission Control来分析。可以在应用启动时配置java -XX:StartFlightRecording，或者在应用启动之后，使用jcmd来录制，比如</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> jcmd &lt;pid&gt; JFR.start</span><br><span class="line"><span class="meta">$</span> jcmd &lt;pid&gt; JFR.dump filename=recording.jfr</span><br><span class="line"><span class="meta">$</span> jcmd &lt;pid&gt; JFR.stop</span><br></pre></td></tr></table></figure>
+<p>是 Oracle 刚刚开源的强大特性。我们知道在生产系统进行不同角度的 Profiling，有各种工具、框架，但是能力范围、可靠性、开销等，大都差强人意，要么能力不全面，要么开销太大，甚至不可靠可能导致 Java 应用进程宕机。<br>而 JFR 是一套集成进入 JDK、JVM 内部的事件机制框架，通过良好架构和设计的框架，硬件层面的极致优化，生产环境的广泛验证，它可以做到极致的可靠和低开销。在 SPECjbb2015 等基准测试中，JFR 的性能开销最大不超过 1%，所以，工程师可以基本没有心理负担地在大规模分布式的生产系统使用，这意味着，我们既可以随时主动开启 JFR 进行特定诊断，也可以让系统长期运行 JFR，用以在复杂环境中进行“After-the-fact”分析。还需要苦恼重现随机问题吗？JFR 让问题简化了很多。<br>在保证低开销的基础上，JFR 提供的能力也令人眼前一亮，例如：我们无需 BCI 就可以进行 Object Allocation Profiling，终于不用担心 BTrace 之类把进程搞挂了。对锁竞争、阻塞、延迟，JVM GC、SafePoint 等领域，进行非常细粒度分析。甚至深入 JIT Compiler 内部，全面把握热点方法、内联、逆优化等等。JFR 提供了标准的 Java、C++ 等扩展 API，可以与各种层面的应用进行定制、集成，为复杂的企业应用栈或者复杂的分布式应用，提供 All-in-One 解决方案。而这一切都是内建在 JDK 和 JVM 内部的，并不需要额外的依赖，开箱即用。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+	
+	
+	<div>
+	
+	</div>
+	
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-附录A/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2685,139 +2997,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://qq994300880.github.io/2019/03/21/使用SpringBoot-WebService/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YoungDream">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/user.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YD Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/21/使用SpringBoot-WebService/" itemprop="url">使用SpringBoot-WebService</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T15:43:42+08:00">
-                2019-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="WebService"><a href="#WebService" class="headerlink" title="WebService"></a>WebService</h1><p>Spring Boot提供Web服务自动配置，因此您必须做的就是定义您的<code>Endpoints</code>。</p>
-<p>在<a href="https://docs.spring.io/spring-ws/docs/3.0.6.RELEASE/reference/" target="_blank" rel="noopener">春天的Web服务功能</a>可以与轻松访问<code>spring-boot-starter-webservices</code>模块。</p>
-<p><code>SimpleWsdl11Definition</code>和<code>SimpleXsdSchema</code>bean可以分别为您的WSDL和XSD自动创建。为此，请配置其位置，如以下示例所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.webservices.wsdl-locations=classpath:/wsdl</span><br></pre></td></tr></table></figure>
-<h2 id="使用Web调用Web服务-WebServiceTemplate"><a href="#使用Web调用Web服务-WebServiceTemplate" class="headerlink" title="使用Web调用Web服务 WebServiceTemplate"></a>使用Web调用Web服务 WebServiceTemplate</h2><p>如果需要从应用程序调用远程Web服务，则可以使用 <a href="https://docs.spring.io/spring-ws/docs/3.0.6.RELEASE/reference/#client-web-service-template" target="_blank" rel="noopener"><code>WebServiceTemplate</code></a>该类。由于<code>WebServiceTemplate</code>实例在使用之前通常需要自定义，因此Spring Boot不提供任何单个自动配置的<code>WebServiceTemplate</code>bean。但是，它会自动配置a <code>WebServiceTemplateBuilder</code>，可用于<code>WebServiceTemplate</code>在需要时创建 实例。</p>
-<p>以下代码显示了一个典型示例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> WebServiceTemplate webServiceTemplate;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyService</span><span class="params">(WebServiceTemplateBuilder webServiceTemplateBuilder)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.webServiceTemplate = webServiceTemplateBuilder.build();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> DetailsResp <span class="title">someWsCall</span><span class="params">(DetailsReq detailsReq)</span> </span>&#123;</span><br><span class="line">		 <span class="keyword">return</span> (DetailsResp) <span class="keyword">this</span>.webServiceTemplate</span><br><span class="line">             .marshalSendAndReceive(detailsReq, <span class="keyword">new</span> SoapActionCallback(ACTION));</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>默认情况下，使用类路径上的可用HTTP客户端库<code>WebServiceTemplateBuilder</code>检测合适的基于 <code>WebServiceMessageSender</code>HTTP的。您还可以按如下方式自定义读取和连接超时：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> WebServiceTemplate <span class="title">webServiceTemplate</span><span class="params">(WebServiceTemplateBuilder builder)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> builder.messageSenders(<span class="keyword">new</span> HttpWebServiceMessageSenderBuilder()</span><br><span class="line">			.setConnectTimeout(<span class="number">5000</span>).setReadTimeout(<span class="number">2000</span>).build()).build();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-	
-	
-	<div>
-	
-	</div>
-	
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2870,7 +3049,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2881,7 +3060,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2892,7 +3071,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

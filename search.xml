@@ -99,9 +99,9 @@
       
         <tags>
             
-            <tag> http2 </tag>
-            
             <tag> http </tag>
+            
+            <tag> http2 </tag>
             
             <tag> web </tag>
             

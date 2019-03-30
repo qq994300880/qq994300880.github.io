@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>每日一题之MajorityElement</title>
+      <link href="/2019/03/30/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8BMajorityElement/"/>
+      <url>/2019/03/30/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8BMajorityElement/</url>
+      
+        <content type="html"><![CDATA[<h2 id="MajorityElement-众数"><a href="#MajorityElement-众数" class="headerlink" title="MajorityElement(众数)"></a>MajorityElement(众数)</h2><p>给定一个大小为 <em>n</em> 的数组，找到其中的众数。众数是指在数组中出现次数<strong>大于</strong> <code>⌊ n/2 ⌋</code> 的元素。</p><p>你可以假设数组是非空的，并且给定的数组总是存在众数。</p><a id="more"></a><p><strong>示例 1:</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,2,3]</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure><p><strong>示例 2:</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [2,2,1,1,1,2,2]</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure><p><strong>解题思路1：</strong></p><p>暴力法，时间复杂度是O(n^2)，超出时间限制了@_@…</p><p><strong>代码：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num1 : nums) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num2 : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num1 == num2) &#123;</span><br><span class="line">                count++;</span><br><span class="line">                <span class="keyword">if</span> (count &gt; nums.length / <span class="number">2</span>) <span class="keyword">return</span> num1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        count = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>解题思路2：</strong></p><p>想不出，只好参考评论了。。。</p><p><strong>代码：</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityElement</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> i = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == num) count++;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            count--;</span><br><span class="line">            <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;</span><br><span class="line">                i = num;</span><br><span class="line">                count = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>总结：</strong></p><p>众数最分散的分布是每两个中的(majority,xxx)或者(xxx,majority)，最后还剩下一个(majority)，个人拙见，勿笑…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> algorithm </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SpringBoot+MyBatis+MySQL读写分离</title>
       <link href="/2019/03/28/SpringBoot-MyBatis-MySQL%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/"/>
       <url>/2019/03/28/SpringBoot-MyBatis-MySQL%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</url>
@@ -284,9 +303,9 @@
       
         <tags>
             
-            <tag> http </tag>
-            
             <tag> http2 </tag>
+            
+            <tag> http </tag>
             
             <tag> web </tag>
             

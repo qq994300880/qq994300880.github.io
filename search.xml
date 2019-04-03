@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Java中switch支持的数据类型</title>
+      <link href="/2019/04/03/Java%E4%B8%ADswitch%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+      <url>/2019/04/03/Java%E4%B8%ADswitch%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>总体来说，可以认为<code>switch</code>中<code>case</code>只支持<code>int</code>类型</p><a id="more"></a><h3 id="JDK1-5之前"><a href="#JDK1-5之前" class="headerlink" title="JDK1.5之前"></a>JDK1.5之前</h3><p>仅支持<code>4</code>种：</p><ol><li>byte</li><li>short</li><li>char</li><li>int</li></ol><h3 id="JDK1-5之后1-7之前"><a href="#JDK1-5之后1-7之前" class="headerlink" title="JDK1.5之后1.7之前"></a>JDK1.5之后1.7之前</h3><p>支持<code>5</code>种：</p><ol><li>byte（以及包装类)</li><li>short(以及包装类)</li><li>char(以及包装类)</li><li>int(以及包装类)</li><li>enum</li></ol><blockquote><p>对四个包装类的支持是因为java编译器在底层手动进行拆箱</p></blockquote><blockquote><p>对枚举类的支持是因为枚举类有一个<code>ordinal</code>方法,该方法实际上是一个<code>int</code>类型的数值</p></blockquote><h3 id="JDK1-7之后"><a href="#JDK1-7之后" class="headerlink" title="JDK1.7之后"></a>JDK1.7之后</h3><p>支持<code>6</code>种：</p><ol><li>byte（以及包装类)</li><li>short(以及包装类)</li><li>char(以及包装类)</li><li>int(以及包装类)</li><li>enum</li><li>String</li></ol><blockquote><p>实际上<code>String</code>类型有一个<code>hashCode</code>算法,结果也是<code>int</code>类型</p></blockquote><h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><p><code>switch</code>的所有逻辑都可以用<code>if...else...</code>来实现，那如何选择<code>switch</code>和<code>if...else</code>呢？</p><ol><li><p>判断的结果是常量的情况下可以选择<code>switch</code>也可以选择<code>if...else...</code></p><p>但如果条件是判断大小，比如</p><p><code>if (a &gt; b) {...}</code></p><p>那这种情况，<code>switch</code>实现起来就很难，因为<code>case</code>的值是常量。这个时候用<code>if...else...</code></p></li><li><p>如果分支特别多，建议用switch</p><p>唯一好处是容易读懂，这样对于以后维护代码是有很大好处的，至少看代码不费劲，但是分至少，比如三四个，那就用<code>if...else...</code>好了</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> switch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>设计模式四之原型模式</title>
       <link href="/2019/04/03/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9B%E4%B9%8B%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
       <url>/2019/04/03/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9B%9B%E4%B9%8B%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</url>

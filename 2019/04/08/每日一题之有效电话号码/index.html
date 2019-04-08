@@ -1,0 +1,425 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="每日一题之有效电话号码"><meta name="keywords" content><meta name="author" content="YoungDream,undefined"><meta name="copyright" content="YoungDream"><title>每日一题之有效电话号码【YD Blog】</title><link rel="stylesheet" href="/css/fan.css"><link rel="stylesheet" href="/css/thirdparty/jquery.mCustomScrollbar.min.css"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch-theme-algolia.min.css"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4"></script><!--link(rel="dns-prefetch" href="https://cdn.jsdelivr.net")--><!--link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css")--><!--script(src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer)--><script>var isPassword = '' || false;
+if (isPassword) {
+    if (prompt('请输入文章密码') !== '') {
+        alert('密码错误！');
+        history.back();
+    }
+}</script><script>window.GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"0BGAOITLJQ","apiKey":"2c864a8b4720c83c2ddfc7e53d4c1711","indexName":"article_NAME","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容:${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+}</script></head><body><canvas id="universe"></canvas><!--#body--><div id="sidebar"><div class="toggle-sidebar-info button-hover"><span data-toggle="文章目录">站点概览</span></div><div class="sidebar-toc"><div class="sidebar-toc-title">目录</div><div class="sidebar-toc-progress"><span class="progress-notice">您已阅读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc-progress-bar"></div></div><div class="sidebar-toc-content" id="sidebar-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#有效电话号码"><span class="toc-number">1.</span> <span class="toc-text">有效电话号码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解题思路"><span class="toc-number">1.1.</span> <span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">1.2.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sed命令详解"><span class="toc-number">1.3.</span> <span class="toc-text">sed命令详解</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info-avatar"><img class="author-info-avatar-img" src="/avatar.png"></div><div class="author-info-name">YoungDream</div><div class="author-info-description">正忙着优秀~~~</div><div class="links-buttons"><a class="links-button button-hover" href="https://github.com/qq994300880" target="_blank">GitHub<i class="icon-dot bg-color1"></i></a><a class="links-button button-hover" href="http://wpa.qq.com/msgrd?v=3&amp;uin=994300880&amp;site=qq&amp;menu=yes" target="_blank">QQ<i class="icon-dot bg-color4"></i></a></div><div class="author-info-articles"><a class="author-info-articles-archives article-meta" href="/archives"><span class="pull-top">日志</span><span class="pull-bottom">79</span></a><a class="author-info-articles-tags article-meta" href="/tags"><span class="pull-top">标签</span><span class="pull-bottom">70</span></a><a class="author-info-articles-categories article-meta" href="/categories"><span class="pull-top">分类</span><span class="pull-bottom">15</span></a></div></div></div><div id="main-container"><header><div id="menu-outer"><i class="menu-list-icon fas fa-bars"></i><nav id="menu-inner"><a class="menu-item" href="/">首页</a><a class="menu-item" href="/tags">标签</a><a class="menu-item" href="/categories">分类</a><a class="menu-item" href="/archives">归档</a><a class="menu-item" href="/about">关于</a></nav><div class="right-info"><a class="search social-icon"><i class="fas fa-search"></i><span> 搜索</span></a><a class="title-name" href="/">YD Blog</a><span id="now-time"></span></div></div></header><div id="content-outer"><div id="content-inner"><article id="post"><div class="post-header"><div class="title">每日一题之有效电话号码</div><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 发表于 2019-04-08 | 更新于 2019-04-09</time><!--time.button-hover.post-date #[i.fas.fa-calendar-alt.article-icon(aria-hidden="true")] #[=__('post.modified')] #[=date(page['updated'], config.date_format)]--><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/algorithm/">algorithm</a></div><div class="button-hover tags"></div></div></div><div class="main-content"><h2 id="有效电话号码"><a href="#有效电话号码" class="headerlink" title="有效电话号码"></a>有效电话号码</h2><p>给定一个包含电话号码列表（一行一个电话号码）的文本文件 <code>file.txt</code>，写一个 bash 脚本输出所有有效的电话号码。</p>
+<p>你可以假设一个有效的电话号码必须满足以下两种格式： (xxx) xxx-xxxx 或 xxx-xxx-xxxx。（x 表示一个数字）</p>
+<p>你也可以假设每行前后没有多余的空格字符。</p>
+<a id="more"></a>
+<p><strong>示例:</strong></p>
+<p>假设 <code>file.txt</code> 内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">987-123-4567</span><br><span class="line">123 456 7890</span><br><span class="line">(123) 456-7890</span><br></pre></td></tr></table></figure>
+<p>你的脚本应当输出下列有效的电话号码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">987-123-4567</span><br><span class="line">(123) 456-7890</span><br></pre></td></tr></table></figure>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>考察正则表达式</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep "^\(([0-9]\&#123;3\&#125;) \|[0-9]\&#123;3\&#125;-\)[0-9]\&#123;3\&#125;-[0-9]\&#123;4\&#125;$" file.txt</span><br></pre></td></tr></table></figure>
+<p>注意一定命令环境下的限制：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令或环境</th>
+<th style="text-align:center">.</th>
+<th style="text-align:center">[ ]</th>
+<th style="text-align:center">^</th>
+<th style="text-align:center">$</th>
+<th style="text-align:center">\( \)</th>
+<th style="text-align:center">\{\}</th>
+<th style="text-align:center">?</th>
+<th style="text-align:center">+</th>
+<th style="text-align:center">\</th>
+<th style="text-align:center"></th>
+<th>( )</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>vi</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>Visual C++</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>awk</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">awk是支持该语法的，只是要在命令 行加入 –posix or –re-interval参数即可，可见 man awk中的interval expression</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>sed</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>delphi</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>python</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>java</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>javascript</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>php</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>perl</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>C#</code></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -n "/^\(([0-9]\&#123;3\&#125;) \|[0-9]\&#123;3\&#125;-\)[0-9]\&#123;3\&#125;-[0-9]\&#123;4\&#125;$/p" file.txt</span><br></pre></td></tr></table></figure>
+<h3 id="sed命令详解"><a href="#sed命令详解" class="headerlink" title="sed命令详解"></a><code>sed</code>命令详解</h3><p><code>sed</code>：<code>Stream Editor</code>文本流编辑，<code>sed</code>是一个“非交互式的”面向字符流的编辑器。能同时处理多个文件多行的内容，可以不对原文件改动，把整个文件输入到屏幕,可以把只匹配到模式的内容输入到屏幕上。还可以对原文件改动，但是不会再屏幕上返回结果。</p>
+<p><code>sed</code>命令的语法格式：</p>
+<p><code>sed</code>的命令格式： <code>sed [option] &#39;sed command&#39;filename</code></p>
+<p><code>sed</code>的脚本格式：<code>sed [option] -f &#39;sed script&#39;filename</code></p>
+<p><code>sed</code>命令的选项(option)：</p>
+<p><code>-n</code> ：只打印模式匹配的行</p>
+<p><code>-e</code> ：直接在命令行模式上进行sed动作编辑，此为默认选项</p>
+<p><code>-f</code> ：将<code>sed</code>的动作写在一个文件内，用<code>–f filename</code> 执行<code>filename</code>内的<code>sed</code>动作</p>
+<p><code>-r</code> ：支持扩展表达式</p>
+<p><code>-i</code> ：直接修改文件内容</p>
+<p><strong><code>sed</code>在文件中查询文本的方式：</strong></p>
+<ol>
+<li>用行号，可以是一个简单数字，或是一个行号范围</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">x</th>
+<th style="text-align:center">x为行号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x,y</td>
+<td style="text-align:center">表示行号从x到y</td>
+</tr>
+<tr>
+<td style="text-align:center">/pattern</td>
+<td style="text-align:center">查询包含模式的行</td>
+</tr>
+<tr>
+<td style="text-align:center">/pattern /pattern</td>
+<td style="text-align:center">查询包含两个模式的行</td>
+</tr>
+<tr>
+<td style="text-align:center">pattern/,x</td>
+<td style="text-align:center">在给定行号上查询包含模式的行</td>
+</tr>
+<tr>
+<td style="text-align:center">x,/pattern/</td>
+<td style="text-align:center">通过行号和模式查询匹配的行</td>
+</tr>
+<tr>
+<td style="text-align:center">x,y!</td>
+<td style="text-align:center">查询不包含指定行号x和y的行</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>使用正则表达式、扩展正则表达式(必须结合-r选项)</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">^</th>
+<th style="text-align:center">锚点行首的符合条件的内容，用法格式”^pattern”</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">锚点行首的符合条件的内容，用法格式”pattern$”</td>
+</tr>
+<tr>
+<td style="text-align:center">^$</td>
+<td style="text-align:center">空白行</td>
+</tr>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:center">匹配任意单个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">匹配紧挨在前面的字符任意次(0,1,多次)</td>
+</tr>
+<tr>
+<td style="text-align:center">.*</td>
+<td style="text-align:center">匹配任意长度的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\？</td>
+<td style="text-align:center">匹配紧挨在前面的字符0次或1次</td>
+</tr>
+<tr>
+<td style="text-align:center">{m,n}</td>
+<td style="text-align:center">匹配其前面的字符至少m次，至多n次</td>
+</tr>
+<tr>
+<td style="text-align:center">{m,}</td>
+<td style="text-align:center">匹配其前面的字符至少m次</td>
+</tr>
+<tr>
+<td style="text-align:center">{m}</td>
+<td style="text-align:center">精确匹配前面的m次{0,n}:0到n次</td>
+</tr>
+<tr>
+<td style="text-align:center">\&lt;</td>
+<td style="text-align:center">锚点词首—-相当于 \b，用法格式：\&lt;pattern</td>
+</tr>
+<tr>
+<td style="text-align:center">></td>
+<td style="text-align:center">锚点词尾，用法格式:>pattern</td>
+</tr>
+<tr>
+<td style="text-align:center">\&lt;pattern></td>
+<td style="text-align:center">单词锚点</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">分组，用法格式：pattern，引用\1,\2</td>
+</tr>
+<tr>
+<td style="text-align:center">[]</td>
+<td style="text-align:center">匹配指定范围内的任意单个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[^]</td>
+<td style="text-align:center">匹配指定范围外的任意单个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[:digit:]</td>
+<td style="text-align:center">所有数字, 相当于0-9， [0-9]—&gt; [[:digit:]]</td>
+</tr>
+<tr>
+<td style="text-align:center">[:lower:]</td>
+<td style="text-align:center">所有的小写字母</td>
+</tr>
+<tr>
+<td style="text-align:center">[:upper:]</td>
+<td style="text-align:center">所有的大写字母</td>
+</tr>
+<tr>
+<td style="text-align:center">[:alpha:]</td>
+<td style="text-align:center">所有的字母</td>
+</tr>
+<tr>
+<td style="text-align:center">[:alnum:]</td>
+<td style="text-align:center">相当于0-9a-zA-Z</td>
+</tr>
+<tr>
+<td style="text-align:center">[:space:]</td>
+<td style="text-align:center">空白字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[:punct:]</td>
+<td style="text-align:center">所有标点符号</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>######sed的匹配模式支持正则表达式#####################  </span><br><span class="line">sed'5 q'/etc/passwd#打印前5行  </span><br><span class="line">sed-n '/r*t/p'/etc/passwd#打印匹配r有0个或者多个，后接一个t字符的行  </span><br><span class="line">sed-n '/.r.*/p'/etc/passwd#打印匹配有r的行并且r后面跟任意字符  </span><br><span class="line">sed-n '/o*/p'/etc/passwd#打印o字符重复任意次  </span><br><span class="line">sed-n '/o\&#123;1,\&#125;/p'/etc/passwd#打印o字重复出现一次以上  </span><br><span class="line">sed-n '/o\&#123;1,3\&#125;/p'/etc/passwd#打印o字重复出现一次到三次之间以上</span><br></pre></td></tr></table></figure>
+<p><code>sed</code>的编辑命令(<code>sed command</code>)：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">p</th>
+<th style="text-align:center">打印匹配行（和-n选项一起合用）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">=</td>
+<td style="text-align:center">显示文件行号</td>
+</tr>
+<tr>
+<td style="text-align:center">a\</td>
+<td style="text-align:center">在定位行号后附加新文本信息</td>
+</tr>
+<tr>
+<td style="text-align:center">i\</td>
+<td style="text-align:center">在定位行号后插入新文本信息</td>
+</tr>
+<tr>
+<td style="text-align:center">d</td>
+<td style="text-align:center">删除定位行</td>
+</tr>
+<tr>
+<td style="text-align:center">c\</td>
+<td style="text-align:center">用新文本替换定位文本</td>
+</tr>
+<tr>
+<td style="text-align:center">w filename</td>
+<td style="text-align:center">写文本到一个文件，类似输出重定向 &gt;</td>
+</tr>
+<tr>
+<td style="text-align:center">r filename</td>
+<td style="text-align:center">从另一个文件中读文本，类似输入重定向 &lt;</td>
+</tr>
+<tr>
+<td style="text-align:center">s</td>
+<td style="text-align:center">使用替换模式替换相应模式</td>
+</tr>
+<tr>
+<td style="text-align:center">q</td>
+<td style="text-align:center">第一个模式匹配完成后退出或立即退出</td>
+</tr>
+<tr>
+<td style="text-align:center">l</td>
+<td style="text-align:center">显示与八进制ACSII代码等价的控制符</td>
+</tr>
+<tr>
+<td style="text-align:center">{}</td>
+<td style="text-align:center">在定位行执行的命令组，用分号隔开</td>
+</tr>
+<tr>
+<td style="text-align:center">n</td>
+<td style="text-align:center">从另一个文件中读文本下一行，并从下一条命令而不是第一条命令开始对其的处理</td>
+</tr>
+<tr>
+<td style="text-align:center">N</td>
+<td style="text-align:center">在数据流中添加下一行以创建用于处理的多行组</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:center">将模式2粘贴到/pattern n/</td>
+</tr>
+<tr>
+<td style="text-align:center">y</td>
+<td style="text-align:center">传送字符，替换单个字符</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>对文件的操作无非就是”增删改查“，怎样用<code>sed</code>命令实现对文件的”增删改查“，玩转<code>sed</code>是写自动化脚本必须的基础之一。</p>
+</blockquote>
+<p><code>sed</code>命令打印文件信息(查询)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>###用sed打印文件的信息的例子的命令######  </span><br><span class="line">sed -n '/^#/!p'  /etc/vsftpd/vsftpd.conf         </span><br><span class="line">sed -n '/^#/!&#123;/^$/!p&#125;'  /etc/vsftpd/vsftpd.conf  </span><br><span class="line">sed -e '/^#/d' -e '/^$/d'  /etc/vsftpd/vsftpd.conf  </span><br><span class="line">sed -n '1,/adm/p' /etc/passwd  </span><br><span class="line">sed -n '/adm/,6p' /etc/passwd  </span><br><span class="line">sed -n '/adm/,4p' /etc/passwd  </span><br><span class="line">sed -n '/adm/,2p' /etc/passwd  </span><br><span class="line"><span class="meta">#</span>##以下图片是对这些sed命令例子的解释和显示结果</span><br></pre></td></tr></table></figure>
+<p><code>sed</code>命令实现对文件内容的添加：(对源文件添加的话就用-i参数):</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>###sed命令可以实现的添加######  </span><br><span class="line"><span class="meta">#</span>1）匹配行的行首添加，添加在同行  </span><br><span class="line"><span class="meta">#</span>2）匹配行的行中的某个字符后添加  </span><br><span class="line"><span class="meta">#</span>3）匹配行的行尾添加字符  </span><br><span class="line"><span class="meta">#</span>4）匹配行的行前面行添加  </span><br><span class="line"><span class="meta">#</span>5）匹配行的行后面行添加  </span><br><span class="line"><span class="meta">#</span>6）文件的行首添加一行  </span><br><span class="line">[root@jie1 ~]# sed -i '1 i\sed command start' myfile  </span><br><span class="line"><span class="meta">#</span>7）文件的行尾追加一行  </span><br><span class="line">[root@jie1 ~]# sed -i '$a \sed command end' myfile</span><br></pre></td></tr></table></figure>
+<p>重点：<code>sed</code>命令实现对文件内容的替换（替换是在<code>shell</code>自动化脚本中用到最多的操作）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>================源文件里面的内容===============================  </span><br><span class="line">[root@jie1 ~]# cat test  </span><br><span class="line">anonymous_enable=YES  </span><br><span class="line">write_enable=YES  </span><br><span class="line">local_umask=022  </span><br><span class="line">xferlog_enable=YES  </span><br><span class="line">connect_from_port_20=YES  </span><br><span class="line">root:x:0:0:root:/root:/bin/bash  </span><br><span class="line">bin:x:1:1:bin:/bin:/sbin/nologin  </span><br><span class="line">daemon:x:2:2:daemon:/sbin:/sbin/nologin  </span><br><span class="line">adm:x:3:4:adm:/var/adm:/sbin/nologin  </span><br><span class="line">lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin  </span><br><span class="line">DEVICE="eth0"  </span><br><span class="line">BOOTPROTO="static"  </span><br><span class="line">HWADDR="00:0C:29:90:79:78"  </span><br><span class="line">ONBOOT="yes"  </span><br><span class="line">IPADDR=172.16.22.1  </span><br><span class="line">NETMASK=255.255.0.0  </span><br><span class="line"><span class="meta">#</span>======================================================================  </span><br><span class="line">[root@jie1 ~]# sed -i '/DEVICE/c\Ethernet' test   </span><br><span class="line">        #匹配DEVICE的行，替换成Ethernet这行  </span><br><span class="line">[root@jie1 ~]# sed -i 's/static/dhcp/' test       </span><br><span class="line">        #把static替换成dhcp(/,@,#都是前面所说的地址定界符)  </span><br><span class="line">[root@jie1 ~]# sed -i '/IPADDR/s@22\.1@10.12@' test  </span><br><span class="line">        #匹配IPADDR的行，把22.1替换成10.12由于.号有特殊意义所有需要转义  </span><br><span class="line">[root@jie1 ~]# sed -i '/connect/s#YES#NO#' test   </span><br><span class="line">        #匹配connect的行，把YES替换成NO  </span><br><span class="line">[root@jie1 ~]# sed -i 's/bin/tom/2g' test         </span><br><span class="line">        #把所有匹配到bin的行中第二次及第二次之后出现bin替换成tom  </span><br><span class="line">[root@jie1 ~]# sed -i 's/daemon/jerry/2p' test    </span><br><span class="line">        #把所有匹配到bin的行中第二次出现的daemon替换成jerry，并在生产与匹配行同样的行  </span><br><span class="line">[root@jie1 ~]# sed -i 's/adm/boss/2' test         </span><br><span class="line">        #把所有匹配到adm的行中仅仅只是第二次出现的adm替换成boss  </span><br><span class="line">[root@jie1 ~]# sed -i '/root/&#123;s/bash/nologin/;s/0/1/g&#125;' test  </span><br><span class="line">        #匹配root的行，把bash替换成nologin，且把0替换成1  </span><br><span class="line">[root@jie1 ~]# sed -i 's/root/(&amp;)/g' test                   </span><br><span class="line">        #把root用括号括起来，&amp;表示引用前面匹配的字符  </span><br><span class="line">[root@jie1 ~]# sed -i 's/BOOTPROTO/#BOOTPROTO/' test        </span><br><span class="line">        #匹配BOOTPROTO替换成#BOOTPROTO，在配置文件中一般用于注释某行  </span><br><span class="line">[root@jie1 ~]# sed -i 's/ONBOOT/#&amp;/' test                   </span><br><span class="line">        #匹配ONBOOT的行的前面添加#号，在配置文件中也表示注释某行  </span><br><span class="line">[root@jie1 ~]# sed -i '/ONBOOT/s/#//' test                  </span><br><span class="line">        #匹配ONBOOT的行，把#替换成空，即去掉#号，也一般用作去掉#注释  </span><br><span class="line"><span class="meta">#</span>================执行以上sed命令之后文件显示的内容====================  </span><br><span class="line">[root@jie1 ~]# cat test  </span><br><span class="line">anonymous_enable=YES  </span><br><span class="line">write_enable=YES  </span><br><span class="line">local_umask=022  </span><br><span class="line">xferlog_enable=YES  </span><br><span class="line">connect_from_port_20=NO  </span><br><span class="line">(root):x:1:1:(root):/(root):/bin/nologin  </span><br><span class="line">bin:x:1:1:tom:/tom:/stom/nologin  </span><br><span class="line">daemon:x:2:2:jerry:/sbin:/stom/nologin  </span><br><span class="line">daemon:x:2:2:jerry:/sbin:/stom/nologin  </span><br><span class="line">adm:x:3:4:boss:/var/adm:/sbin/nologin  </span><br><span class="line">lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin  </span><br><span class="line">Ethernet  </span><br><span class="line"><span class="meta">#</span>BOOTPROTO="dhcp"  </span><br><span class="line">HWADDR="00:0C:29:90:79:78"  </span><br><span class="line">ONBOOT="yes"  </span><br><span class="line">IPADDR=172.16.10.12  </span><br><span class="line">NETMASK=255.255.0.0</span><br></pre></td></tr></table></figure>
+<p><code>sed</code>引用变量：（在自动化<code>shell</code>脚本 中也经常会使用到变量）</p>
+<p>第一种当<code>sed</code>命令里面没有默认的变量时可以把单引号改成双引号；</p>
+<p>第二种当<code>sed</code>命令里面有默认的变量时，那自己定义的变量需要加单引号，且<code>sed</code>里面的语句必须用单引</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[root@jie1 ~]# cat &gt;&gt; myfile &lt;&lt; EOF  </span><br><span class="line"><span class="meta">&gt;</span> hello world  </span><br><span class="line"><span class="meta">&gt;</span> i am jie  </span><br><span class="line"><span class="meta">&gt;</span> how are you  </span><br><span class="line"><span class="meta">&gt;</span> EOF   #先生成一个文件  </span><br><span class="line">[root@jie1 ~]# cat myfile  </span><br><span class="line">hello world  </span><br><span class="line">i am jie  </span><br><span class="line">how are you  </span><br><span class="line">[root@jie1 ~]# name=li  </span><br><span class="line">         #定义一个变量，且给变量赋值  </span><br><span class="line">[root@jie1 ~]# sed -i "s/jie/$name/" myfile  </span><br><span class="line">         #把匹配jie的字符替换成变量的值  </span><br><span class="line">[root@jie1 ~]# cat myfile  </span><br><span class="line">hello world  </span><br><span class="line">i am li  </span><br><span class="line">how are you  </span><br><span class="line">[root@jie1 ~]# sed -i "$a $name" myfile  </span><br><span class="line">          #当sed命令也有默认变量时，在去引用自己定义的变量会出现语法错误  </span><br><span class="line">sed: -e expression #1, char 3: extra characters after command  </span><br><span class="line">[root@jie1 ~]# sed -i '$a '$name'' myfile  </span><br><span class="line">          #在引用自定义的变量时，sed语句必须用单引引住，然后把自定义的变量也用单引号引住  </span><br><span class="line">[root@jie1 ~]# cat myfile  </span><br><span class="line">hello world  </span><br><span class="line">i am li  </span><br><span class="line">how are you  </span><br><span class="line">li</span><br></pre></td></tr></table></figure></div><div class="post-copyright"><div class="post-copyright-author"><span class="post-copyright-meta">本文作者: </span><span class="post-copyright-info"><a href="mailto:undefined">YoungDream</a></span></div><div class="post-copyright-type"><span class="post-copyright-meta">本文链接: </span><span class="post-copyright-info"><a href="http://qq994300880.github.io/2019/04/08/每日一题之有效电话号码/">http://qq994300880.github.io/2019/04/08/每日一题之有效电话号码/</a></span></div><div class="post-copyright-notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://qq994300880.github.io">YD Blog</a>！</span></div></div></article><div id="pagination"><div class="next-post pull-right"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2019/04/07/每日一题之位1的个数/"><span>每日一题之位1的个数</span><span>&nbsp;</span><i class="fas fa-angle-right"></i></a></div></div><!--div!= paginator()--></div></div><div class="button-hover" id="return-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><footer><div id="footer"><div class="button-hover" id="side-button"><i class="fas fa-arrow-right"></i></div><div class="right-content"><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fas fa-file-o"></i></span><span id="busuanzi_value_page_pv"></span><span></span></div><div class="copyright">&copy;2019 By YoungDream</div></div></div></footer></div><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery-3.3.1.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/velocity.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery.mCustomScrollbar.concat.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/fan.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/canvas_bg.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/utils.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/scroll.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/sidebar.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/copy.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/clicklove.js"></script><!--script(src=url)--><div class="search-dialog"><div id="algolia-search-title">Algolia</div><div class="search-close-button"><i class="fa fa-times"></i></div><!--div#current-refined-values--><!--div#clear-all--><div id="search-box"></div><!--div#refinement-list--><hr><div id="hits"></div><div id="algolia-pagination"></div></div><div class="search-mask"></div><script src="/js/search/algolia.js"></script></body></html>

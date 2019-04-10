@@ -4,7 +4,7 @@ const gitalk = new Gitalk({
   repo: 'qq994300880.github.io',
   owner: 'qq994300880',
   admin: ['qq994300880'],
-  //id: location.pathname,     // Ensure uniqueness and length less than 50
+  id: md5(location.pathname),     // Ensure uniqueness and length less than 50
   distractionFreeMode: true  // Facebook-like distraction free mode
 });
 

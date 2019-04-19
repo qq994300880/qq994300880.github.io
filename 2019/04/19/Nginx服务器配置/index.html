@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Nginx服务器配置"><meta name="keywords" content><meta name="author" content="YoungDream,undefined"><meta name="copyright" content="YoungDream"><title>Nginx服务器配置【YD Blog】</title><link rel="stylesheet" href="/css/fan.css"><link rel="stylesheet" href="/css/thirdparty/jquery.mCustomScrollbar.min.css"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch.min.css"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4/dist/instantsearch-theme-algolia.min.css"><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.10.4"></script><!--link(rel="dns-prefetch" href="https://cdn.jsdelivr.net")--><!--link(rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css")--><!--script(src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer)--><script>var isPassword = '' || false;
+if (isPassword) {
+    if (prompt('请输入文章密码') !== '') {
+        alert('密码错误！');
+        history.back();
+    }
+}</script><script>window.GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"0BGAOITLJQ","apiKey":"2c864a8b4720c83c2ddfc7e53d4c1711","indexName":"article_NAME","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容:${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+}</script></head><body><canvas id="universe"></canvas><!--#body--><div id="sidebar"><div class="toggle-sidebar-info button-hover"><span data-toggle="文章目录">站点概览</span></div><div class="sidebar-toc"><div class="sidebar-toc-title">目录</div><div class="sidebar-toc-progress"><span class="progress-notice">您已阅读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc-progress-bar"></div></div><div class="sidebar-toc-content" id="sidebar-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx服务器配置"><span class="toc-number">1.</span> <span class="toc-text">Nginx服务器配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx配置文件的整体结构"><span class="toc-number">1.1.</span> <span class="toc-text">Nginx配置文件的整体结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#全局块"><span class="toc-number">1.1.1.</span> <span class="toc-text">全局块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#events块"><span class="toc-number">1.1.2.</span> <span class="toc-text">events块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#http块"><span class="toc-number">1.1.3.</span> <span class="toc-text">http块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#server块"><span class="toc-number">1.1.4.</span> <span class="toc-text">server块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#location块"><span class="toc-number">1.1.5.</span> <span class="toc-text">location块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板"><span class="toc-number">1.2.</span> <span class="toc-text">模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指令的含义"><span class="toc-number">1.3.</span> <span class="toc-text">指令的含义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置运行Nginx服务器用户（组）"><span class="toc-number">1.3.1.</span> <span class="toc-text">配置运行Nginx服务器用户（组）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#worker-process数配置"><span class="toc-number">1.3.2.</span> <span class="toc-text">worker process数配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Nginx进程PID存放路径"><span class="toc-number">1.3.3.</span> <span class="toc-text">Nginx进程PID存放路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#错误日志的存放路径"><span class="toc-number">1.3.4.</span> <span class="toc-text">错误日志的存放路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置文件的引入"><span class="toc-number">1.3.5.</span> <span class="toc-text">配置文件的引入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置网络连接的序列化"><span class="toc-number">1.3.6.</span> <span class="toc-text">设置网络连接的序列化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#是否允许同时接收多个网络连接"><span class="toc-number">1.3.7.</span> <span class="toc-text">是否允许同时接收多个网络连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件驱动模型的选择"><span class="toc-number">1.3.8.</span> <span class="toc-text">事件驱动模型的选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最大连接数的配置"><span class="toc-number">1.3.9.</span> <span class="toc-text">最大连接数的配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#定义MIME-Type"><span class="toc-number">1.3.10.</span> <span class="toc-text">定义MIME-Type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义服务日志"><span class="toc-number">1.3.11.</span> <span class="toc-text">自定义服务日志</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#允许sendfile方式传输文件"><span class="toc-number">1.3.12.</span> <span class="toc-text">允许sendfile方式传输文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连接超时配置"><span class="toc-number">1.3.13.</span> <span class="toc-text">连接超时配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#单连接请求数上限"><span class="toc-number">1.3.14.</span> <span class="toc-text">单连接请求数上限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置网络监听"><span class="toc-number">1.3.15.</span> <span class="toc-text">配置网络监听</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基于名称和IP的虚拟主机配置"><span class="toc-number">1.3.16.</span> <span class="toc-text">基于名称和IP的虚拟主机配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#location配置"><span class="toc-number">1.3.17.</span> <span class="toc-text">location配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#请求根目录配置"><span class="toc-number">1.3.18.</span> <span class="toc-text">请求根目录配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置网站的默认首页"><span class="toc-number">1.3.19.</span> <span class="toc-text">设置网站的默认首页</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结束语"><span class="toc-number">1.4.</span> <span class="toc-text">结束语</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info-avatar"><img class="author-info-avatar-img" src="/avatar.png"></div><div class="author-info-name">YoungDream</div><div class="author-info-description">正忙着优秀~~~</div><div class="links-buttons"><a class="links-button button-hover" href="https://github.com/qq994300880" target="_blank">GitHub<i class="icon-dot bg-color1"></i></a><a class="links-button button-hover" href="http://wpa.qq.com/msgrd?v=3&amp;uin=994300880&amp;site=qq&amp;menu=yes" target="_blank">QQ<i class="icon-dot bg-color2"></i></a></div><div class="author-info-articles"><a class="author-info-articles-archives article-meta" href="/archives"><span class="pull-top">日志</span><span class="pull-bottom">105</span></a><a class="author-info-articles-tags article-meta" href="/tags"><span class="pull-top">标签</span><span class="pull-bottom">74</span></a><a class="author-info-articles-categories article-meta" href="/categories"><span class="pull-top">分类</span><span class="pull-bottom">16</span></a></div></div></div><div id="main-container"><header><div id="menu-outer"><i class="menu-list-icon fas fa-bars"></i><nav id="menu-inner"><a class="menu-item" href="/">首页</a><a class="menu-item" href="/tags">标签</a><a class="menu-item" href="/categories">分类</a><a class="menu-item" href="/archives">归档</a><a class="menu-item" href="/about">关于</a></nav><div class="right-info"><a class="search social-icon"><i class="fas fa-search"></i><span> 搜索</span></a><a class="title-name" href="/">YD Blog</a><span id="now-time"></span></div></div></header><div id="content-outer"><div id="content-inner"><article id="post"><div class="post-header"><div class="title">Nginx服务器配置</div><div class="container"><time class="button-hover post-date"><i class="fas fa-calendar-alt article-icon" aria-hidden="true"></i> 发表于 2019-04-19 | 更新于 2019-04-19</time><!--time.button-hover.post-date #[i.fas.fa-calendar-alt.article-icon(aria-hidden="true")] #[=__('post.modified')] #[=date(page['updated'], config.date_format)]--><div class="button-hover categories"><i class="fa fa-inbox article-icon" aria-hidden="true"></i><a class="link-a" href="/categories/nginx/">nginx</a></div><div class="button-hover tags"></div></div></div><div class="main-content"><h2 id="Nginx服务器配置"><a href="#Nginx服务器配置" class="headerlink" title="Nginx服务器配置"></a>Nginx服务器配置</h2><h3 id="Nginx配置文件的整体结构"><a href="#Nginx配置文件的整体结构" class="headerlink" title="Nginx配置文件的整体结构"></a>Nginx配置文件的整体结构</h3><p><img src="/images/Nginx配置文件整体结构.png" alt="图1"></p>
+<a id="more"></a>
+<h4 id="全局块"><a href="#全局块" class="headerlink" title="全局块"></a>全局块</h4><p>该部分配置主要影响Nginx全局，通常包括下面几个部分：</p>
+<ul>
+<li>配置运行Nginx服务器用户（组）</li>
+<li>worker process数</li>
+<li>Nginx进程PID存放路径</li>
+<li>错误日志的存放路径</li>
+<li>配置文件的引入</li>
+</ul>
+<h4 id="events块"><a href="#events块" class="headerlink" title="events块"></a>events块</h4><p>该部分配置主要影响Nginx服务器与用户的网络连接，主要包括：</p>
+<ul>
+<li>设置网络连接的序列化</li>
+<li>是否允许同时接收多个网络连接</li>
+<li>事件驱动模型的选择</li>
+<li>最大连接数的配置</li>
+</ul>
+<h4 id="http块"><a href="#http块" class="headerlink" title="http块"></a>http块</h4><ul>
+<li>定义MIMI-Type</li>
+<li>自定义服务日志</li>
+<li>允许sendfile方式传输文件</li>
+<li>连接超时时间</li>
+<li>单连接请求数上限</li>
+</ul>
+<h4 id="server块"><a href="#server块" class="headerlink" title="server块"></a>server块</h4><ul>
+<li>配置网络监听</li>
+<li>基于名称的虚拟主机配置</li>
+<li>基于IP的虚拟主机配置</li>
+</ul>
+<h4 id="location块"><a href="#location块" class="headerlink" title="location块"></a>location块</h4><ul>
+<li>location配置</li>
+<li>请求根目录配置</li>
+<li>更改location的URI</li>
+<li>网站默认首页配置</li>
+</ul>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p><img src="/images/Nginx配置文件模板.png" alt="图2"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">user nobody nobody;</span><br><span class="line">worker_processes 3;</span><br><span class="line">error_log logs/error.log;</span><br><span class="line">pid logs/nginx.pid;</span><br><span class="line">events &#123; </span><br><span class="line">	useepoll; </span><br><span class="line">	worker_connections1024;</span><br><span class="line">&#125;</span><br><span class="line">http &#123; </span><br><span class="line">	include mime.types; </span><br><span class="line">	default_type application/octet-stream; </span><br><span class="line">	log_format main &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">					&apos;$status$body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">					&apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;; </span><br><span class="line">	access_log logs/access.log main; </span><br><span class="line">	sendfileon; </span><br><span class="line">	keepalive_timeout65; </span><br><span class="line">	server &#123; </span><br><span class="line">		listen8088; </span><br><span class="line">		server_name codesheep; </span><br><span class="line">		access_log /codesheep/webserver/server1/log/access.log; </span><br><span class="line">		error_page404 /404.html; </span><br><span class="line">		location /server1/location1 &#123; </span><br><span class="line">			root /codesheep/webserver; </span><br><span class="line">			index index.server2-location1.htm; </span><br><span class="line">		&#125; </span><br><span class="line">		location /server1/location2 &#123; </span><br><span class="line">			root /codesheep/webserver; </span><br><span class="line">			index index.server2-location2.htm; </span><br><span class="line">		&#125; </span><br><span class="line">	&#125; </span><br><span class="line">	server &#123; </span><br><span class="line">		listen8089; </span><br><span class="line">		server_name192.168.31.177; </span><br><span class="line">		access_log /codesheep/webserver/server2/log/access.log; </span><br><span class="line">		error_page404 /404.html; </span><br><span class="line">		location /server2/location1 &#123; </span><br><span class="line">			root /codesheep/webserver; </span><br><span class="line">			index index.server2-location1.htm; </span><br><span class="line">		&#125; </span><br><span class="line">		location /srv2/loc2 &#123; </span><br><span class="line">			alias /codesheep/webserver/server2/location2/; </span><br><span class="line">			index index.server2-location2.htm; </span><br><span class="line">		&#125; </span><br><span class="line">		location = /404.html &#123; </span><br><span class="line">			root /codesheep/webserver/; </span><br><span class="line">			index404.html; </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="指令的含义"><a href="#指令的含义" class="headerlink" title="指令的含义"></a>指令的含义</h3><h4 id="配置运行Nginx服务器用户（组）"><a href="#配置运行Nginx服务器用户（组）" class="headerlink" title="配置运行Nginx服务器用户（组）"></a>配置运行Nginx服务器用户（组）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user user [group];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>user</code>：指定可以运行Nginx服务器的用户</li>
+<li><code>group</code>：可选项，可以运行Nginx服务器的用户组</li>
+</ul>
+<p>如果user指令不配置或者配置为<code>user nobody nobody</code>，则默认所有用户都可以启动Nginx进程</p>
+<h4 id="worker-process数配置"><a href="#worker-process数配置" class="headerlink" title="worker process数配置"></a>worker process数配置</h4><p>Nginx服务器实现并发处理服务的关键，指令格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">worker_processes number|auto;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>number</code>：Nginx进程最多可以产生的worker process数</li>
+<li><code>auto</code>：Nginx进程将自动检测</li>
+</ul>
+<p>模板中我们配置的数目为3，可以进入控制台<code>ps -aux | grep nginx</code>查看</p>
+<h4 id="Nginx进程PID存放路径"><a href="#Nginx进程PID存放路径" class="headerlink" title="Nginx进程PID存放路径"></a>Nginx进程PID存放路径</h4><p>Nginx进程是作为系统守护进程在运行，需要在某文件中保存当前运行程序的主进程号，Nginx支持该保存文件路径的自定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pid file;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>file</code>：指定存放路径和文件名称，如果不指定，默认置于路径 logs/nginx.pid</li>
+</ul>
+<h4 id="错误日志的存放路径"><a href="#错误日志的存放路径" class="headerlink" title="错误日志的存放路径"></a>错误日志的存放路径</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error_log file|stderr;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>file</code>：日志输出到某个文件file</li>
+<li><code>stderr</code>：日志输出到标准错误输出</li>
+</ul>
+<h4 id="配置文件的引入"><a href="#配置文件的引入" class="headerlink" title="配置文件的引入"></a>配置文件的引入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include file;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>file</code>：如要引入的其他配置文件</li>
+</ul>
+<p>该指令主要用于将其他的Nginx配置或者第三方模块的配置引用到当前的主配置文件中</p>
+<h4 id="设置网络连接的序列化"><a href="#设置网络连接的序列化" class="headerlink" title="设置网络连接的序列化"></a>设置网络连接的序列化</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">accept_mutex on|off;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>该指令默认为on状态，表示会对多个Nginx进程接收连接进行序列化，防止多个进程对连接的争抢。</li>
+</ul>
+<p>说到该指令，首先得阐述一下什么是所谓的 “惊群问题”，可以参考 WIKI百科的解释。就Nginx的场景来解释的话大致的意思就是：当一个新网络连接来到时，多个worker进程会被同时唤醒，但仅仅只有一个进程可以真正获得连接并处理之。如果每次唤醒的进程数目过多的话，其实是会影响一部分性能的。</p>
+<p>所以在这里，如果accept_mutex on，那么多个worker将是以串行方式来处理，其中有一个worker会被唤醒；反之若accept_mutex off，那么所有的worker都会被唤醒，不过只有一个worker能获取新连接，其它的worker会重新进入休眠状态</p>
+<p>这个值的开关与否其实是要和具体场景挂钩的。</p>
+<h4 id="是否允许同时接收多个网络连接"><a href="#是否允许同时接收多个网络连接" class="headerlink" title="是否允许同时接收多个网络连接"></a>是否允许同时接收多个网络连接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multi_accept on|off;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>该指令默认为off状态，意指每个worker process 一次只能接收一个新到达的网络连接。若想让每个Nginx的workerprocess都有能力同时接收多个网络连接，则需要开启此配置</li>
+</ul>
+<h4 id="事件驱动模型的选择"><a href="#事件驱动模型的选择" class="headerlink" title="事件驱动模型的选择"></a>事件驱动模型的选择</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use model;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>model</code>：可选项包括<code>select</code>、<code>poll</code>、<code>kqueue</code>、<code>epoll</code>、<code>rtsig</code>等</li>
+</ul>
+<h4 id="最大连接数的配置"><a href="#最大连接数的配置" class="headerlink" title="最大连接数的配置"></a>最大连接数的配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">worker_connections number;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>number</code>：number默认值为512，表示允许每一个worker process可以同时开启的最大连接数</li>
+</ul>
+<h4 id="定义MIME-Type"><a href="#定义MIME-Type" class="headerlink" title="定义MIME-Type"></a>定义MIME-Type</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">include mime.types;</span><br><span class="line">default_type mime-type;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>MIME-Type指的是网络资源的媒体类型，也即前端请求的资源类型</li>
+<li>include指令将mime.types文件包含进来</li>
+</ul>
+<p><code>cat mime.types</code>来查看mime.types文件内容，我们发现其就是一个types结构，里面包含了各种浏览器能够识别的MIME类型以及对应类型的文件后缀名字，如下所示：</p>
+<p><img src="/images/Nginx配置文件-mime.types.png" alt="图3"></p>
+<h4 id="自定义服务日志"><a href="#自定义服务日志" class="headerlink" title="自定义服务日志"></a>自定义服务日志</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">access_log path [format];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>path</code>：自定义服务日志的路径+名称</li>
+<li><code>format</code>：可选项，自定义服务日志的字符串格式。也可以使用<code>log_format</code>定义的格式</li>
+</ul>
+<h4 id="允许sendfile方式传输文件"><a href="#允许sendfile方式传输文件" class="headerlink" title="允许sendfile方式传输文件"></a>允许sendfile方式传输文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sendfile on|off;</span><br><span class="line">sendfile_max_chunk size;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>前者用于开启或关闭使用sendfile()传输文件，默认off</li>
+<li>后者指令若size&gt;0，则Nginx进程的每个workerprocess每次调用sendfile()传输的数据了最大不能超出此值；若size=0则表示不限制。默认值为0</li>
+</ul>
+<h4 id="连接超时配置"><a href="#连接超时配置" class="headerlink" title="连接超时配置"></a>连接超时配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keepalive_timeout timeout [header_timeout];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>timeout</code> ：server端对连接的保持时间，默认75秒</li>
+<li><code>header_timeout</code> ：可选项，表示在应答报文头部的 Keep-Alive 域设置超时时间：“Keep-Alive :timeout = header_timeout”</li>
+</ul>
+<h4 id="单连接请求数上限"><a href="#单连接请求数上限" class="headerlink" title="单连接请求数上限"></a>单连接请求数上限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keepalive_requests number;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>number</code>：限制用户通过某一个连接向Nginx服务器发起请求的次数</li>
+</ul>
+<h4 id="配置网络监听"><a href="#配置网络监听" class="headerlink" title="配置网络监听"></a>配置网络监听</h4><ol>
+<li><p>配置监听的IP地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen IP[.PORT];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>IP</code>：具体的IP地址<code>listen 192.168.46.5</code></li>
+<li><code>PORT</code>：可选项，可以指定具体的端口<code>listen 192.168.46.5:8080</code></li>
+</ul>
+</li>
+<li><p>配置监听的端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen PORT;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>PORT</code>：具体的端口<code>listen 8080</code></li>
+</ul>
+</li>
+</ol>
+<h4 id="基于名称和IP的虚拟主机配置"><a href="#基于名称和IP的虚拟主机配置" class="headerlink" title="基于名称和IP的虚拟主机配置"></a>基于名称和IP的虚拟主机配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server_name name1 name2 ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>name1 name2 ...</code>：可以有多个并列名称，而且此处的name支持正则表达式书写</li>
+</ul>
+<p>例子：</p>
+<p><code>server_name ~^www\d+\.myserver\.com$</code></p>
+<p>匹配<code>www1.myserver.com</code>而不匹配<code>www.myserver.com</code>的域名请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server_name IP</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>IP</code>：匹配的IP地址</li>
+</ul>
+<h4 id="location配置"><a href="#location配置" class="headerlink" title="location配置"></a>location配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location [=|~|~*|^~]uri&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里的uri分为标准uri和正则uri，两者的唯一区别是uri中是否包含正则表达式</li>
+</ul>
+<p>uri前面的方括号中的内容是可选项，解释如下：</p>
+<ul>
+<li><code>=</code>：用于标准uri前，要求请求字符串与uri严格匹配，一旦匹配成功则停止</li>
+<li><code>~</code>：用于正则uri前，并且区分大小写</li>
+<li><code>~*</code>：用于正则uri前，但不区分大小写</li>
+<li><code>^~</code>：用于标准uri前，要求Nginx找到标识uri和请求字符串匹配度最高的location后，立即使用此location处理请求，而不再使用location块中的正则uri和请求字符串做匹配</li>
+</ul>
+<h4 id="请求根目录配置"><a href="#请求根目录配置" class="headerlink" title="请求根目录配置"></a>请求根目录配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root path;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>path</code>：Nginx接收到请求以后查找资源的根目录路径</li>
+</ul>
+<p>还可以通过alias指令来更改location接收到的URI请求路径，指令为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias path;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>path</code>：为修改后的根路径</li>
+</ul>
+<h4 id="设置网站的默认首页"><a href="#设置网站的默认首页" class="headerlink" title="设置网站的默认首页"></a>设置网站的默认首页</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index file1 file2 ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>file1 file2 ...</code>：可以包含多个用空格隔开的文件名，首先找到哪个页面，就使用哪个页面响应请求</li>
+</ul>
+<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>​    关于Nginx配置文件的介绍结束了，关键还是要多配置多试，如果遗忘就回来翻阅一下呗!</p>
+</div><div class="post-copyright"><div class="post-copyright-author"><span class="post-copyright-meta">本文作者: </span><span class="post-copyright-info"><a href="mailto:undefined">YoungDream</a></span></div><div class="post-copyright-type"><span class="post-copyright-meta">本文链接: </span><span class="post-copyright-info"><a href="http://qq994300880.github.io/2019/04/19/Nginx服务器配置/">http://qq994300880.github.io/2019/04/19/Nginx服务器配置/</a></span></div><div class="post-copyright-notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://qq994300880.github.io">YD Blog</a>！</span></div></div></article><div id="pagination"><div class="next-post pull-right"><span class="line line-top"></span><span class="line line-right"></span><span class="line line-bottom"></span><span class="line line-left"></span><a href="/2019/04/19/设计模式十八之状态模式/"><span>设计模式十八之状态模式</span><span>&nbsp;</span><i class="fas fa-angle-right"></i></a></div></div><!--div!= paginator()--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script><script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script><div id="gitalk-container"></div><script src="/js/gitalk.js"></script></div></div><div class="button-hover" id="return-top"><i class="fas fa-arrow-up" aria-hidden="true"></i></div><footer><div id="footer"><div class="button-hover" id="side-button"><i class="fas fa-arrow-right"></i></div><div class="right-content"><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fas fa-file-o"></i></span><span id="busuanzi_value_page_pv"></span><span></span></div><div class="copyright">&copy;2019 By YoungDream</div></div></div></footer></div><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery-3.3.1.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/velocity.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/thirdparty/jquery.mCustomScrollbar.concat.min.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/fan.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/canvas_bg.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/utils.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/scroll.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/sidebar.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/copy.js"></script><!--script(src=url)--><!--js(src=url_for(url) + '?version=' + version())--><script src="/js/clicklove.js"></script><!--script(src=url)--><div class="search-dialog"><div id="algolia-search-title">Algolia</div><div class="search-close-button"><i class="fa fa-times"></i></div><!--div#current-refined-values--><!--div#clear-all--><div id="search-box"></div><!--div#refinement-list--><hr><div id="hits"></div><div id="algolia-pagination"></div></div><div class="search-mask"></div><script src="/js/search/algolia.js"></script></body></html>

@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>每日一题之缺失数字</title>
+      <link href="/2019/04/30/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E7%BC%BA%E5%A4%B1%E6%95%B0%E5%AD%97/"/>
+      <url>/2019/04/30/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E7%BC%BA%E5%A4%B1%E6%95%B0%E5%AD%97/</url>
+      
+        <content type="html"><![CDATA[<h2 id="缺失数字"><a href="#缺失数字" class="headerlink" title="缺失数字"></a>缺失数字</h2><p>给定一个包含 <code>0, 1, 2, ..., n</code> 中 <em>n</em> 个数的序列，找出 0 .. <em>n</em> 中没有出现在序列中的那个数。</p><p><strong>示例 1:</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [3,0,1]</span><br><span class="line">输出: 2</span><br></pre></td></tr></table></figure><p><strong>示例 2:</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [9,6,4,2,3,5,7,0,1]</span><br><span class="line">输出: 8</span><br></pre></td></tr></table></figure><p><strong>说明:</strong><br>你的算法应具有线性时间复杂度。你能否仅使用额外常数空间来实现?</p><a id="more"></a><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>首先想到高斯算法，但是有溢出的可能性</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//得到最大的数</span></span><br><span class="line">    <span class="keyword">int</span> lager=nums.length;</span><br><span class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">        sum+=nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//首项+末项*项数/2-已有总和</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">0</span>+lager)*(lager+<span class="number">1</span>)/<span class="number">2</span>-sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h4><p>似乎忘记了以前的异或<code>^</code>运算符了，这种方法更为安全和快速，举个例子：</p><ul><li>0 ^ 4 = 4</li><li>4 ^ 4 = 0</li></ul><p>那么，就可以不用求和，直接使用异或运算<code>^</code>进行 抵消，剩下的数字就是缺失的了。</p><p>再举个例子：</p><ul><li>1^1^2^2^3 = 3</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result=nums.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">        result^=nums[i];</span><br><span class="line">        result^=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> algorithm </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>每日一题之丑数</title>
       <link href="/2019/04/29/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E4%B8%91%E6%95%B0/"/>
       <url>/2019/04/29/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98%E4%B9%8B%E4%B8%91%E6%95%B0/</url>
